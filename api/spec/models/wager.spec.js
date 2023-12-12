@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 require("../mongodb_helper");
 const Wager = require('../../models/wager')
 const testDate = new Date("2022-03-25");
+const testDate2 = new Date("2022-03-27");
+
 
 
 
@@ -19,7 +21,7 @@ describe("wager model", () =>{
       quantity: 1,
       description: "test Wager",
       datemade: testDate, 
-      deadline: testDate, 
+      deadline: testDate2, 
     });
     expect(wager.description).toEqual("test Wager");
 
@@ -29,7 +31,7 @@ describe("wager model", () =>{
       quantity: 1,
       description: "test Wager",
       datemade: testDate, 
-      deadline: testDate, 
+      deadline: testDate2, 
     });
     expect(wager.winner).toEqual(null);
 
@@ -41,9 +43,9 @@ describe("wager model", () =>{
       quantity: 1,
       description: "test Wager",
       datemade: testDate, 
-      deadline: testDate, 
+      deadline: testDate2, 
     });
-    expect(wager.deadline).toEqual(testDate);
+    expect(wager.deadline).toEqual(testDate2);
     
    
 
