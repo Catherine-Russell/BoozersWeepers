@@ -5,7 +5,7 @@ const User = require('../../models/user');
 
 describe("/tokens", () => {
   beforeAll(async () => {
-    const user = new User({ email: "test@test.com", password: "12345678" })
+    const user = new User({ email: "test@test.com",username: "test", password: "12345678" })
 
     // We need to use `await` so the
     // "beforeAll" setup function waits for the
