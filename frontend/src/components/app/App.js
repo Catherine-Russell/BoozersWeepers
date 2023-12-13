@@ -17,7 +17,7 @@ const App = () => {
           <Route path='/posts'  element={<Feed navigate={ useNavigate() }/>}/>
           <Route path='/login'  element={<LoginForm  navigate={ useNavigate() }/>}/>
           <Route path='/signup' element={<SignUpForm navigate={ useNavigate() }/>}/>
-          <Route path='/newWager/:user_id' element={<NewWagerForm navigate={ useNavigate() }/>}/>
+          <Route path='/newWager/:challengedUserID' element={<NewWagerForm navigate={ useNavigate() }/>}/>
 
         </Routes>
     );

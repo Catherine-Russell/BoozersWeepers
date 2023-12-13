@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import "./NewWagerForm.css";
+import { useParams } from "react-router-dom"
 
 const NewWagerForm = ({ navigate }) => {
+	const {challengedUserID} = useParams()
 	const [description, setDescription] = useState("");
 	const [deadline, setDeadline] = useState("");
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
+
 
 	const handleWagerSubmit = async (event) => {
 		event.preventDefault();
@@ -18,7 +21,8 @@ const NewWagerForm = ({ navigate }) => {
 				},
 				body: JSON.stringify({
 					description: description,
-					deadline: deadline
+					deadline: deadline,
+					challengedUser: challengedUserID
 				})
 			})
 		
@@ -40,9 +44,10 @@ const NewWagerForm = ({ navigate }) => {
     setDeadline(event.target.value)
   }
 
+if (token) {
 
-return (
-	<form onSubmit={handleWagerSubmit}>
+	return (
+		<form onSubmit={handleWagerSubmit}>
 		<h1 id="create-a-wager-heading">Create a Wager</h1>
 
           <input placeholder="Description" id="description" type='text' value={ description } onChange={handleDescriptionChange} />
@@ -51,8 +56,10 @@ return (
   
         <input id='submit' type="submit" value="Submit" />
       </form>
-
-)
+		)
+} else {
+	navigate("/../login");
+}
 	
 }
 
