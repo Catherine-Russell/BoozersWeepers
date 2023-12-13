@@ -1,10 +1,11 @@
 const Wager = require("../models/wager");
 const TokenGenerator = require("../lib/token_generator");
+ 
 
 const WagersController = {
 	Create: (req, res) => {
-		const user = new User(req.body);
-		user.save((err) => {
+		const wager = new Wager(req.body);
+		wager.save((err) => {
 			if (err) {
 				res.status(400).json({message: 'Bad request'})
 			} else {
