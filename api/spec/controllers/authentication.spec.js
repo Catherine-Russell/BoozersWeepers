@@ -16,7 +16,7 @@ describe("/tokens", () => {
     await user.save()
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
     await User.deleteMany({})
   })
 
