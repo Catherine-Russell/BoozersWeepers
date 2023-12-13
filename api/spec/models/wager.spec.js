@@ -35,7 +35,7 @@ describe("wager model", () =>{
     });
     expect(wager.winner).toEqual(null);
 
-   
+
 
   });
   it("creates a wager with correct time", () => {
@@ -47,7 +47,6 @@ describe("wager model", () =>{
     });
     expect(wager.deadline).toEqual(testDate2);
     
-   
 
   });
 
