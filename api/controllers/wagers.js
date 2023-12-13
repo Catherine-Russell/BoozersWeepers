@@ -18,6 +18,15 @@ const WagersController = {
 			}
 		});
 	},
+	Index: (req, res) => {
+    Wager.find((err, wagers) => {
+      if (err) {
+        throw err;
+      }
+      const token = TokenGenerator.jsonwebtoken(req.user_id)
+      res.status(200).json({ wagers: wagers, token: token });
+    });
+  },
 }
 
 module.exports = WagersController;
