@@ -5,7 +5,7 @@ const TokenGenerator = require("../lib/token_generator");
 const WagersController = {
 	Create: (req, res) => {
 		const wager = new Wager({
-			peopleInvolved: [req.user_id],
+			peopleInvolved: [req.user_id, req.body.challengedUser],
 			description: req.body.description,
 			deadline: req.body.deadline,
 		})

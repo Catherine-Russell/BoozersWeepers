@@ -17,9 +17,9 @@ let challengedUser;
 describe("POST /wagers -> create new wager", () => {
   beforeAll( async () => {
     user1 = new User({email: "user1@test.com", username: "user1", password: "12345678!"});
-		// const challengedUser = new User({email: "challengerUser@test.com", username: "challengerUser", password: "98765432!"})
+		challengedUser = new User({email: "challengerUser@test.com", username: "challengerUser", password: "98765432!"})
     await user1.save();
-		// await challengedUser.save();
+		await challengedUser.save();
 
 // Sets up user and token for each test
     token = JWT.sign({
@@ -77,6 +77,15 @@ describe("POST /wagers -> create new wager", () => {
 			.send({ description: "test wager", datemade: testDate, deadline: testDeadline, token: token })
 			let wagers = await Wager.find();
       expect(String(wagers[0].peopleInvolved[0])).toEqual(user1.id);
+		})
+
+		test("challenged user is second in the array of people involved", async () => {
+      await request(app)
+			.post("/wagers")
+			.set("Authorization", `Bearer ${token}`)
+			.send({ description: "test wager", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+			let wagers = await Wager.find();
+      expect(String(wagers[0].peopleInvolved[1])).toEqual(challengedUser.id);
 		})
   });
   
