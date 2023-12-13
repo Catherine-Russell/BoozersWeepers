@@ -3,6 +3,7 @@ import IncomingWagers from './myAccountPageComponents/IncomingWagers';
 import OngoingWagers from './myAccountPageComponents/ongoingWagers';
 import PendingWagers from './myAccountPageComponents/PendingWagers';
 import HistoricWagers from './myAccountPageComponents/PastWagers';
+import NavBar from '../NavBar/NavBar';
 
 
 const MyAccountPage = ({ navigate }) => {
@@ -33,6 +34,7 @@ const MyAccountPage = ({ navigate }) => {
     if(token) {
       return(
         <>
+				<NavBar />
           <h2>Username's account</h2>
 					<IncomingWagers />
 					<OngoingWagers />
