@@ -112,4 +112,83 @@ describe("POST /wagers -> create new wager", () => {
       expect(response.body.token).toEqual(undefined);
     });
   })
-})
+  describe("GET, when token is present", () => {
+    test("returns every post in the collection", async () => {
+      let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      await wager1.save();
+  
+      await wager2.save();
+      let response = await request(app)
+        .get("/wagers")
+        .set("Authorization", `Bearer ${token}`)
+        .send({token: token});
+      let wagers = response.body.wagers.map((wager) => ( wager.description ));
+      expect(wagers).toEqual(["test wager1", "test wager2"]);
+    })
+  
+
+    test("the response code is 200", async () => {
+      let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      await wager1.save();
+  
+      await wager2.save();
+      let response = await request(app)
+        .get("/wagers")
+        .set("Authorization", `Bearer ${token}`)
+        .send({token: token});
+      expect(response.status).toEqual(200);
+    })
+  
+
+    test("returns a new token", async () => {
+      let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      await wager1.save();
+  
+      await wager2.save();
+      let response = await request(app)
+        .get("/wagers")
+        .set("Authorization", `Bearer ${token}`)
+        .send({token: token});
+      let newPayload = JWT.decode(response.body.token, process.env.JWT_SECRET);
+      let originalPayload = JWT.decode(token, process.env.JWT_SECRET);
+      expect(newPayload.iat > originalPayload.iat).toEqual(true);
+    })
+  })
+
+  describe("GET, when token is missing", () => {
+    test("returns no posts", async () => {
+      let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      await wager1.save();
+      await wager2.save();
+      let response = await request(app)
+        .get("/wagers");
+      expect(response.body.wagers).toEqual(undefined);
+    })
+
+    test("the response code is 401", async () => {
+      let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      await wager1.save();
+      await wager2.save();
+      let response = await request(app)
+        .get("/wagers");
+      expect(response.status).toEqual(401);
+    })
+
+    test("does not return a new token", async () => {
+      let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
+      await wager1.save();
+      await wager2.save();
+      let response = await request(app)
+        .get("/wagers");
+      expect(response.body.token).toEqual(undefined);
+    })
+  })
+  
+});
+
