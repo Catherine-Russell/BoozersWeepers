@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./NewWagerForm.css";
 import { useParams } from "react-router-dom"
+import NavBar from '../NavBar/NavBar';
 
 const NewWagerForm = ({ navigate }) => {
 	const {challengedUserID} = useParams()
@@ -47,6 +48,8 @@ const NewWagerForm = ({ navigate }) => {
 if (token) {
 
 	return (
+		<>
+		<NavBar/>
 		<form onSubmit={handleWagerSubmit}>
 		<h1 id="create-a-wager-heading">Create a Wager</h1>
 
@@ -56,6 +59,7 @@ if (token) {
   
         <input id='submit' type="submit" value="Submit" />
       </form>
+			</>
 		)
 } else {
 	navigate("/../login");
