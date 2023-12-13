@@ -10,10 +10,13 @@ const secret = process.env.JWT_SECRET;
 let token;
 let testDate = new Date("2022-03-25")
 let testDeadline = new Date("2022-03-27")
+let user1;
+let challengedUser;
+
 
 describe("POST /wagers -> create new wager", () => {
   beforeAll( async () => {
-    const user1 = new User({email: "user1@test.com", username: "user1", password: "12345678!"});
+    user1 = new User({email: "user1@test.com", username: "user1", password: "12345678!"});
 		// const challengedUser = new User({email: "challengerUser@test.com", username: "challengerUser", password: "98765432!"})
     await user1.save();
 		// await challengedUser.save();
@@ -66,6 +69,15 @@ describe("POST /wagers -> create new wager", () => {
       let originalPayload = JWT.decode(token, process.env.JWT_SECRET);
       expect(newPayload.iat > originalPayload.iat).toEqual(true);
     });  
+
+		test("logged in user is first in the array of people involved", async () => {
+      await request(app)
+			.post("/wagers")
+			.set("Authorization", `Bearer ${token}`)
+			.send({ description: "test wager", datemade: testDate, deadline: testDeadline, token: token })
+			let wagers = await Wager.find();
+      expect(String(wagers[0].peopleInvolved[0])).toEqual(user1.id);
+		})
   });
   
   describe("POST, when token is missing", () => {
