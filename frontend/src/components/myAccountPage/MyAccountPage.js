@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import IncomingWagers from './myAccountPageComponents/IncomingWagers';
+import OngoingWagers from './myAccountPageComponents/ongoingWagers';
+import PendingWagers from './myAccountPageComponents/PendingWagers';
+import HistoricWagers from './myAccountPageComponents/PastWagers';
+
 
 const MyAccountPage = ({ navigate }) => {
   // const [posts, setPosts] = useState([]);
@@ -17,7 +22,7 @@ const MyAccountPage = ({ navigate }) => {
           setToken(window.localStorage.getItem("token"))
         })
     }
-  }, [])
+  }, [token])
     
 // REMOVE logout button once we have NavBar
   const logout = () => {
@@ -29,6 +34,11 @@ const MyAccountPage = ({ navigate }) => {
       return(
         <>
           <h2>Username's account</h2>
+					<IncomingWagers />
+					<OngoingWagers />
+					<PendingWagers />
+					<HistoricWagers />
+
             <button onClick={logout}>
               Logout
             </button>
