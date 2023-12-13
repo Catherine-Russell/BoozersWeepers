@@ -1,12 +1,36 @@
 const app = require("../../app");
 const request = require("supertest");
 require("../mongodb_helper");
-const User = require('../../models/user')
+const User = require('../../models/user');
+const JWT = require("jsonwebtoken");
+const secret = process.env.JWT_SECRET;
+
+let token;
 
 describe("/users", () => {
+  beforeAll( async () => {
+    let user1 = new User({email: "poppy@email.com",username: "mrstest", password: "1234"});
+    let user2 = new User({email: "cat@email.com",username: "mrtest", password: "1234"});
+    await user1.save();
+    await user2.save();
+  
+    token = JWT.sign({
+    user_id: user1.id,
+    // Backdate this token of 5 minutes
+    iat: Math.floor(Date.now() / 1000) - (5 * 60),
+    // Set the JWT token to expire in 10 minutes
+    exp: Math.floor(Date.now() / 1000) + (10 * 60)
+    }, secret);
+  });
   beforeEach( async () => {
     await User.deleteMany({});
+    console.log("Deleting before")
   });
+  afterEach( async () => {
+
+    await User.deleteMany({});
+  })
+
 
   describe("POST, when email and password are provided", () => {
     test("the response code is 201", async () => {
@@ -41,6 +65,7 @@ describe("/users", () => {
         let users = await User.find()
         expect(users.length).toEqual(0)
     });
+
   })
   
   describe("POST, when email is missing", () => {
@@ -74,6 +99,5 @@ describe("/users", () => {
       let users = await User.find()
       expect(users.length).toEqual(0)
     });
-  })
-  
-})
+  })})
+
