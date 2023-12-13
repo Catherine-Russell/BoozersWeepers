@@ -1,5 +1,6 @@
 // import React, { useEffect, useState } from 'react';
 // import Post from '../post/Post'
+// import NavBar from '../NavBar/NavBar';
 
 // const Feed = ({ navigate }) => {
 //   const [posts, setPosts] = useState([]);
@@ -22,10 +23,30 @@
 //   }, [])
     
 
-//   const logout = () => {
-//     window.localStorage.removeItem("token")
-//     navigate('/login')
-//   }
+  // const logout = () => {
+  //   window.localStorage.removeItem("token")
+  //   navigate('/login')
+  // }
+  
+  //   if(token) {
+  //     return(
+  //       <>
+  //          <NavBar/>
+  //         <h2>Posts</h2>
+  //           <button onClick={logout}>
+  //             Logout
+  //           </button>
+  //         <div id='feed' role="feed">
+  //             {posts.map(
+  //               (post) => ( <Post post={ post } key={ post._id } /> )
+  //             )}
+  //         </div>
+  //       </>
+  //     )
+  //   } else {
+  //     navigate('/login')
+  //   }
+
 
 //     if(token) {
 //       return(

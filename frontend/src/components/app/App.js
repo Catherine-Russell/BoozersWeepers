@@ -2,6 +2,7 @@ import './App.css';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
 import NewWagerForm from '../wagers/NewWagerForm'
+import Home from '../home/Home';
 import MyAccountPage from '../myAccountPage/MyAccountPage';
 
 
@@ -19,6 +20,9 @@ const App = () => {
           <Route path='/signup' element={<SignUpForm navigate={ useNavigate() }/>}/>
           <Route path='/myAccount' element={<MyAccountPage navigate={ useNavigate() }/>}/>
           <Route path='/newWager/:challengedUserID' element={<NewWagerForm navigate={ useNavigate() }/>}/>
+          <Route path='/'  element={<Home navigate={ useNavigate() }/>}/>
+
+
 
         </Routes>
     );
