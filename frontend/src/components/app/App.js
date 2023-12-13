@@ -4,6 +4,7 @@ import SignUpForm from '../user/SignUpForm'
 import NewWagerForm from '../wagers/NewWagerForm'
 import Home from '../home/Home';
 import MyAccountPage from '../myAccountPage/MyAccountPage';
+import UserList from '../userlist/userlist';
 
 
 import React, { useState } from 'react';
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/myAccount' element={<MyAccountPage navigate={ useNavigate() }/>}/>
           <Route path='/newWager/:challengedUserID' element={<NewWagerForm navigate={ useNavigate() }/>}/>
           <Route path='/'  element={<Home navigate={ useNavigate() }/>}/>
+          <Route path='/userlist'  element={<UserList navigate={ useNavigate() }/>}/>
 
 
 

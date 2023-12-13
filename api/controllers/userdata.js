@@ -3,7 +3,7 @@ const TokenGenerator = require("../lib/token_generator");
 
 const UserdataController = {
   Index: (req, res) => {
-    User.find((err, users) => {
+    User.find({}, '-password', (err, users) => {
       if (err) {
         throw err;
       }
