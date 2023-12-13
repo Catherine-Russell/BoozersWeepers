@@ -21,6 +21,7 @@ const NavBar = () =>{
         <a href='/login' className='txt'>login</a>
         <a href={`/newWager/${token}`} className='txt'>make a wager with yourself</a>
         <a href={`/signup`} className='txt'>signup page</a>
+        <a href={`/`} className='txt'>home</a>
 
         
       </div>
