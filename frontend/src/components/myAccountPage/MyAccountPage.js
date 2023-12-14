@@ -68,6 +68,9 @@ const MyAccountPage = ({ navigate }) => {
 
     // Gets ongoing wagers -> they have been approved by both users and are still within the time limit
     const ongoingWagers = wagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline))
+
+    // Gets pending wagers -> they have been sent but not yet approved by the person you sent it to
+    const pendingWagers = wagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) && wager.approved === false)
     
     // Gets unresolved wagers -> they are past the deadline but haven't declared a winner yet
     const unresolvedWagers = wagers.filter(wager => checkIfOngoing(wager.deadline) === false && wager.winner === null)
@@ -108,7 +111,7 @@ const MyAccountPage = ({ navigate }) => {
 
 					<OngoingWagers ongoingWagers = { ongoingWagers }/>
 
-					<PendingWagers />
+					<PendingWagers pendingWagers = { pendingWagers }/>
 
 					<UnresolvedWagers unresolvedWagers = { unresolvedWagers }/>
 
