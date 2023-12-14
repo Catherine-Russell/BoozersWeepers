@@ -19,7 +19,7 @@ const IncomingWagers = (props, { navigate }) => {
           
           <div id="incoming-wagers-header" className="MyAccountSubheading">Your incoming Wagers:</div>
         
-          <div>{wagers.map((wager) => (<h6>{wager.peopleInvolved[0]} the person with this Id wants tow wager</h6>))}</div>
+          <div>{props.wagers.map((wager) => (<h6>{wager.peopleInvolved[0]} the person with this Id wants to wager</h6>))}</div>
         </div>
       
       )
