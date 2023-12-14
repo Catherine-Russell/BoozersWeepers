@@ -9,7 +9,7 @@ const IncomingWagers = (props, { navigate }) => {
     if(token) {
       return(
         <div>
-          <h6>{props.data} the person with this id wants to wager</h6>
+          <h6>{data} the person with this id wants to wager</h6>
           
 
           
