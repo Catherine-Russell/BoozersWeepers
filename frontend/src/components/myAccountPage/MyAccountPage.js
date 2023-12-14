@@ -44,8 +44,8 @@ const MyAccountPage = ({ navigate }) => {
           setWagers(data.wagers)
 
           const wagerRequestData = data.wagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
-         
-          console.log(wagerRequestData)
+          setWagerRequests(wagerRequests)
+          console.log("whyyyyyy")
           
          
         
