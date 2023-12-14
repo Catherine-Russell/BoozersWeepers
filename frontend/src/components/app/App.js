@@ -5,7 +5,7 @@ import NewWagerForm from '../wagers/NewWagerForm'
 import Home from '../home/Home';
 import MyAccountPage from '../myAccountPage/MyAccountPage';
 import UserList from '../userlist/userlist';
-
+import SingleWager from '../singlewager/singlewager';
 
 import React, { useState } from 'react';
 import {
@@ -23,6 +23,7 @@ const App = () => {
           <Route path='/newWager/:challengedUserID' element={<NewWagerForm navigate={ useNavigate() }/>}/>
           <Route path='/'  element={<Home navigate={ useNavigate() }/>}/>
           <Route path='/userlist'  element={<UserList navigate={ useNavigate() }/>}/>
+          <Route path='/Wager/:wagerID' element={<SingleWager />}/>
 
 
 
