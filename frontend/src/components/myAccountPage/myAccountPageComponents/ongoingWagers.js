@@ -15,4 +15,5 @@ const OngoingWagers = ({ navigate }) => {
     }
 }
 
+
 export default OngoingWagers;
