@@ -20,11 +20,7 @@ const MyAccountPage = ({ navigate }) => {
   const checkIfOngoing = (deadline) => {
     const currentDate = new Date()
     const deadlineDate = new Date(deadline)
-    // console.log("Type of deadlrn:", typeof deadlineDate)
-    // console.log("THIS IS THE deadline given to me by the argument", deadlineDate)
-    // console.log("THIS IS THE current date", currentDate)
-
-    return (deadlineDate < currentDate)
+    return (deadlineDate > currentDate)
     }
 
 
@@ -44,15 +40,20 @@ const MyAccountPage = ({ navigate }) => {
         .then(async data => {
           window.localStorage.setItem("token", data.token)
           setToken(window.localStorage.getItem("token"))
+          //console.log(data)
+         // await data.wagers.map((wager) => {console.log(wager)})
+         //const wagerdata = data.wagers.map((wager) => {wager})
+        
+        
+
           setWagers(data.wagers)
 
           const wagerRequestData = data.wagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
           setWagerRequests(wagerRequestData)
           
           setWagerRequests(wagerRequestData)
-          
-
-
+        
+        // console.log(wagers)
         
 
         })
