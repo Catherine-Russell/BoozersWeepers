@@ -27,40 +27,21 @@ const MyAccountPage = ({ navigate }) => {
 
   useEffect((event) => {
     
+    // Gets Wagers data from backend
     if(token) {
       fetch("/wagers", {
         method: 'get',
-        headers: {
-          'Authorization': `Bearer ${token}`
-
-
-        }
+        headers: {'Authorization': `Bearer ${token}`}
       })
         .then(response => response.json())
         .then(async data => {
           window.localStorage.setItem("token", data.token)
           setToken(window.localStorage.getItem("token"))
-
-
           setWagers(data.wagers)
-
-          
-          
-          
-          
-          // console.log(wagers)
-          
-          
         })
       }
     }, [token])
     
-    
-    // REMOVE logout button once we have NavBar
-    const logout = () => {
-      window.localStorage.removeItem("token")
-      navigate('/')
-    }
     
     // Gets wagers which have been sent from other users to be approved by logged-in user
     const wagerRequests = wagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
@@ -77,44 +58,26 @@ const MyAccountPage = ({ navigate }) => {
     
     // Gets past wagers -> wagers which have been resolved and have a winner declared
     const pastWagers = wagers.filter(wager => wager.winner != null)
-
-    console.log("THE UNRESOLVED BEtS", unresolvedWagers)
     
+    // REMOVE logout button once we have NavBar
+    const logout = () => {
+      window.localStorage.removeItem("token")
+      navigate('/')
+    }
 
     if(token) {
       return(
         <>
 				<NavBar />
           <h2>Username's account {getSessionUserID(token)}</h2>
-
-          
-          <div id='incoming Wagers' role="incoming wagers">
         
-          <IncomingWagers wagers={wagerRequests}/>
-
-          
-        <>
-          <div id='incomingWagers' role="incoming wagers">
-          
-          </div>
-          </>
+          <IncomingWagers wagers = { wagerRequests }/>    
         
-          
-        </div>
-					
-        
-          <div id='feed' role="feed">
-          
-        </div>
-        
-        
-
 					<OngoingWagers ongoingWagers = { ongoingWagers }/>
 
 					<PendingWagers pendingWagers = { pendingWagers }/>
 
 					<UnresolvedWagers unresolvedWagers = { unresolvedWagers }/>
-
 
 					<PastWagers pastWagers = { pastWagers }/>
 
