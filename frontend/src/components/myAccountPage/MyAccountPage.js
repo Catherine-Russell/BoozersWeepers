@@ -28,7 +28,7 @@ const MyAccountPage = ({ navigate }) => {
 // REMOVE logout button once we have NavBar
   const logout = () => {
     window.localStorage.removeItem("token")
-    navigate('/login')
+    navigate('/')
   }
   
     if(token) {
