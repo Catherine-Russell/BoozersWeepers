@@ -44,9 +44,10 @@ const MyAccountPage = ({ navigate }) => {
           setWagers(data.wagers)
 
           const wagerRequestData = data.wagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
-          setWagerRequests(wagerRequestData)
+         
+          console.log(wagerRequestData)
           
-          setWagerRequests(wagerRequestData)
+         
         
         // console.log(wagers)
         
@@ -77,9 +78,7 @@ const MyAccountPage = ({ navigate }) => {
           
           <div id='incoming Wagers' role="incoming wagers">
           <h4>Incoming Wagers</h4>
-        {wagerRequests.map((wager) => (
-        <IncomingWagers data={wager.peopleInvolved} {...navigate} />
-          ))}
+          <IncomingWagers wagers={wagerRequests}/>
 
           
         <>
