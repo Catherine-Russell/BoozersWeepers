@@ -6,21 +6,41 @@ import HistoricWagers from './myAccountPageComponents/PastWagers';
 import NavBar from '../NavBar/NavBar';
 
 
+
 const MyAccountPage = ({ navigate }) => {
   // const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
-
-  useEffect(() => {
+  const [wagers, setWagers] = useState([])
+  const [wagerRequests, setWagerRequests] = useState([])
+  useEffect((event) => {
+    
     if(token) {
-      fetch("/", {
+      fetch("/wagers", {
+        method: 'get',
         headers: {
           'Authorization': `Bearer ${token}`
+
+
         }
       })
         .then(response => response.json())
         .then(async data => {
           window.localStorage.setItem("token", data.token)
           setToken(window.localStorage.getItem("token"))
+          //console.log(data)
+         // await data.wagers.map((wager) => {console.log(wager)})
+         //const wagerdata = data.wagers.map((wager) => {wager})
+         
+         
+
+          setWagers(data.wagers)
+          const wagerRequestData = wagers.filter(wager => wager.approved === false)
+          setWagerRequests(wagerRequestData)
+         
+        // console.log(wagers)
+         
+      
+
         })
     }
   }, [token])
@@ -36,8 +56,25 @@ const MyAccountPage = ({ navigate }) => {
         <>
 				<NavBar />
           <h2>Username's account</h2>
+          <div id='feed' role="feed">
+          
+        </div>
 					<IncomingWagers />
+        
+          <div id='feed' role="feed">
+          
+        </div>
+
+         
+
+         
+         
+         
+        
+        
+
 					<OngoingWagers />
+          
 					<PendingWagers />
 					<HistoricWagers />
 
