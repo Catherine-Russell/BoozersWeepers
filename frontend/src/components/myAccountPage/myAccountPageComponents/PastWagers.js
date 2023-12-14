@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const HistoricWagers = ({ navigate, pastWagers }) => {
+const PastWagers = ({ navigate, pastWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
     if(token) {
@@ -16,4 +16,4 @@ const HistoricWagers = ({ navigate, pastWagers }) => {
     }
 }
 
-export default HistoricWagers;
+export default PastWagers;

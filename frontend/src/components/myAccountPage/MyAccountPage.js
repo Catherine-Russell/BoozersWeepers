@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import IncomingWagers from './myAccountPageComponents/IncomingWagers';
 import OngoingWagers from './myAccountPageComponents/ongoingWagers';
 import PendingWagers from './myAccountPageComponents/PendingWagers';
-import HistoricWagers from './myAccountPageComponents/PastWagers';
+import PastWagers from './myAccountPageComponents/PastWagers';
 import NavBar from '../NavBar/NavBar';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 
@@ -47,7 +47,7 @@ const MyAccountPage = ({ navigate }) => {
           setWagerRequests(wagerRequestData)
         
           
-         
+        
         
         // console.log(wagers)
         
@@ -101,7 +101,7 @@ const MyAccountPage = ({ navigate }) => {
 
 					<PendingWagers />
 
-					<HistoricWagers pastWagers = { pastWagers }/>
+					<PastWagers pastWagers = { pastWagers }/>
 
             <button onClick={logout}>
               Logout
