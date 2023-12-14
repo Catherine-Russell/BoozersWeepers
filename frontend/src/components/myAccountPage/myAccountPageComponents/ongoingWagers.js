@@ -17,19 +17,19 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
           {loggedInUser === wager.peopleInvolved[0] ? (
 
             <div id="ongoing-wager" className='wager'>
-              YOU bet {wager.peopleInvolved[1]} that {wager.description}
+              <a href={`/Wager/${wager._id}`}>YOU bet {wager.peopleInvolved[1]} that {wager.description}</a>
               </div>
 
           ) : loggedInUser === wager.peopleInvolved[1] ? (
 
             <div id="ongoing-wager" className='wager'>
-              {wager.peopleInvolved[0]} bet YOU that {wager.description}
+              <a href={`/Wager/${wager._id}`}>{wager.peopleInvolved[0]} bet YOU that {wager.description}</a>
               </div>
 
           ) : (
 
             <div id="ongoing-wager" className='wager'>
-              {wager.peopleInvolved[0]} bet {wager.peopleInvolved[1]} that {wager.description}
+              <a href={`/Wager/${wager._id}`}>{wager.peopleInvolved[0]} bet {wager.peopleInvolved[1]} that {wager.description}</a>
               </div>
 
           )}
