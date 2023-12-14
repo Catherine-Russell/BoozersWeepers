@@ -7,6 +7,7 @@ import NavBar from '../NavBar/NavBar';
 
 
 
+
 const MyAccountPage = ({ navigate }) => {
   // const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -56,10 +57,18 @@ const MyAccountPage = ({ navigate }) => {
         <>
 				<NavBar />
           <h2>Username's account</h2>
-          <div id='feed' role="feed">
+
+
+
+          
+          <div id='incoming Wagers' role="incoming wagers">
+            <h4>incoming Wagers</h4>
+            {wagerRequests.map(
+            (wager) => (<IncomingWagers data={wager.peopleInvolved} {...navigate=navigate}/>) 
+          )}
           
         </div>
-					<IncomingWagers />
+					
         
           <div id='feed' role="feed">
           
@@ -75,8 +84,11 @@ const MyAccountPage = ({ navigate }) => {
 
 					<OngoingWagers />
           
+          
 					<PendingWagers />
+
 					<HistoricWagers />
+
 
             <button onClick={logout}>
               Logout
