@@ -6,7 +6,6 @@ import getSessionUserID from '../../Utility/getSignedInUser_id';
 const OngoingWagers = ({ navigate, ongoingWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const loggedInUser = getSessionUserID(token)
-  console.log("THE USER_ID should be:", loggedInUser)
 
     if(token) {
       return(
@@ -17,19 +16,19 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
         <div key={wager.id}>
           {loggedInUser === wager.peopleInvolved[0] ? (
 
-            <div id="ongoing-wager" className='wager' key={wager._id}>
+            <div id="ongoing-wager" className='wager'>
               YOU bet {wager.peopleInvolved[1]} that {wager.description}
               </div>
 
           ) : loggedInUser === wager.peopleInvolved[1] ? (
 
-            <div id="ongoing-wager" className='wager' key={wager.description}>
+            <div id="ongoing-wager" className='wager'>
               {wager.peopleInvolved[0]} bet YOU that {wager.description}
               </div>
 
           ) : (
 
-            <div id="ongoing-wager" className='wager' key={wager._id}>
+            <div id="ongoing-wager" className='wager'>
               {wager.peopleInvolved[0]} bet {wager.peopleInvolved[1]} that {wager.description}
               </div>
 
