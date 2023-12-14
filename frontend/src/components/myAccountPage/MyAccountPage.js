@@ -14,17 +14,22 @@ const MyAccountPage = ({ navigate }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [wagers, setWagers] = useState([])
   const [wagerRequests, setWagerRequests] = useState([])
- 
+
+
+// Returns True if deadline has not yet passed, false if deadline is over and wager is complete
+  const checkIfOngoing = (deadline) => {
+    const currentDate = new Date()
+    const deadlineDate = new Date(deadline)
+    // console.log("Type of deadlrn:", typeof deadlineDate)
+    // console.log("THIS IS THE deadline given to me by the argument", deadlineDate)
+    // console.log("THIS IS THE current date", currentDate)
+
+    return (deadlineDate < currentDate)
+    }
 
 
 
-
-
-  
-
-
-  useEffect(() => {
-    
+  useEffect((event) => {
     
     if(token) {
       fetch("/wagers", {
@@ -39,7 +44,6 @@ const MyAccountPage = ({ navigate }) => {
         .then(async data => {
           window.localStorage.setItem("token", data.token)
           setToken(window.localStorage.getItem("token"))
-          
           setWagers(data.wagers)
 
           const wagerRequestData = data.wagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
@@ -48,10 +52,8 @@ const MyAccountPage = ({ navigate }) => {
           setWagerRequests(wagerRequestData)
           
 
-         
-        // console.log(wagers)
-         
-      
+
+        
 
         })
     }
@@ -64,6 +66,12 @@ const MyAccountPage = ({ navigate }) => {
     navigate('/')
   }
   
+  console.log("START NOW")
+
+  const ongoingWagers = wagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline))
+  const pastWagers = wagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline) === false)
+
+
     if(token) {
       return(
         <>
@@ -73,19 +81,17 @@ const MyAccountPage = ({ navigate }) => {
           
           <div id='incoming Wagers' role="incoming wagers">
           <h4>Incoming Wagers</h4>
-         {wagerRequests.map((wager) => (
-         <IncomingWagers data={wager.peopleInvolved} {...navigate} />
-           ))}
-           
-           
+        {wagerRequests.map((wager) => (
+        <IncomingWagers data={wager.peopleInvolved} {...navigate} />
+          ))}
 
           
-         <>
+        <>
           <div id='incomingWagers' role="incoming wagers">
           
           </div>
           </>
-         
+        
           
         </div>
 					
@@ -93,26 +99,14 @@ const MyAccountPage = ({ navigate }) => {
           <div id='feed' role="feed">
           
         </div>
-
-         
-
-         
-         
-         
         
         
 
-					<OngoingWagers />
+					<OngoingWagers ongoingWagers = { ongoingWagers }/>
 
-
-
-          
 					<PendingWagers />
 
-
-					<HistoricWagers />
-
-
+					<HistoricWagers pastWagers = { pastWagers }/>
 
             <button onClick={logout}>
               Logout
