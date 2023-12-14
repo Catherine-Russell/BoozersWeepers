@@ -24,7 +24,6 @@ const MyAccountPage = ({ navigate }) => {
     }
 
 
-
   useEffect((event) => {
     
     if(token) {
@@ -40,11 +39,7 @@ const MyAccountPage = ({ navigate }) => {
         .then(async data => {
           window.localStorage.setItem("token", data.token)
           setToken(window.localStorage.getItem("token"))
-          //console.log(data)
-         // await data.wagers.map((wager) => {console.log(wager)})
-         //const wagerdata = data.wagers.map((wager) => {wager})
-        
-        
+
 
           setWagers(data.wagers)
 
