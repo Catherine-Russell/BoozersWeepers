@@ -44,6 +44,15 @@ const WagersController = {
         return res.status(200).json({ wager: wager, token: token });
       });
   },
+
+  UpdateWinner: (req, res) => {
+  Wager.updateOne( { id: req.params.wagerID },
+  {
+    $set: {
+      winner: req.params.winnerID
+    }
+})
+  }
 };
 
 module.exports = WagersController;
