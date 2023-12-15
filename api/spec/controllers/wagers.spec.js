@@ -189,6 +189,61 @@ describe("POST /wagers -> create new wager", () => {
       expect(response.body.token).toEqual(undefined);
     })
   })
+  
+
+  describe("GET UpdateWinner", () => {
+    test("wager has 'null' in winner before it is updated", async () => {
+      await request(app)
+			.post("/wagers")
+			.set("Authorization", `Bearer ${token}`)
+			.send({ description: "test wager", datemade: testDate, deadline: testDeadline, token: token })
+			let wagers = await Wager.find();
+      expect(wagers[0].winner).toEqual(null);
+    });
+
+    test("the winner is the person who created the wager", async () => {
+    // makes a wager to update
+      let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id})
+      await wager1.save()
+      await request(app)
+      .post("/wagers")
+      .set("Authorization", `Bearer ${token}`)
+      .send(wager1)
+
+    // updates it to user1
+      let response = await request(app)
+      .post(`/wagers/updateWinner/${wager1._id}/${user1._id}`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({token: token});
+
+			let wagers = await Wager.find();
+      expect(response.status).toEqual(200);
+      expect(wagers[0].winner).toEqual(user1._id);
+
+    })
+  
+    test("the winner is the person who was challenged", async () => {
+      // makes a wager to update
+      let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id})
+      await wager1.save()
+      await request(app)
+      .post("/wagers")
+      .set("Authorization", `Bearer ${token}`)
+      .send(wager1)
+
+      // updates it to challenged user as winner
+      let response = await request(app)
+      .post(`/wagers/updateWinner/${wager1._id}/${challengedUser._id}`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({token: token});
+
+			let wagers = await Wager.find();
+      expect(response.status).toEqual(200);
+      expect(wagers[0].winner).toEqual(challengedUser._id);
+    })
+  
+    })
+
 });
 
 let wager;
