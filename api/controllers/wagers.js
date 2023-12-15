@@ -45,6 +45,17 @@ const WagersController = {
       });
   },
 
+  Accept: async (req, res) => {
+  const wagerID = req.params.wager_id;
+  const wager = await Wager.updateOne({_id: wagerID}, {$set: {approved: true}});
+  if (!wager) {
+    return res.status(400).json({message: "wager_id not found"})
+  }
+  else {
+    const token = TokenGenerator.jsonwebtoken(req.user_id)
+    res.status(200).json({ message: 'OK', token: token });
+  }
+  },
 
   UpdateWinner: async (req, res) => {
     try{
@@ -65,6 +76,7 @@ const WagersController = {
       res.status(500).json({ error: 'Internal Server Error.' });
     }
 },
+
 
 }
 
