@@ -7,6 +7,10 @@ const NotificationDeatils = (props) =>{
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
 
+  //this component takes a given userId and popoulates the page with the User Data
+  // It also takes a message prop to allow custom messages to be displayed
+
+
 
   
   useEffect(() => {
@@ -14,7 +18,7 @@ const NotificationDeatils = (props) =>{
 
     
       // This ensures the user's ID is fetched dynamically from the URL
-      fetch(`/userData/${props.betId}`, {
+      fetch(`/userData/${props.userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -42,7 +46,7 @@ return(
   
 <div>
   {userData && (
-    <h4>{userData.username}<a href={`/Wager/:${props.betId}`} > Would Like to Wager!!</a></h4>
+    <h4>{userData.username} {props.message}</h4>
 
 
   )}
