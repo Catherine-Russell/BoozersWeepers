@@ -44,6 +44,28 @@ const WagersController = {
         return res.status(200).json({ wager: wager, token: token });
       });
   },
-};
+
+
+  UpdateWinner: async (req, res) => {
+    try{
+      const { wagerID, winnerID } = req.params;
+      if (!wagerID || !winnerID) {
+        return res.status(400).json({ error: 'Both wagerID and winnerID are required.' });
+      }
+      const existingWager = await Wager.findById(wagerID);
+      if (!existingWager) {
+        return res.status(404).json({ error: 'Wager not found.' });
+      }
+
+      // Update winner
+      await Wager.updateOne({ _id: wagerID }, { $set: { winner: winnerID } });
+      res.status(200).json({ message: 'Winner updated successfully.' });
+    } catch (error) {
+      console.error('Error updating winner:', error);
+      res.status(500).json({ error: 'Internal Server Error.' });
+    }
+},
+
+}
 
 module.exports = WagersController;

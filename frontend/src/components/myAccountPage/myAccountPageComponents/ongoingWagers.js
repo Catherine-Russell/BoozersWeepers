@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../MyAccountPage.css"
 import getSessionUserID from '../../Utility/getSignedInUser_id';
-
+import NotificationDeatils from './notificationDeatails';
 
 const OngoingWagers = ({ navigate, ongoingWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -17,13 +17,13 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
           {loggedInUser === wager.peopleInvolved[0] ? (
 
             <div id="ongoing-wager" className='wager'>
-              <a href={`/Wager/${wager._id}`}>YOU bet {wager.peopleInvolved[1]} that {wager.description}</a>
+              <div>{ongoingWagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDeatils messageBeforeName = {"You have bet"} userId = {wager.peopleInvolved[1]} messageAfterName ={`that ${wager.description}`}/></a></h6>))}</div>
               </div>
 
           ) : loggedInUser === wager.peopleInvolved[1] ? (
 
             <div id="ongoing-wager" className='wager'>
-              <a href={`/Wager/${wager._id}`}>{wager.peopleInvolved[0]} bet YOU that {wager.description}</a>
+              <div>{ongoingWagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDeatils userId = {wager.peopleInvolved[1]} messageAfterName ={`has bet you that ${wager.description}`}/></a></h6>))}</div>
               </div>
 
           ) : (
