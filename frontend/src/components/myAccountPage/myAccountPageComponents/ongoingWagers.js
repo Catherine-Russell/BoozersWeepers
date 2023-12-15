@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../MyAccountPage.css"
 import getSessionUserID from '../../Utility/getSignedInUser_id';
-import NotificationDeatils from './notificationDeatails';
+import NotificationDetails from './NotificationDetails';
 
 const OngoingWagers = ({ navigate, ongoingWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -17,20 +17,28 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
           {loggedInUser === wager.peopleInvolved[0] ? (
 
             <div id="ongoing-wager" className='wager'>
-              <div>{ongoingWagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDeatils messageBeforeName = {"You have bet"} userId = {wager.peopleInvolved[1]} messageAfterName ={`that ${wager.description}`}/></a></h6>))}</div>
+              <div>{ongoingWagers.map((wager) => (
+                <a href={`/Wager/${wager._id}`} >
+                    <NotificationDetails messageBeforeName = {"You have bet"} userId = {wager.peopleInvolved[1]} messageAfterName ={`that ${wager.description}`}/>
+                </a>))}
               </div>
+            </div>
 
           ) : loggedInUser === wager.peopleInvolved[1] ? (
 
-            <div id="ongoing-wager" className='wager'>
-              <div>{ongoingWagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDeatils userId = {wager.peopleInvolved[1]} messageAfterName ={`has bet you that ${wager.description}`}/></a></h6>))}</div>
+              <div id="ongoing-wager" className='wager'>
+              <div>{ongoingWagers.map((wager) => (
+                <a href={`/Wager/${wager._id}`} >
+                    <NotificationDetails userId = {wager.peopleInvolved[1]} messageAfterName ={`has bet you that ${wager.description}`}/>
+                </a>))}
               </div>
+            </div>
+
 
           ) : (
 
-            <div id="ongoing-wager" className='wager'>
-              <a href={`/Wager/${wager._id}`}>{wager.peopleInvolved[0]} bet {wager.peopleInvolved[1]} that {wager.description}</a>
-              </div>
+            <div> Note to developer - this wager does not link to the person logged in. Do we want to show it?</div>
+
 
           )}
         </div>

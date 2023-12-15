@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NotificationDeatils from './notificationDeatails';
+import NotificationDetails from './NotificationDetails';
 
 
 const IncomingWagers = (props, { navigate }) => {
@@ -24,7 +24,7 @@ const IncomingWagers = (props, { navigate }) => {
           user details for each   */}
         
 
-          <div>{props.wagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDeatils  userId = {wager.peopleInvolved[0]} messageAfterName ={"would Like To Wager!!"}/></a></h6>))}</div>
+          <div>{props.wagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDetails  userId = {wager.peopleInvolved[0]} messageAfterName ={"would Like To Wager!!"}/></a></h6>))}</div>
 
         </div>
    

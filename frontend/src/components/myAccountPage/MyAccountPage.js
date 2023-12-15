@@ -14,7 +14,7 @@ const MyAccountPage = ({ navigate }) => {
   // const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [wagers, setWagers] = useState([])
- 
+
 
 
 // Returns True if deadline has not yet passed, false if deadline is over and wager is complete

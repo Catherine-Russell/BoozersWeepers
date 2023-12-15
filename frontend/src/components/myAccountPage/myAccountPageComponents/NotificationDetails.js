@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-const NotificationDeatils = (props) =>{
+const NotificationDetails = (props) =>{
   const [userData, setUserData] = useState(null)
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
@@ -57,4 +57,4 @@ return(
 }
 
 
-export default NotificationDeatils;
+export default NotificationDetails;
