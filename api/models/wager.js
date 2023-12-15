@@ -7,7 +7,7 @@ const WagerSchema = new mongoose.Schema({
   default: []},
   quantity: {type: Number, default: 1},
   description: {type: String, required: true},
-  datemade: {type: Date, default: Date.now},
+  datemade: {type: Date, default: new Date()},
   deadline: {type: Date, required: true},
   approved: {type: Boolean, default: false},
   winner: {

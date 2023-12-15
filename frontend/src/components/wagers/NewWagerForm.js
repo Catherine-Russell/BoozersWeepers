@@ -35,7 +35,7 @@ const NewWagerForm = ({ navigate }) => {
 				console.log("CREATE WAGER FAILED")
 			}
 		})
-	}
+	} navigate("/myAccount");
 	}
 	const handleDescriptionChange = (event) => {
     setDescription(event.target.value)
