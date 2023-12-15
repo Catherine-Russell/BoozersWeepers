@@ -269,13 +269,9 @@ describe("POST, user accepting a wager", () => {
     }, secret);
   });
 
-  beforeEach( async () => {
-    // await Wager.deleteMany({});
-  })
-
   afterAll( async () => {
-    // await User.deleteMany({});
-    // await Wager.deleteMany({});
+    await User.deleteMany({});
+    await Wager.deleteMany({});
   })
 
   test("responds with a 200", async () => {
