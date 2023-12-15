@@ -217,8 +217,7 @@ describe("POST /wagers -> create new wager", () => {
 			let wagers = await Wager.find();
       expect(response.status).toEqual(200);
       expect(wagers[0].winner).toEqual(user1._id);
-
-    })
+    }),
   
     test("the winner is the person who was challenged", async () => {
       // makes a wager to update
@@ -254,8 +253,7 @@ describe("POST /wagers -> create new wager", () => {
       await user1.save();
       await challengedUser.save();
       await wager.save();
-      console.log(`immediately after save, wager dets are ${wager}`)
-      console.log(`immediately after save, wager id is ${wager._id}`)
+
   
   // Sets up user and token for each test
       token = JWT.sign({
@@ -277,7 +275,6 @@ describe("POST /wagers -> create new wager", () => {
     // })
   
     test("responds with a 200", async () => {
-      console.log(`wager dets are currently ${wager}`)
       let response = await request(app)
         .post(`/wagers/${wager._id}/accept`)
         .set("Authorization", `Bearer ${token}`)
@@ -293,12 +290,15 @@ describe("POST /wagers -> create new wager", () => {
       expect(newPayload.iat > originalPayload.iat).toEqual(true);
     });
     
-    test("changes database 'approved' status to 'false'", async () => {
+    test("changes database 'approved' status to 'true'", async () => {
       await request(app)
       .post(`/wagers/${wager._id}/accept`)
       .set("Authorization", `Bearer ${token}`)
       let updatedWager = await Wager.findById(wager._id);
       expect(updatedWager.approved).toEqual(true);
     });  
-});
+})
+
+
+>>>>>>> adf1367 (fixed test bugs for wagers.spec.js file)
 
