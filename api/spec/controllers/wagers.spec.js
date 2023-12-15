@@ -217,7 +217,7 @@ describe("POST /wagers -> create new wager", () => {
       .send({token: token});
 
 			let wagers = await Wager.find();
-      // expect(response.status).toEqual(200);
+      expect(response.status).toEqual(200);
       expect(wagers[0].winner).toEqual(user1._id);
 
     })
