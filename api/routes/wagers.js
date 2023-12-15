@@ -5,6 +5,7 @@ const WagersController = require("../controllers/wagers");
 
 router.post("/", WagersController.Create);
 router.get("/", WagersController.Index);
+router.post("/:wager_id/accept", WagersController.Accept);
 
 
 module.exports = router;

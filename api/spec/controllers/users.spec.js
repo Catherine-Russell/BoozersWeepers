@@ -23,12 +23,12 @@ describe("/users", () => {
     }, secret);
   });
   beforeEach( async () => {
-    await User.deleteMany({});
+    // await User.deleteMany({});
     console.log("Deleting before")
   });
   afterEach( async () => {
 
-    await User.deleteMany({});
+    // await User.deleteMany({});
   })
 
 
