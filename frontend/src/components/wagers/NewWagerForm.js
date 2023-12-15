@@ -54,7 +54,7 @@ if (token) {
 		<h1 id="create-a-wager-heading">Create a Wager</h1>
 
           <input placeholder="Description" id="description" type='text' value={ description } onChange={handleDescriptionChange} />
-        <input placeholder="deadline" id="deadline" type='text' value={ deadline } onChange={handleDeadlineChange} />
+        <input placeholder="deadline" id="deadline" type='date' value={ deadline } onChange={handleDeadlineChange} />
 
   
         <input id='submit' type="submit" value="Submit" />
