@@ -1,11 +1,13 @@
 const app = require("../../app");
 const request = require("supertest");
+
 require("../mongodb_helper");
 const User = require('../../models/user');
 const JWT = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 
 let token;
+let user1;
 // Tests Index
 describe("GET, when token is present", () => {
   
@@ -75,4 +77,18 @@ describe("GET, when token is present", () => {
         .get("/userdata");
       expect(response.body.token).toEqual(undefined);
     })
+    test("returns a user based on the id", async () => {
+      let user3 = new User({email: "poppy@email.com",username: "Captain test", password: "1234"})
+      await user3.save()
+      let response = await request(app)
+
+        .get(`/userdata/${user3._id}`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({token: token});
+      
+      expect(response.body.user.username).toEqual("Captain test");
+    })
+    
+    
+
   })
