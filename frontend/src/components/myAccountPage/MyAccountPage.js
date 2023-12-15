@@ -14,7 +14,6 @@ const MyAccountPage = ({ navigate }) => {
   // const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [wagers, setWagers] = useState([])
-  // const [wagerRequests, setWagerRequests] = useState([])
 
 
 // Returns True if deadline has not yet passed, false if deadline is over and wager is complete
@@ -45,7 +44,6 @@ const MyAccountPage = ({ navigate }) => {
     
     // Gets wagers which have been sent from other users to be approved by logged-in user
     const wagerRequests = wagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
-    // setWagerRequests(wagerRequestData)
 
     // Gets ongoing wagers -> they have been approved by both users and are still within the time limit
     const ongoingWagers = wagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline))
@@ -59,7 +57,7 @@ const MyAccountPage = ({ navigate }) => {
     // Gets past wagers -> wagers which have been resolved and have a winner declared
     const pastWagers = wagers.filter(wager => wager.winner != null)
     
-    // REMOVE logout button once we have NavBar
+    // REMOVE logout button from page once we have it in NavBar
     const logout = () => {
       window.localStorage.removeItem("token")
       navigate('/')
