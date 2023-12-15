@@ -30,6 +30,7 @@ const WagersController = {
   },
 
   Accept: async (req, res) => {
+	console.log("************coming through to Accept handler in wagers controller")
 	const wagerID = req.params.wager_id;
 	const wager = await Wager.updateOne({_id: wagerID}, {$set: {approved: true}});
 	if (!wager) {

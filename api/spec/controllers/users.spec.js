@@ -24,7 +24,6 @@ describe("/users", () => {
   });
   beforeEach( async () => {
     await User.deleteMany({});
-    console.log("Deleting before")
   });
   afterEach( async () => {
 

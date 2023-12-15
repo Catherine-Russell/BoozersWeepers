@@ -215,12 +215,12 @@ describe("POST, user accepting a wager", () => {
   });
 
   beforeEach( async () => {
-    await Wager.deleteMany({});
+    // await Wager.deleteMany({});
   })
 
   afterAll( async () => {
-    await User.deleteMany({});
-    await Wager.deleteMany({});
+    // await User.deleteMany({});
+    // await Wager.deleteMany({});
   })
 
   test("responds with a 200", async () => {
@@ -245,6 +245,8 @@ describe("POST, user accepting a wager", () => {
     .post(`/wagers/${wager._id}/accept`)
     .set("Authorization", `Bearer ${token}`)
     let updatedWager = await Wager.findById(wager._id);
+    console.log(`in failing test wager is ${wager}`)
+    console.log(`updatedWager is ${updatedWager}`)
     expect(updatedWager.approved).toEqual(true);
   });  
 })
