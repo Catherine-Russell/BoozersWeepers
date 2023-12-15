@@ -189,7 +189,6 @@ describe("POST /wagers -> create new wager", () => {
       expect(response.body.token).toEqual(undefined);
     })
   })
-  
 
   describe("GET UpdateWinner", () => {
     test("wager has 'null' in winner before it is updated", async () => {
@@ -242,7 +241,7 @@ describe("POST /wagers -> create new wager", () => {
       expect(wagers[0].winner).toEqual(challengedUser._id);
     })
   
-    })
+  })
 
 });
 
