@@ -244,8 +244,8 @@ describe("POST, user accepting a wager", () => {
     await request(app)
     .post(`/wagers/${wager._id}/accept`)
     .set("Authorization", `Bearer ${token}`)
-    // let updatedWager = await Wager.findById
-    expect(wager.approved).toEqual(true);
+    let updatedWager = await Wager.findById(wager._id);
+    expect(updatedWager.approved).toEqual(true);
   });  
 })
 
