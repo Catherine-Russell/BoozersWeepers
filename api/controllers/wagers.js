@@ -49,8 +49,6 @@ const WagersController = {
   UpdateWinner: async (req, res) => {
     try{
       const { wagerID, winnerID } = req.params;
-      console.log('wagerID:', wagerID);
-      console.log('winnerID:', winnerID);
       if (!wagerID || !winnerID) {
         return res.status(400).json({ error: 'Both wagerID and winnerID are required.' });
       }
