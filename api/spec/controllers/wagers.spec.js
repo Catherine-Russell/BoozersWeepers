@@ -113,7 +113,7 @@ describe("POST /wagers -> create new wager", () => {
     });
   })
   describe("GET, when token is present", () => {
-    test("returns every post in the collection", async () => {
+    test("returns every wager in the collection", async () => {
       let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       await wager1.save();
@@ -159,7 +159,7 @@ describe("POST /wagers -> create new wager", () => {
   })
 
   describe("GET, when token is missing", () => {
-    test("returns no posts", async () => {
+    test("returns no wagers", async () => {
       let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       await wager1.save();
