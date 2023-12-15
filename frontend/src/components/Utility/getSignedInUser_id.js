@@ -1,3 +1,8 @@
+
+
+// adds a way to get the signed in user from the token
+
+
 const parseJwt = (token) => {
   try {
           return JSON.parse(atob(token.split('.')[1]));
