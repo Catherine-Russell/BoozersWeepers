@@ -1,6 +1,6 @@
 
 
-// adds a way to get the singend in user from the token
+// adds a way to get the signed in user from the token
 
 
 const parseJwt = (token) => {
