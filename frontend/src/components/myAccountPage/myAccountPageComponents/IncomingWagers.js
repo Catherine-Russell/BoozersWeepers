@@ -11,14 +11,13 @@ const IncomingWagers = (props, { navigate }) => {
       return(
         <div id="incoming Wagers">
           
-          
-
-          
-
-          
           <div id="incoming-wagers-header" className="MyAccountSubheading">Your incoming Wagers:</div>
         
-          <div>{props.wagers.map((wager) => (<h6>{wager.peopleInvolved[0]} the person with this Id wants tow wager</h6>))}</div>
+          {props.wagers.map((wager) => (
+          <div id="incoming-wager" className='wager'>
+            <a href={`/Wager/${wager._id}`}> {wager.peopleInvolved[0]} the person with this Id wants to wager </a>
+            </div>
+            ))}
         </div>
       
       )
