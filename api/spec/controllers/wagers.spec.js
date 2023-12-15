@@ -214,14 +214,14 @@ describe("POST, user accepting a wager", () => {
     }, secret);
   });
 
-  // beforeEach( async () => {
-  //   await Wager.deleteMany({});
-  // })
+  beforeEach( async () => {
+    await Wager.deleteMany({});
+  })
 
-  // afterAll( async () => {
-  //   await User.deleteMany({});
-  //   await Wager.deleteMany({});
-  // })
+  afterAll( async () => {
+    await User.deleteMany({});
+    await Wager.deleteMany({});
+  })
 
   test("responds with a 200", async () => {
     console.log(`wager dets are currently ${wager}`)
