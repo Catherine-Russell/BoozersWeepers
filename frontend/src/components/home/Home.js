@@ -7,6 +7,7 @@ const Home = ({ navigate }) => {
       <NavBar/>
    
 <h1>this is the home page for now</h1>
+    Sign-Up
     </div>
   )
 }
