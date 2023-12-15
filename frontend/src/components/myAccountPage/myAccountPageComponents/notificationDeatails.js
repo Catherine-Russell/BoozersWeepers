@@ -46,7 +46,7 @@ return(
   
 <div>
   {userData && (
-    <h4>{userData.username} {props.message}</h4>
+    <h4>{props.messageBeforeName} {userData.username} {props.messageAfterName}</h4>
 
 
   )}
