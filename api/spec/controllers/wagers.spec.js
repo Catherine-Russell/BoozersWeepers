@@ -223,12 +223,12 @@ describe("POST, user accepting a wager", () => {
   //   await Wager.deleteMany({});
   // })
 
-  test("responds with a 201", async () => {
+  test("responds with a 200", async () => {
     console.log(`wager dets are currently ${wager}`)
     let response = await request(app)
       .post(`/wagers/${wager._id}/accept`)
       .set("Authorization", `Bearer ${token}`)
-    expect(response.status).toEqual(201);
+    expect(response.status).toEqual(200);
   });
 
   test("returns a new token", async () => {
