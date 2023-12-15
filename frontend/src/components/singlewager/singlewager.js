@@ -15,9 +15,7 @@ const SingleWager = () => {
 
         console.log('Response status:', response.status);
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!response.ok) { throw new Error('Network response was not ok');}
 
         const fetchedData = await response.json();
         console.log('Fetched data:', fetchedData);
@@ -25,9 +23,7 @@ const SingleWager = () => {
         window.localStorage.setItem('token', fetchedData.token);
         setToken(window.localStorage.getItem('token'));
         setWagerData(fetchedData);
-      } catch (error) {
-        console.error('Error fetching wager data:', error);
-      }
+      } catch (error) { console.error('Error fetching wager data:', error); }
     };
 
     fetchData();
