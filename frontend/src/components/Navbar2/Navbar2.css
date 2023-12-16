@@ -1,0 +1,49 @@
+/* Navbar2.css */
+
+.navbar2 {
+    position: fixed;
+    top: 0;
+    left: -150px; /* Partially hidden on the left side */
+    height: 100%;
+    width: 200px; /* Adjust the width as needed */
+    background-color: #cd561b;
+    color: #fff;
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0px 0px 20px 0px;
+  }
+
+  .navbar2.expanded {
+    left: 0; /* Slides in when 'expanded' state is true */
+  }
+  
+  .navbar2-logo {
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .navbar2-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar2-links ul li {
+    padding: 8px;
+  }
+  
+  .bottom-section {
+    padding: 10px;
+    margin-bottom: 10px; /* Add margin between the bottom section and other content */
+  }
+  
+  .bottom-item {
+    /* Align 'Item at the bottom' to the left */
+    text-align: left;
+  }
+  
+  /* Add more styles based on your design and layout requirements */
+  

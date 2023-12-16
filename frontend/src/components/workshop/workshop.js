@@ -1,6 +1,8 @@
 //  This is a page for testing elements and components - TO BE REMOVED BEFORE FINAL BUILD
 import React, { useEffect, useState } from 'react';
 import isTokenValid from '../Utility/isTokenValid';
+import Navbar2 from '../Navbar2/Navbar2';
+
 const Workshop = ({ navigate }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(window.localStorage.getItem('token'));
@@ -14,6 +16,7 @@ const Workshop = ({ navigate }) => {
 
   return (
     <div>
+      <Navbar2 />
       <h1>Workshop</h1>
       {isLoggedIn ? (
         <div>
