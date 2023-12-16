@@ -7,13 +7,8 @@ import UserList from '../userlist/userlist';
 import SingleWager from '../singlewager/singlewager';
 import SignUpPage from '../../Pages/signup';
 import Workshop from '../workshop/workshop';
-import React, { useState } from 'react';
-import {
-  useNavigate,
-  Routes,
-  Route,
-} from "react-router-dom";
-
+import React from 'react';
+import {useNavigate,Routes,Route,} from "react-router-dom";
 
 const App = () => {
     return (
@@ -25,7 +20,7 @@ const App = () => {
           <Route path='/'  element={<Home navigate={ useNavigate() }/>}/>
           <Route path='/userlist'  element={<UserList navigate={ useNavigate() }/>}/>
           <Route path='/Wager/:wagerID' element={<SingleWager />}/>
-          <Route path='/workshop' element={<Workshop />}/>
+          <Route path='/workshop' element={<Workshop navigate={ useNavigate() }/>}/>
 
 
 

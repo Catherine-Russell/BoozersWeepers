@@ -1,32 +1,31 @@
+//  This is a page for testing elements and components - TO BE REMOVED BEFORE FINAL BUILD
 import React, { useEffect, useState } from 'react';
-
+import isTokenValid from '../Utility/isTokenValid';
 const Workshop = ({ navigate }) => {
-  const [token, setToken] = useState(window.localStorage.getItem('token'));
-  const [decodedToken, setDecodedToken] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userToken, setUserToken] = useState(window.localStorage.getItem('token'));
 
   useEffect(() => {
-    if (token) {
-      function decodeJWT(token) {
-        const [headerEncoded, payloadEncoded, signature] = token.split('.');
-        const header = JSON.parse(atob(headerEncoded));
-        const payload = JSON.parse(atob(payloadEncoded));
-        return { header, payload, signature };
-      }
+    const isValidToken = isTokenValid(userToken);
+    setIsLoggedIn(isValidToken);
 
-      const decoded = decodeJWT(token);
-      setDecodedToken(decoded);
-    }
-  }, [token]);
+    if (!isValidToken) {navigate('/login');}
+  }, [userToken, navigate]);
 
   return (
     <div>
-      Workshop {token}
-      {decodedToken ? (
+      <h1>Workshop</h1>
+      {isLoggedIn ? (
         <div>
-          payload: {JSON.stringify(decodedToken.payload)}
+          {/* Content for logged-in user */}
+          <p>Welcome! User is logged in</p>
+          
         </div>
       ) : (
-        <div>No valid token found</div>
+        <div>
+          <p>Please <a href='/login'>log in</a> to access this Page</p>
+          {/* Content for non-logged-in user - Although they Should not See this as the page should automatically navigate*/}
+        </div>
       )}
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import isTokenValid from '../Utility/isTokenValid';
 import IncomingWagers from './myAccountPageComponents/IncomingWagers';
 import OngoingWagers from './myAccountPageComponents/ongoingWagers';
 import PendingWagers from './myAccountPageComponents/PendingWagers';
@@ -10,11 +11,12 @@ import UnresolvedWagers from './myAccountPageComponents/UnresolvedWagers';
 
 
 
+
 const MyAccountPage = ({ navigate }) => {
   // const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [wagers, setWagers] = useState([])
- 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
 // Returns True if deadline has not yet passed, false if deadline is over and wager is complete
@@ -40,24 +42,24 @@ const MyAccountPage = ({ navigate }) => {
           setWagers(data.wagers)
         })
       }
-    }, [token])
+      const isValidToken = isTokenValid(token);
+      setIsLoggedIn(isValidToken);
+
+    if (!isValidToken) {navigate('/');}
+    }, [token,navigate]);
+
     
     
     // added an extra filter to show wagers that the signed in user is involved with
     const myWagers = wagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) || wager.peopleInvolved[1] === getSessionUserID(token))
-    
     // Gets wagers which have been sent from other users to be approved by logged-in user
     const wagerRequests = wagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
-
     // Gets ongoing wagers -> they have been approved by both users and are still within the time limit
     const ongoingWagers = wagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline))
-
     // Gets pending wagers -> they have been sent but not yet approved by the person you sent it to
     const pendingWagers = wagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) && wager.approved === false)
-    
     // Gets unresolved wagers -> they are past the deadline, have been approved  but haven't declared a winner yet
     const unresolvedWagers = myWagers.filter(wager => checkIfOngoing(wager.deadline) === false && wager.winner === null &&  wager.approved != null)
-    
     // Gets past wagers -> wagers which have been resolved and have a winner declared
     const pastWagers = wagers.filter(wager => wager.winner != null)
     
@@ -67,30 +69,46 @@ const MyAccountPage = ({ navigate }) => {
       navigate('/')
     }
 
-    if(token) {
-      return(
-        <>
-				<NavBar />
+    return (
+      <div>
+        {isLoggedIn ? (
+          <div>
+				  <NavBar />
           <h2>Username's account {getSessionUserID(token)}</h2>
-        
           <IncomingWagers wagers = { wagerRequests }/>    
-        
 					<OngoingWagers ongoingWagers = { ongoingWagers }/>
-
 					<PendingWagers pendingWagers = { pendingWagers }/>
-
 					<UnresolvedWagers unresolvedWagers = { unresolvedWagers }/>
-
 					<PastWagers pastWagers = { pastWagers }/>
+          <button onClick={logout}>Logout</button>
+            
+          </div>
+        ) : (
+          <div>
+            <p>
+              Please <a href="/login">log in</a> to access this Page
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  };
+  
+  export default MyAccountPage;
 
-            <button onClick={logout}>
-              Logout
-            </button>
-        </>
-      )
-    } else {
-      navigate('/login')
-    }
-}
 
-export default MyAccountPage;
+
+
+
+
+
+
+
+
+    
+  
+
+ 
+
+
+
