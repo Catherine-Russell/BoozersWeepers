@@ -1,6 +1,6 @@
-/* Navbar2.css */
+/* VertNavbar.css */
 
-.navbar2 {
+.VertNavbar {
     position: fixed;
     top: 0;
     left: -150px; /* Partially hidden on the left side */
@@ -16,25 +16,27 @@
     border-radius: 0px 0px 20px 0px;
   }
 
-  .navbar2.expanded {
+  .VertNavbar.expanded {
     left: 0; /* Slides in when 'expanded' state is true */
   }
   
-  .navbar2-logo {
+  .VertNavbar-logo {
     cursor: pointer;
     padding: 10px;
   }
   
-  .navbar2-links ul {
+  .VertNavbar-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
   
-  .navbar2-links ul li {
+  .VertNavbar-links ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligns content to both edges */
     padding: 8px;
   }
-  
   .bottom-section {
     padding: 10px;
     margin-bottom: 10px; /* Add margin between the bottom section and other content */
@@ -43,6 +45,10 @@
   .bottom-item {
     /* Align 'Item at the bottom' to the left */
     text-align: left;
+  }
+
+  .react-icon {
+    flex-shrink: 0; /* Prevents icon from shrinking */
   }
   
   /* Add more styles based on your design and layout requirements */

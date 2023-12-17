@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import isTokenValid from '../Utility/isTokenValid';
-import Navbar2 from '../Navbar2/Navbar2';
+import VertNavbar from '../VertNavBar/VertNavBar';
 import './Workshop.css'; // Import CSS file for Workshop component styling
 
 const Workshop = ({ navigate }) => {
@@ -23,7 +23,7 @@ const Workshop = ({ navigate }) => {
 
   return (
     <div>
-      <Navbar2 expanded={expanded} toggleExpand={toggleExpand} />
+      <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
       <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
         <h1>Workshop</h1>
         {isLoggedIn ? (
