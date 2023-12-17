@@ -1,35 +1,43 @@
-//  This is a page for testing elements and components - TO BE REMOVED BEFORE FINAL BUILD
 import React, { useEffect, useState } from 'react';
 import isTokenValid from '../Utility/isTokenValid';
 import Navbar2 from '../Navbar2/Navbar2';
+import './Workshop.css'; // Import CSS file for Workshop component styling
 
 const Workshop = ({ navigate }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(window.localStorage.getItem('token'));
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const isValidToken = isTokenValid(userToken);
     setIsLoggedIn(isValidToken);
 
-    if (!isValidToken) {navigate('/login');}
+    if (!isValidToken) {
+      navigate('/login');
+    }
   }, [userToken, navigate]);
+
+  const toggleExpand = () => {
+    setExpanded(!expanded);
+  };
 
   return (
     <div>
-      <Navbar2 />
-      <h1>Workshop</h1>
-      {isLoggedIn ? (
-        <div>
-          {/* Content for logged-in user */}
-          <p>Welcome! User is logged in</p>
-          
-        </div>
-      ) : (
-        <div>
-          <p>Please <a href='/login'>log in</a> to access this Page</p>
-          {/* Content for non-logged-in user - Although they Should not See this as the page should automatically navigate*/}
-        </div>
-      )}
+      <Navbar2 expanded={expanded} toggleExpand={toggleExpand} />
+      <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+        <h1>Workshop</h1>
+        {isLoggedIn ? (
+          <div>
+            <p>Welcome! User is logged in</p>
+            {/* Additional content for logged-in users */}
+          </div>
+        ) : (
+          <div>
+            <p>Please <a href="/login">log in</a> to access this page</p>
+            {/* Content for non-logged-in users */}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
-import '../Navbar2/Navbar2.css'
+import React from 'react';
+import '../Navbar2/Navbar2.css';
 
-const Navbar2 = () => {
-  const [expanded, setExpanded] = useState(false);
-
-  const toggleExpand = () => {
-    setExpanded(!expanded);
-  };
-
+const Navbar2 = ({ expanded, toggleExpand }) => {
   return (
     <nav className={`navbar2 ${expanded ? 'expanded' : ''}`}>
       <div className="top-section">

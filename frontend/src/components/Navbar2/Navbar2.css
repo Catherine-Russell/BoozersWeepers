@@ -8,7 +8,7 @@
     width: 200px; /* Adjust the width as needed */
     background-color: #cd561b;
     color: #fff;
-    transition: left 0.3s ease-in-out;
+    transition: left 0.2s ease-in-out;
     z-index: 999;
     display: flex;
     flex-direction: column;
