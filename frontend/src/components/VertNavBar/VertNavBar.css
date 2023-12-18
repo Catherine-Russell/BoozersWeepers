@@ -1,55 +1,62 @@
 /* VertNavbar.css */
 
 .VertNavbar {
-    position: fixed;
-    top: 0;
-    left: -150px; /* Partially hidden on the left side */
-    height: 100%;
-    width: 200px; /* Adjust the width as needed */
-    background-color: #cd561b;
-    color: #fff;
-    transition: left 0.2s ease-in-out;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 0px 0px 20px 0px;
-  }
+  position: fixed;
+  top: 0;
+  left: -150px; /* Partially hidden on the left side */
+  height: 100%;
+  width: 200px; /* Adjust the width as needed */
+  background-color: #cd561b;
+  color: #fff;
+  transition: left 0.2s ease-in-out;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0px 0px 20px 0px;
+}
 
-  .VertNavbar.expanded {
-    left: 0; /* Slides in when 'expanded' state is true */
-  }
-  
-  .VertNavbar-logo {
-    cursor: pointer;
-    padding: 10px;
-  }
-  
-  .VertNavbar-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .VertNavbar-links ul li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Aligns content to both edges */
-    padding: 8px;
-  }
-  .bottom-section {
-    padding: 10px;
-    margin-bottom: 10px; /* Add margin between the bottom section and other content */
-  }
-  
-  .bottom-item {
-    /* Align 'Item at the bottom' to the left */
-    text-align: left;
-  }
+.VertNavbar.expanded {
+  left: 0; /* Slides in when 'expanded' state is true */
+}
 
-  .react-icon {
-    flex-shrink: 0; /* Prevents icon from shrinking */
-  }
-  
-  /* Add more styles based on your design and layout requirements */
-  
+.VertNavbar-logo {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.VertNavbar-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.VertNavbar-links ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.VertNavbar-links ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-right: 0px;
+}
+
+.VertNavbar-links ul li.spacer {
+  height: 20px; /* Set the desired height for the spacer */
+  background-color: transparent; /* Optional: Make the spacer invisible */
+}
+
+.bottom-section {
+  padding: 10px;
+  margin-bottom: 10px; /* Add margin between the bottom section and other content */
+}
+
+.react-icon {
+  flex-shrink: 0;
+  margin-left: auto;
+}
