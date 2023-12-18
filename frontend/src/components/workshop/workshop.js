@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import isTokenValid from '../Utility/isTokenValid';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import './Workshop.css'; // Import CSS file for Workshop component styling
+import Header from '../header/Header';
 
 const Workshop = ({ navigate }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,10 +23,12 @@ const Workshop = ({ navigate }) => {
   };
 
   return (
-    <div>
+    <div><Header/>
       <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
       <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+        
         <h1>Workshop</h1>
+
         {isLoggedIn ? (
           <div>
             <p>Welcome! User is logged in</p>
