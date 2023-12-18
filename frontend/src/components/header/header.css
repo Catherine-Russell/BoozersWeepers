@@ -1,6 +1,5 @@
 
 .HeaderMainBar {
-    background-color: #cd561b;
     color: #fff;
     width: 100%;
     text-align: right;
@@ -9,15 +8,9 @@
   }
   
   .HeaderMainBar img {
-    padding-top: 0px;
+    padding-top: 2px;
     height: auto;
-    width: 200px;
-    padding-right: 20px;
+    width: 180px;
+    padding-right: 40px;
     padding-bottom: 0px;
-  }
-  .HeaderTopBar {
-    height: 10px;
-    width: 50%;
-    background-color: #cd561b;
-    border-radius: 0px 0px 50px 0px;
   }
