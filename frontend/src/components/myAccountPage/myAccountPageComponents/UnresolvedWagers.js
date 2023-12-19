@@ -13,10 +13,13 @@ const UnresolvedWagers = ({ navigate, unresolvedWagers }) => {
 				<div id="unresolved-wagers-feed">
 					<div id="unresolved-wagers-header" className="MyAccountSubheading">Your Unresolved Wagers:</div>
 				
-					{unresolvedWagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDetails  userId = {wager.peopleInvolved[0]} messageBeforeName ={"you have an Unresolved Wager with "}/></a></h6>))}
-
-				
-				
+					{unresolvedWagers.map((wager) => (
+					<div key={wager.id}>
+						
+					<a href={`/Wager/${wager._id}`} >
+						<NotificationDetails  userId = {wager.peopleInvolved[0]} messageBeforeName ={"you have an Unresolved Wager with "}/>
+					</a>
+					</div>))}
 				</div>
 
 				
@@ -25,6 +28,5 @@ const UnresolvedWagers = ({ navigate, unresolvedWagers }) => {
 			navigate('/login')
 		}
 	}
-
 
 export default UnresolvedWagers;

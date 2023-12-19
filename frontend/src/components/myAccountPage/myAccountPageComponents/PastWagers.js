@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import getSessionUserID from '../../Utility/getSignedInUser_id';
+import NotificationDetails from './NotificationDetails';
 
 
 const PastWagers = ({ navigate, pastWagers }) => {
@@ -17,25 +18,33 @@ const PastWagers = ({ navigate, pastWagers }) => {
           {loggedInUser === wager.winner && wager.peopleInvolved[0] !== loggedInUser ?( 
 
             <div id="past-wager" className='wager'>
-              <a href={`/Wager/${wager._id}`}>You won your wager with {wager.peopleInvolved[0]}</a>
-              </div>
+              <a href={`/Wager/${wager._id}`}>
+                <NotificationDetails messageBeforeName = "You won your wager with" userId = {wager.peopleInvolved[0]} />
+              </a>
+            </div>
 
           ) : loggedInUser === wager.winner && wager.peopleInvolved[1] !== loggedInUser ? (
 
             <div id="past-wager" className='wager'>
-              <a href={`/Wager/${wager._id}`}>You won your wager with {wager.peopleInvolved[1]}</a>
-              </div>
+              <a href={`/Wager/${wager._id}`}>
+                <NotificationDetails messageBeforeName = "You won your wager with" userId = {wager.peopleInvolved[1]} />
+              </a>
+            </div>
 
           ) : loggedInUser !== wager.winner && wager.peopleInvolved[0] !== loggedInUser? (
 
             <div id="past-wager" className='wager'>
-              <a href={`/Wager/${wager._id}`}>You lost your wager with {wager.peopleInvolved[0]}</a>
+              <a href={`/Wager/${wager._id}`}>
+                <NotificationDetails messageBeforeName = "You lost your wager with" userId = {wager.peopleInvolved[0]} />
+              </a>
               </div>
 
           ) : (
 
             <div id="past-wager" className='wager'>
-              <a href={`/Wager/${wager._id}`}>You lost your wager with {wager.peopleInvolved[1]}</a>
+              <a href={`/Wager/${wager._id}`}>
+                <NotificationDetails messageBeforeName = "You lost your wager with" userId = {wager.peopleInvolved[1]} />
+              </a>
               </div>
               
           )}

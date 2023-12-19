@@ -19,7 +19,7 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
             <div id="ongoing-wager" className='wager'>
               <div>{ongoingWagers.map((wager) => (
                 <a href={`/Wager/${wager._id}`} >
-                    <NotificationDetails messageBeforeName = {"You have bet"} userId = {wager.peopleInvolved[1]} messageAfterName ={`that ${wager.description}`}/>
+                    <NotificationDetails messageBeforeName = {"You have a bet with"} userId = {wager.peopleInvolved[1]} messageAfterName ={`that ${wager.description}`}/>
                 </a>))}
               </div>
             </div>
@@ -29,11 +29,10 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
               <div id="ongoing-wager" className='wager'>
               <div>{ongoingWagers.map((wager) => (
                 <a href={`/Wager/${wager._id}`} >
-                    <NotificationDetails userId = {wager.peopleInvolved[1]} messageAfterName ={`has bet you that ${wager.description}`}/>
+                    <NotificationDetails messageBeforeName = {"You have a bet with"} userId = {wager.peopleInvolved[0]} messageAfterName ={`that ${wager.description}`}/>
                 </a>))}
               </div>
             </div>
-
 
           ) : (
 
