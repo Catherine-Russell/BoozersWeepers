@@ -5,7 +5,8 @@ import NewWagerForm from '../wagers/NewWagerForm'
 import Home from '../home/Home';
 import MyAccountPage from '../myAccountPage/MyAccountPage';
 import UserList from '../userlist/userlist';
-import WagerInfoPage from '../WagerInfoPage/singleWagerPage';
+import WagerInfoPage from '../singleWagerPage/wagerInfoPage.js';
+
 
 import React, { useState } from 'react';
 import {
@@ -24,7 +25,6 @@ const App = () => {
           <Route path='/'  element={<Home navigate={ useNavigate() }/>}/>
           <Route path='/userlist'  element={<UserList navigate={ useNavigate() }/>}/>
           <Route path='/Wager/:wagerID' element={<WagerInfoPage />}/>
-
 
 
         </Routes>

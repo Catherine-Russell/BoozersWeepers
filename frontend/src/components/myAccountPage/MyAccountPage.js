@@ -6,6 +6,7 @@ import PastWagers from './myAccountPageComponents/PastWagers';
 import NavBar from '../NavBar/NavBar';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import UnresolvedWagers from './myAccountPageComponents/UnresolvedWagers';
+import NotificationDetails from './myAccountPageComponents/NotificationDetails';
 
 
 
@@ -71,7 +72,7 @@ const MyAccountPage = ({ navigate }) => {
       return(
         <>
 				<NavBar />
-          <h2>Username's account {getSessionUserID(token)}</h2>
+          <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
         
           <IncomingWagers wagers = { wagerRequests }/>    
         
