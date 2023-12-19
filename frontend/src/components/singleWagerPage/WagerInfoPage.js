@@ -2,9 +2,9 @@ import React, { navigate, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import SinglePendingWager from './childComponents/SinglePendingWager';
+import SingleWagerRequest from './childComponents/SingleWagerRequest';
 import SingleOngoingWager from './childComponents/SingleOngoingWager';
 import SingleResolvedWager from './childComponents/SingleResolvedWager';
-import SingleWagerRequest from './childComponents/SingleWagerRequest';
 
 
 const WagerInfoPage = () => {
@@ -29,42 +29,51 @@ const WagerInfoPage = () => {
 
         window.localStorage.setItem('token', fetchedData.token);
         setToken(window.localStorage.getItem('token'));
-        setWagerData(fetchedData);
+        setWagerData(fetchedData.wager);
       } catch (error) { console.error('Error fetching wager data:', error); }
     };
 
     fetchData();
   }, [token, wagerID]);
+  console.log("THIS IS THE WAGERDATA:", wagerData)
 
-  return (
-    <div id='single-wager-page' className='single-wager-page'>
-    <h1 id='single-wager-page-header' className='page-heading'>Wager Details</h1>
-    {!wagerData ? (
+  const wagerInfo = wagerData
 
-        <p>Loading...</p>
-        
-        ) : wagerData.peopleInvolved[0] === loggedInUser && wagerData.approved === false ? (
-
-          <SinglePendingWager wagerData={wagerData}/>
-
-        ) : wagerData.peopleInvolved[1] === loggedInUser && wagerData.approved === true ? (
-  
-            <SingleWagerRequest wagerData={wagerData}/>
-
-        ) : wagerData.approved === true && wagerData.winner === null ? (
-
-          <SingleOngoingWager wagerData={wagerData}/>
-
-        ) : wagerData.winner !== null ? (
-
-          <SingleResolvedWager wagerData={wagerData}/>
-
-        ) : (
-      <p>Error - return to account page</p>
-    )}
-    </div>
+  console.log("HELLOOOOOOOOOOOOOOO", wagerInfo)
+  console.log("DESCRIPTOIN")
+if (!wagerData) {
+  return(
+    <p id='loading-message' className='loading-message'>Loading...</p>
   )
-}
+} else {
+
+  // return(<>This is the single wager page {String(wagerData.approved)} </>)
+  return (
+      <div id='single-wager-page' className='single-wager-page'>
+        <h1 id='single-wager-page-header' className='page-heading'>Wager Details</h1>
+        { wagerData.approved === false && wagerData.peopleInvolved[0]._id === loggedInUser ? (
+      
+            <SinglePendingWager wagerData={wagerData}/>
+      
+            ) : wagerData.approved === false && wagerData.peopleInvolved[1]._id === loggedInUser ? (
+        
+              <SingleWagerRequest wagerData={wagerData}/>
+        
+            ) : wagerData.approved === true && wagerData.winner === null ? (
+          
+                <SingleOngoingWager wagerData={wagerData}/>
+          
+              ) : wagerData.winner !== null ? (
+            
+                  <SingleResolvedWager wagerData={wagerData}/>
+            
+                ) : (
+                  <p>Error - return to account page</p>
+                )}
+                </div>
+              )
+            }
+          }
 
 
 export default WagerInfoPage;

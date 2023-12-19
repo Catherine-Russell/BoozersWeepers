@@ -1,4 +1,4 @@
-const SinglePendingWager = () => {
+const SinglePendingWager = (wagerData) => {
     return (
         <div id='single-pending-wager' className="single-wager-info">
             This is a pending wager

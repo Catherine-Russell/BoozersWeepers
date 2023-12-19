@@ -27,10 +27,8 @@ const NotificationDetails = (props) =>{
       .then(async userData => {
         window.localStorage.setItem("token", userData.token);
         setToken(window.localStorage.getItem("token"));
-        console.log(userData.username)
 
         // Set user data obtained from the API response to the state
-        console.log(userData)
         setUserData(userData.user);
 
       
