@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 
 
-const SingleWager = () => {
+const WagerInfoPage = () => {
   const { wagerID } = useParams();
   const [wagerData, setWagerData] = useState(null);
   const [token, setToken] = useState(window.localStorage.getItem('token'));
@@ -103,4 +103,4 @@ if (wagerData.approved === false && wagerData.peopleInvolved[0] !== loggedInUser
 
 };
 
-export default SingleWager;
+export default WagerInfoPage;
