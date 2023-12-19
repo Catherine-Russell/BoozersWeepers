@@ -13,14 +13,9 @@ const Workshop = ({ navigate }) => {
     const isValidToken = isTokenValid(userToken);
     setIsLoggedIn(isValidToken);
 
-    if (!isValidToken) {
-      navigate('/login');
-    }
   }, [userToken, navigate]);
 
-  const toggleExpand = () => {
-    setExpanded(!expanded);
-  };
+  const toggleExpand = () => {setExpanded(!expanded);};
 
   return (
     <div>

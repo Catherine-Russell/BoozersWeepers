@@ -1,5 +1,3 @@
-/* VertNavbar.css */
-
 .VertNavbar {
   position: fixed;
   top: 0;
@@ -17,7 +15,7 @@
 }
 
 .VertNavbar.expanded {
-  left: 0; 
+  left: 0;
 }
 
 .VertNavbar-logo {
@@ -72,13 +70,32 @@
   color: inherit;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Adjust to center text and icon */
+  justify-content: space-between;
   width: 100%;
 }
 
-/* Adjust icon alignment if necessary */
 .bottom-section ul li .react-icon {
-  margin-left: 3px; /* Adjust if needed */
+  margin-left: 3px;
+}
+
+.logout-option {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.logout-option span {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.logout-option .react-icon {
+  margin-left: auto;
+  margin-right: 3px;
 }
 
 .react-icon {
