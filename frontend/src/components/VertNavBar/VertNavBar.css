@@ -6,7 +6,7 @@
   left: -150px; /* Partially hidden on the left side */
   height: 100%;
   width: 200px; /* Adjust the width as needed */
-  background-image: linear-gradient(to bottom, #cd561b, #b84d17); /* Replace colors as desired */
+  background-image: linear-gradient(to bottom, #cd561b, #9f4112); /* Replace colors as desired */
   color: #fff;
   transition: left 0.2s ease-in-out;
   z-index: 999;

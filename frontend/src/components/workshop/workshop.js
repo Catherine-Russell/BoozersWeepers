@@ -7,7 +7,7 @@ import Header from '../header/Header';
 const Workshop = ({ navigate }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(window.localStorage.getItem('token'));
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   useEffect(() => {
     const isValidToken = isTokenValid(userToken);
@@ -23,10 +23,10 @@ const Workshop = ({ navigate }) => {
   };
 
   return (
-    <div><Header/>
+    <div>
       <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
       <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
-        
+        <Header/>
         <h1>Workshop</h1>
 
         {isLoggedIn ? (

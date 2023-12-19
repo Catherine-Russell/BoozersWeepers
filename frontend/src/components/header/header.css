@@ -2,7 +2,7 @@
 .HeaderMainBar {
     color: #fff;
     width: 100%;
-    text-align: right;
+    text-align: left;
     align-items: center; /* Center content vertically */
     justify-content: flex-end; /* Align content to the right */
   }
@@ -11,6 +11,6 @@
     padding-top: 2px;
     height: auto;
     width: 120px;
-    padding-right: 40px;
+    padding-top: 10px;
     padding-bottom: 0px;
   }
