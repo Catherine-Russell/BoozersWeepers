@@ -4,6 +4,9 @@ import getSessionUserID from '../../Utility/getSignedInUser_id';
 
 const SingleWagerRequest = (wagerData) => {
   const wager = wagerData.wagerData
+  const dateParts = wager.deadline.slice(0, 10).split("-");
+  const deadlineDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`
+
   const handleAcceptClick = () => {
     console.log("Wager accepted")
   }
@@ -12,9 +15,8 @@ const SingleWagerRequest = (wagerData) => {
   }
   return (
     <div id='single-wager-request' className='single-wager'>
-      This is a requested wager
-    {wager.peopleInvolved[0].username} bets 1 drink that {wager.description} will happen by {wager.deadline}
-    Do you accept or reject their challenge?
+    {wager.peopleInvolved[0].username} bets 1 drink that {wager.description} will happen by {deadlineDate} <br />
+    Do you accept or reject their challenge?<br /> <br />
     <button id='accept-button' className='accept-button' onClick={ handleAcceptClick }>Accept Wager</button>
     <button id='reject-button' className='reject-button' onClick={ handleRejectClick }>Reject Wager</button>
     </div>
