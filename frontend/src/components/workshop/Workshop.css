@@ -1,7 +1,5 @@
 /* Workshop.css */
 
-
-  
   .page-content {
     flex-grow: 1;
     margin-left: 50px;
@@ -10,7 +8,7 @@
   }
   
   .shifted-content {
-    background-color: aqua;
-    margin-left: 200px; /* Same width as your expanded navbar */
+
+    margin-left: 200px;
   }
   

@@ -7,7 +7,7 @@ const Home = ({ navigate }) => {
       <NavBar/>
    
 <h1>BoozersWeepers</h1>
-  <a href='/register'>Please Register</a><br/>
+  <a href='/signup'>Please Register</a><br/>
   or <br/>
   <a href='/login'>Sign in</a>
     

@@ -93,11 +93,15 @@
   width: 100%;
 }
 
+.logout-option a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .logout-option .react-icon {
   margin-left: auto;
   margin-right: 3px;
-}
-
-.react-icon {
-  flex-shrink: 0;
 }

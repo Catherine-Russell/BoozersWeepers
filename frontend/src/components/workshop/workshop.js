@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import isTokenValid from '../Utility/isTokenValid';
 import VertNavbar from '../VertNavBar/VertNavBar';
-import './Workshop.css'; // Import CSS file for Workshop component styling
+import '../../Pages/style.css'
 import Header from '../header/Header';
 
 const Workshop = ({ navigate }) => {
@@ -12,8 +12,7 @@ const Workshop = ({ navigate }) => {
   useEffect(() => {
     const isValidToken = isTokenValid(userToken);
     setIsLoggedIn(isValidToken);
-
-  }, [userToken, navigate]);
+  }, [userToken]);
 
   const toggleExpand = () => {setExpanded(!expanded);};
 
@@ -22,17 +21,19 @@ const Workshop = ({ navigate }) => {
       <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
       <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
         <Header/>
-        <h1>Workshop</h1>
+        <h1>Title</h1>
 
         {isLoggedIn ? (
           <div>
-            <p>Welcome! User is logged in</p>
             {/* Additional content for logged-in users */}
+            <p>Welcome! User is logged in</p>
+            
           </div>
         ) : (
           <div>
-            <p>Please <a href="/login">log in</a> to access this page</p>
             {/* Content for non-logged-in users */}
+            <p>Please <a href="/login">log in</a> to access this page</p>
+            
           </div>
         )}
       </div>

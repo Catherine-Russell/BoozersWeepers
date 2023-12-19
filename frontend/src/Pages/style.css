@@ -1,3 +1,16 @@
+/* Contains Information for shifting the Content when the Navbar Expands */
+
+.page-content {
+  flex-grow: 1;
+  margin-left: 50px;
+  padding-left: 2%;
+  transition: margin-left 0.2s ease-in-out;
+}
+
+.shifted-content {
+  margin-left: 200px;
+}
+
 .Button {
     width: 120px; 
     background-color: #cd561b;

@@ -1,18 +1,65 @@
-import React from 'react';
-import NavBar from '../components/NavBar/NavBar';
-import LogInForm from '../components/auth/LoginForm';
+import React, { useEffect, useState } from 'react';
+import isTokenValid from '../components/Utility/isTokenValid';
+import VertNavbar from '../components/VertNavBar/VertNavBar';
+import LogInForm from '../components/auth/LoginForm'
+import Header from '../components/header/Header';
+import '../Pages/style.css'
 
 const LogInPage = ({ navigate }) => {
-  return(
-    <div>
-    <NavBar/>
-    <h1>Sign in to your account</h1>
-    <LogInForm navigate={ navigate }/>
-    Don't have an account?
-    <br/>
-    <a href='/signup'>Register</a>
-    </div>
-)
-}
+  // const [posts, setPosts] = useState([]);
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
+  const toggleExpand = () => {setExpanded(!expanded);};
+
+  useEffect(() => {
+      const isValidToken = isTokenValid(token);
+      setIsLoggedIn(isValidToken);
+
+    if (isValidToken) {navigate('/myAccount');}
+    }, [token,navigate]);
+
+  return (
+    <div>
+      <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+      <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+        <Header/>
+        <h1>Sign in to your account</h1>
+        {isLoggedIn ? (
+          <div>
+            <p>Please Log-Out to See this content</p>
+            
+          </div>
+        ) : (
+          <div>
+            <LogInForm navigate={ navigate }/>
+          Don't have an account?
+          <br/>
+          <a href='/signup'>Register</a>
+          </div>
+        )}
+      </div>
+    </div>
+  )};
+  
 export default LogInPage;
+
+
+
+
+
+
+
+  
+
+
+
+
+    
+  
+
+ 
+
+
+

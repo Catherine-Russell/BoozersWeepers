@@ -7,7 +7,9 @@ import PastWagers from './myAccountPageComponents/PastWagers';
 import NavBar from '../NavBar/NavBar';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import UnresolvedWagers from './myAccountPageComponents/UnresolvedWagers';
-
+import VertNavbar from '../VertNavBar/VertNavBar';
+import Header from '../header/Header';
+import '../../Pages/style.css'
 
 
 
@@ -16,6 +18,7 @@ const MyAccountPage = ({ navigate }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [wagers, setWagers] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
 
 // Returns True if deadline has not yet passed, false if deadline is over and wager is complete
@@ -63,41 +66,41 @@ const MyAccountPage = ({ navigate }) => {
     const pastWagers = wagers.filter(wager => wager.winner != null)
     
     // REMOVE logout button from page once we have it in NavBar
-    const logout = () => {
-      window.localStorage.removeItem("token")
-      navigate('/')
-    }
 
-    return (
-      <div>
-        {isLoggedIn ? (
-          <div>
-				  <NavBar />
+
+
+
+
+
+
+  
+    const toggleExpand = () => {setExpanded(!expanded);};
+  
+    useEffect(() => {
+        const isValidToken = isTokenValid(token);
+        setIsLoggedIn(isValidToken);
+  
+      if (!isValidToken) {navigate('/');}
+      }, [token,navigate]);
+  
+      return (
+        <div>
+          <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+          <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+          <Header />
           <h2>Username's account {getSessionUserID(token)}</h2>
           <IncomingWagers wagers = { wagerRequests }/>    
 					<OngoingWagers ongoingWagers = { ongoingWagers }/>
 					<PendingWagers pendingWagers = { pendingWagers }/>
 					<UnresolvedWagers unresolvedWagers = { unresolvedWagers }/>
 					<PastWagers pastWagers = { pastWagers }/>
-          <button onClick={logout}>Logout</button>
-            
+          {/* <button onClick={logout}>Logout</button> */}
+
           </div>
-        ) : (
-          <div>
-            <p>
-              Please <a href="/login">log in</a> to access this Page
-            </p>
-          </div>
-        )}
-      </div>
-    );
-  };
-  
+        </div>
+      )};
+    
   export default MyAccountPage;
-
-
-
-
 
 
 
