@@ -40,7 +40,6 @@ const VertNavbar = ({ expanded, toggleExpand }) => {
             <ul>
             <li onClick={toggleExpand}><BiExpandHorizontal className="react-icon" size={30} /></li>
             <li className="spacer"></li>
-            <li><a href="/"><span>Home</span><IoHome className="react-icon" size={30} /></a></li>
             </ul>
           )}
 
