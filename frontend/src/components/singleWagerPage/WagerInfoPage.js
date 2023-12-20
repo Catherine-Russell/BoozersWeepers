@@ -1,6 +1,7 @@
 import React, { navigate, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getSessionUserID from '../Utility/getSignedInUser_id';
+import NavBar from '../NavBar/NavBar';
 import SinglePendingWager from './childComponents/SinglePendingWager';
 import SingleWagerRequest from './childComponents/SingleWagerRequest';
 import SingleOngoingWager from './childComponents/SingleOngoingWager';
@@ -45,6 +46,8 @@ if (!wagerData) {
 
   return (
       <div id='single-wager-page' className='single-wager-page'>
+				<NavBar />
+
         <h1 id='single-wager-page-header' className='page-heading'>Wager Details</h1>
         { wagerData.approved === false && wagerData.peopleInvolved[0]._id === loggedInUser ? (
       
