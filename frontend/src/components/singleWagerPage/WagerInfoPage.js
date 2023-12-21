@@ -1,5 +1,5 @@
 import React, { navigate, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import NavBar from '../NavBar/NavBar';
 import SinglePendingWager from './childComponents/SinglePendingWager';
@@ -8,7 +8,8 @@ import SingleOngoingWager from './childComponents/SingleOngoingWager';
 import SingleResolvedWager from './childComponents/SingleResolvedWager';
 
 
-const WagerInfoPage = () => {
+
+const WagerInfoPage = ({ navigate }) => {
   const { wagerID } = useParams();
   const [wagerData, setWagerData] = useState(null);
   const [token, setToken] = useState(window.localStorage.getItem('token'));
@@ -36,7 +37,7 @@ const WagerInfoPage = () => {
     
     fetchData();
   }, [token, wagerID]);
-  
+
 
 if (!wagerData) {
   return(
@@ -49,6 +50,7 @@ if (!wagerData) {
 				<NavBar />
 
         <h1 id='single-wager-page-header' className='page-heading'>Wager Details</h1>
+        
         { wagerData.approved === false && wagerData.peopleInvolved[0]._id === loggedInUser ? (
       
             <SinglePendingWager wagerData={wagerData}/>
@@ -59,7 +61,7 @@ if (!wagerData) {
         
             ) : wagerData.approved === true && wagerData.winner === null ? (
           
-                <SingleOngoingWager wagerData={wagerData} loggedInUserPlace1={loggedInUser===wagerData.peopleInvolved[0]}/>
+                <SingleOngoingWager wagerData={wagerData}/>
           
               ) : wagerData.winner !== null ? (
             
@@ -68,6 +70,9 @@ if (!wagerData) {
                 ) : (
                   <p>Error - return to account page</p>
                 )}
+
+                <br />
+                  <button id='return-button' className='return-button' onClick={() => navigate('/myAccount')}>Return to All Wagers</button>
                 </div>
               )
             }
