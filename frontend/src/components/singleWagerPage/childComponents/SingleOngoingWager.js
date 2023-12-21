@@ -95,8 +95,8 @@ const SingleOngoingWager = (wagerData) => {
         return (
           <div id='single-ongoing-wager' className='single-wager'>
           Who won the wager that {wager.description} would happen by {deadlineDate}? <br /> <br />
-          <button id='I-lost-button' className='I-lost-button' onClick={ handleUser1WonClick }>{wager.peopleInvolved[0].username} won</button>
-          <button id='I-lost-button' className='I-lost-button' onClick={ handleUser2WonClick }>{wager.peopleInvolved[1].username} won</button>
+          <button id='user1-won-button' className='other-user-won-button' onClick={ handleUser1WonClick }>{wager.peopleInvolved[0].username} won</button>
+          <button id='user2-won-button' className='other-user-won-button' onClick={ handleUser2WonClick }>{wager.peopleInvolved[1].username} won</button>
           </div>
         )
       }
