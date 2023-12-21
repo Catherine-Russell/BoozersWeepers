@@ -12,6 +12,8 @@ let testDate = new Date("2022-03-25")
 let testDeadline = new Date("2022-03-27")
 let user1;
 let challengedUser;
+let wager;
+
 
 
 describe("POST /wagers -> create new wager", () => {
@@ -238,30 +240,20 @@ describe("POST /wagers -> create new wager", () => {
       expect(response.status).toEqual(200);
       expect(wagers[0].winner).toEqual(challengedUser._id);
     })
-  
   })
+})
 
 // TESTS for a wager being accepted by challenged user
 
-  let wager;
-
 describe("POST, user accepting a wager", () => {
   beforeAll( async () => {
-    let user1 = new User({email: "user1@test.com", username: "user1", password: "12345678!"});
-		let challengedUser = new User({email: "challengerUser@test.com", username: "challengerUser", password: "98765432!"})
+  // Create a wager and send to database
     wager = new Wager({peopleInvolved: [user1._id, challengedUser._id], description: "test wager", datemade: testDate, deadline: testDeadline, token: token })
-    await user1.save();
-		await challengedUser.save();
     await wager.save();
-
-// Sets up user and token for each test
-    token = JWT.sign({
-      user_id: challengedUser.id,
-      // Backdate this token of 5 minutes
-      iat: Math.floor(Date.now() / 1000) - (5 * 60),
-      // Set the JWT token to expire in 10 minutes
-      exp: Math.floor(Date.now() / 1000) + (10 * 60)
-    }, secret);
+    await request(app)
+      .post("/wagers")
+      .set("Authorization", `Bearer ${token}`)
+      .send(wager)
   });
 
   afterAll( async () => {
@@ -270,11 +262,11 @@ describe("POST, user accepting a wager", () => {
   })
 
   test("responds with a 200", async () => {
-    console.log(`wager dets are currently ${wager}`)
     let response = await request(app)
       .post(`/wagers/${wager._id}/accept`)
       .set("Authorization", `Bearer ${token}`)
-    expect(response.status).toEqual(200);
+      let wagers = await Wager.find();
+      expect(response.status).toEqual(200);
   });
 
   test("returns a new token", async () => {
@@ -294,4 +286,3 @@ describe("POST, user accepting a wager", () => {
     expect(updatedWager.approved).toEqual(true);
   });  
 })
-

@@ -30,7 +30,6 @@ const WagersController = {
   },
 
   Accept: async (req, res) => {
-	console.log("************coming through to Accept handler in wagers controller")
 	const wagerID = req.params.wager_id;
 	const wager = await Wager.updateOne({_id: wagerID}, {$set: {approved: true}});
 	if (!wager) {
@@ -62,7 +61,7 @@ const WagersController = {
   const wagerID = req.params.wager_id;
   const wager = await Wager.updateOne({_id: wagerID}, {$set: {approved: true}});
   if (!wager) {
-    return res.status(400).json({message: "wager_id not found"})
+    return res.status(400).json({message: "Wager not found"})
   }
   else {
     const token = TokenGenerator.jsonwebtoken(req.user_id)
