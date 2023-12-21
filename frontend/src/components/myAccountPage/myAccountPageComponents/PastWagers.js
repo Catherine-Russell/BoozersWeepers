@@ -14,10 +14,10 @@ const PastWagers = ({ navigate, pastWagers }) => {
           <div id="past-wagers-header" className="MyAccountSubheading">Your Past Wagers:</div>
 
           {pastWagers.map((wager) => (
-        <div key={wager.id}>
+        <div key={wager._id}>
           {loggedInUser === wager.winner && wager.peopleInvolved[0] !== loggedInUser ?( 
 
-            <div id="past-wager" className='wager'>
+            <div id="past-wager" className='wager' >
               <a href={`/Wager/${wager._id}`}>
                 <NotificationDetails messageBeforeName = "You won your wager with" userId = {wager.peopleInvolved[0]} />
               </a>
@@ -25,7 +25,7 @@ const PastWagers = ({ navigate, pastWagers }) => {
 
           ) : loggedInUser === wager.winner && wager.peopleInvolved[1] !== loggedInUser ? (
 
-            <div id="past-wager" className='wager'>
+            <div id="past-wager" className='wager' >
               <a href={`/Wager/${wager._id}`}>
                 <NotificationDetails messageBeforeName = "You won your wager with" userId = {wager.peopleInvolved[1]} />
               </a>
@@ -33,7 +33,7 @@ const PastWagers = ({ navigate, pastWagers }) => {
 
           ) : loggedInUser !== wager.winner && wager.peopleInvolved[0] !== loggedInUser? (
 
-            <div id="past-wager" className='wager'>
+            <div id="past-wager" className='wager' >
               <a href={`/Wager/${wager._id}`}>
                 <NotificationDetails messageBeforeName = "You lost your wager with" userId = {wager.peopleInvolved[0]} />
               </a>
@@ -41,7 +41,7 @@ const PastWagers = ({ navigate, pastWagers }) => {
 
           ) : (
 
-            <div id="past-wager" className='wager'>
+            <div id="past-wager" className='wager' >
               <a href={`/Wager/${wager._id}`}>
                 <NotificationDetails messageBeforeName = "You lost your wager with" userId = {wager.peopleInvolved[1]} />
               </a>

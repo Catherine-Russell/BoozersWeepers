@@ -12,7 +12,7 @@ const PendingWagers = ({ navigate, pendingWagers }) => {
 
 						<div id="pending-wager" className='wager'>
               <div>{pendingWagers.map((wager) => (
-                <a href={`/Wager/${wager._id}`} >
+                <a key={wager._id} href={`/Wager/${wager._id}`} >
                   <NotificationDetails messageBeforeName = {"waiting for"} userId = {wager.peopleInvolved[1]} messageAfterName ={`to respond to your wager that ${wager.description}`}/>
                 </a>))}
               </div>
