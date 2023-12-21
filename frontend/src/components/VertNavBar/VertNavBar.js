@@ -27,7 +27,7 @@ const navigate = useNavigate();
           <ul>
           <li onClick={toggleExpand}><BiExpandHorizontal className="react-icon" size={30} /></li>
           <li className="spacer"></li>
-          <li><a href="/"><span>Home</span><IoHome className="react-icon" size={30} /></a></li>
+          <li><a href="/myAccount"><span>Home</span><IoHome className="react-icon" size={30} /></a></li>
           <li><a href="/userlist"><span>New Bet</span><FaHandshakeSimple className="react-icon" size={30} /></a></li>
           <li><span>Option 3</span><IoPint className="react-icon" size={30} /></li>
           </ul>
