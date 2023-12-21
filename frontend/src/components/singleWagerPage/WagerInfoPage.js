@@ -58,26 +58,26 @@ if (!wagerData) {
       
             ) : wagerData.approved === false && wagerData.peopleInvolved[1]._id === loggedInUser ? (
         
-              <SingleWagerRequest wagerData={wagerData}/>
+            <SingleWagerRequest wagerData={wagerData}/>
         
             ) : wagerData.approved === true && wagerData.winner === null ? (
           
-                <SingleOngoingWager wagerData={wagerData}/>
+            <SingleOngoingWager wagerData={wagerData}/>
           
-              ) : wagerData.winner !== null ? (
+            ) : wagerData.winner !== null ? (
             
-                  <SingleResolvedWager wagerData={wagerData}/>
+            <SingleResolvedWager wagerData={wagerData}/>
             
-                ) : (
-                  <p>Error - return to account page</p>
-                )}
+            ) : (
+            <p>Error - return to account page</p>
+        )}
 
-                <br />
-                  <button id='return-button' className='return-button' onClick={() => navigate('/myAccount')}>Return to All Wagers</button>
-                </div>
-              )
-            }
-          }
+        <br />
+          <button id='return-button' className='return-button' onClick={() => navigate('/myAccount')}>Return to All Wagers</button>
+        </div>
+      )
+    }
+  }
 
 
 export default WagerInfoPage;

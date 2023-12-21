@@ -14,7 +14,7 @@ const SinglePendingWager = (wagerData) => {
     }
     return (
         <div id='single-pending-wager' className="single-wager-info">
-            <div id='pending-wager-header' className='pending-wager-header'>Waiting for {wager.peopleInvolved[1].username} to respond to your wager!</div>
+            <div id='pending-wager-header' className='pending-wager-header'>We are still waiting for {wager.peopleInvolved[1].username} to respond to your wager!</div>
             <div id='wager-details'>
                 Wager details: {wager.description} <br />
                 Winnings: {wager.quantity} drink<br /> 

@@ -3,14 +3,31 @@ import { useNavigate } from 'react-router-dom';
 
 const SingleWagerRequest = (wagerData) => {
   const navigate = useNavigate()
+  const token = window.localStorage.getItem('token');
   const wager = wagerData.wagerData
   const dateParts = wager.deadline.slice(0, 10).split("-");
   const deadlineDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`
 
   const handleAcceptClick = () => {
-    console.log("Wager accepted")
-    navigate('/myAccount')
+    if(token) {
+      fetch( `/wagers/${wager._id}/accept`, {
+        method: 'post',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      })      
+    .then(response => {
+      if (response.status === 200) {
+        console.log("Wager Accepted")
+        return response.json();
+      } else {
+        console.log("Wager failed to update")
+      }
+    })
+  } navigate("/myAccount");
   }
+
   const handleRejectClick  = () => {
     console.log("Wager rejected")
     navigate('/myAccount')
