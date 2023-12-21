@@ -8,16 +8,14 @@ import '../Pages/style.css'
 const LogInPage = ({ navigate }) => {
   // const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpand = () => {setExpanded(!expanded);};
 
   useEffect(() => {
-      const isValidToken = isTokenValid(token);
-      setIsLoggedIn(isValidToken);
 
-    if (isValidToken) {navigate('/myAccount');}
+    if (isLoggedIn) {navigate('/myAccount');}
     }, [token,navigate]);
 
   return (

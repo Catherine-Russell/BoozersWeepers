@@ -17,7 +17,7 @@ const MyAccountPage = ({ navigate }) => {
   // const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [wagers, setWagers] = useState([])
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(true);
 
 
@@ -44,11 +44,10 @@ const MyAccountPage = ({ navigate }) => {
           setWagers(data.wagers)
         })
       }
-      const isValidToken = isTokenValid(token);
-      setIsLoggedIn(isValidToken);
 
-    if (!isValidToken) {navigate('/');}
-    }, [token,navigate]);
+
+    if (!isLoggedIn) {navigate('/');}
+    }, [navigate, isLoggedIn, token]);
 
     
     
@@ -77,11 +76,10 @@ const MyAccountPage = ({ navigate }) => {
     const toggleExpand = () => {setExpanded(!expanded);};
   
     useEffect(() => {
-        const isValidToken = isTokenValid(token);
-        setIsLoggedIn(isValidToken);
+
   
-      if (!isValidToken) {navigate('/');}
-      }, [token,navigate]);
+      if (!isLoggedIn) {navigate('/');}
+      }, [navigate, isLoggedIn]);
   
       return (
         <div>

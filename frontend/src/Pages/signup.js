@@ -7,17 +7,14 @@ import '../Pages/style.css'
 
 const SignUpPage = ({ navigate }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpand = () => {setExpanded(!expanded);};
 
   useEffect(() => {
-      const isValidToken = isTokenValid(token);
-      setIsLoggedIn(isValidToken);
-
-    if (isValidToken) {navigate('/myAccount');}
-    }, [token,navigate]);
+    if (isLoggedIn) {navigate('/myAccount');}
+    }, [token, navigate, isLoggedIn]);
 
     return (
       <div>

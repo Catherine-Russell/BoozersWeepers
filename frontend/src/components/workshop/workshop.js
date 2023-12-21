@@ -5,14 +5,9 @@ import '../../Pages/style.css'
 import Header from '../header/Header';
 
 const Workshop = ({ navigate }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(window.localStorage.getItem('token'));
+  const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(userToken));
   const [expanded, setExpanded] = useState(true);
-
-  useEffect(() => {
-    const isValidToken = isTokenValid(userToken);
-    setIsLoggedIn(isValidToken);
-  }, [userToken]);
 
   const toggleExpand = () => {setExpanded(!expanded);};
 

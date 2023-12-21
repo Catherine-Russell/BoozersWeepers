@@ -9,15 +9,10 @@ import '../VertNavBar/VertNavBar.css';
 import isTokenValid from '../Utility/isTokenValid';
 
 const VertNavbar = ({ expanded, toggleExpand }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userToken, setUserToken] = useState(localStorage.getItem('token'));
 
-  useEffect(() => {
-    const isValidToken = isTokenValid(userToken);
-    setIsLoggedIn(isValidToken);
-  }, [userToken]);
-
-  const navigate = useNavigate();
+const [userToken, setUserToken] = useState(localStorage.getItem('token'));
+const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(userToken));
+const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem('token');

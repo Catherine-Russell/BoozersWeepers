@@ -1,4 +1,6 @@
 import './App.css';
+import React from 'react';
+import {useNavigate,Routes,Route,} from "react-router-dom";
 import LogInPage from '../../Pages/login';
 import NewWagerForm from '../wagers/NewWagerForm'
 import Home from '../home/Home';
@@ -7,8 +9,8 @@ import UserList from '../userlist/userlist';
 import SingleWager from '../singlewager/singlewager';
 import SignUpPage from '../../Pages/signup';
 import Workshop from '../workshop/workshop';
-import React from 'react';
-import {useNavigate,Routes,Route,} from "react-router-dom";
+import ProfilePage from '../../Pages/profilepage';
+
 
 const App = () => {
     return (
@@ -21,6 +23,7 @@ const App = () => {
           <Route path='/userlist'  element={<UserList navigate={ useNavigate() }/>}/>
           <Route path='/Wager/:wagerID' element={<SingleWager />}/>
           <Route path='/workshop' element={<Workshop navigate={ useNavigate() }/>}/>
+          <Route path='/profile/:userID' element={<ProfilePage navigate={ useNavigate() }/>}/>
 
 
 
