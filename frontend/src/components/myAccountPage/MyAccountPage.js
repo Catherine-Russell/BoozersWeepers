@@ -57,7 +57,7 @@ const MyAccountPage = ({ navigate }) => {
     const pendingWagers = myWagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) && wager.approved === false)
     
     // Gets unresolved wagers -> they are past the deadline, have been approved  but haven't declared a winner yet
-    const unresolvedWagers = myWagers.filter(wager => checkIfOngoing(wager.deadline) === false && wager.winner === null &&  wager.approved != null)
+    const unresolvedWagers = myWagers.filter(wager => checkIfOngoing(wager.deadline) === false && wager.winner === null && wager.approved !== false)
     
     // Gets past wagers -> wagers which have been resolved and have a winner declared
     const pastWagers = myWagers.filter(wager => wager.winner != null)
