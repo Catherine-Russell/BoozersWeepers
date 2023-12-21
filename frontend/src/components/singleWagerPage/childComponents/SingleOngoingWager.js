@@ -78,7 +78,7 @@ const SingleOngoingWager = (wagerData) => {
       
       return (
         <div id='single-ongoing-wager' className='single-wager'>
-          { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has timed out!</div>
+          { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has reached the deadline!</div>
           )}
         Who won the wager that {wager.description}?<br />
         <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div>  
@@ -90,7 +90,7 @@ const SingleOngoingWager = (wagerData) => {
 
       return (
         <div id='single-ongoing-wager' className='single-wager'>
-          { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has timed out!</div>
+          { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has reached the deadline!</div>
           )}
         Who won the wager that {wager.description}?<br />
         <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div> <br /> <br />
@@ -102,7 +102,7 @@ const SingleOngoingWager = (wagerData) => {
 
       return (
         <div id='single-ongoing-wager' className='single-wager'>
-        { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has timed out!</div>
+        { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has reached the deadline!</div>
         )}
         Who won the wager that {wager.description}?<br />
         <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div>

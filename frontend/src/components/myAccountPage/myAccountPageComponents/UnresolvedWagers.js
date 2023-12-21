@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "../MyAccountPage.css"
 import getSessionUserID from '../../Utility/getSignedInUser_id';
-import NotificationDetails from './NotificationDetails';
 
 const UnresolvedWagers = ({ navigate, unresolvedWagers }) => {
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -17,7 +16,7 @@ const UnresolvedWagers = ({ navigate, unresolvedWagers }) => {
 					<div key={wager.id}>
 						
 					<a href={`/Wager/${wager._id}`} >
-						<NotificationDetails  userId = {wager.peopleInvolved[0]} messageBeforeName ={"Time's up! Who won the wager with "} messageAfterName = {"?"}/>
+						Time's up! Who won the wager that {wager.description}?
 					</a>
 					</div>))}
 				</div>
