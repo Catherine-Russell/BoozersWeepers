@@ -26,9 +26,7 @@ const SignUpForm = ({ navigate }) => {
     })
   }
   
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value)
-  }
+  const handleEmailChange = (event) => {setEmail(event.target.value)}
   
   const handlePasswordChange = (event) => {
     setPassword(event.target.value)
@@ -39,9 +37,9 @@ const SignUpForm = ({ navigate }) => {
   
   return (
     <form onSubmit={handleSubmit}>
-          <input placeholder="Email" id="email" type='text' value={ email } onChange={handleEmailChange} />
-        <input placeholder="Username" id="username" type='text' value={ username } onChange={handleUsernameChange} />
-          <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} />
+          <input placeholder="Email" id="email" type='text' value={ email } onChange={handleEmailChange} /> <br/>
+        <input placeholder="Username" id="username" type='text' value={ username } onChange={handleUsernameChange} /> <br/>
+          <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} /> <br/>
   
         <input id='submit' type="submit" value="Submit" />
       </form>

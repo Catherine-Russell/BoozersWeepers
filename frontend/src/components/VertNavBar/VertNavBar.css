@@ -1,0 +1,107 @@
+.VertNavbar {
+  position: fixed;
+  top: 0;
+  left: -150px;
+  height: 100%;
+  width: 200px;
+  background-image: linear-gradient(to bottom, #cd561b, #9f4112);
+  color: #fff;
+  transition: left 0.2s ease-in-out;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0px 0px 20px 0px;
+}
+
+.VertNavbar.expanded {
+  left: 0;
+}
+
+.VertNavbar-logo {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.VertNavbar-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.VertNavbar-links ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.VertNavbar-links ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.VertNavbar-links ul li .react-icon {
+  margin-left: auto;
+  margin-right: 3px;
+}
+
+.bottom-section {
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+}
+
+.bottom-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bottom-section ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.bottom-section ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bottom-section ul li .react-icon {
+  margin-left: 3px;
+}
+
+.logout-option {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.logout-option span {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.logout-option a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.logout-option .react-icon {
+  margin-left: auto;
+  margin-right: 3px;
+}

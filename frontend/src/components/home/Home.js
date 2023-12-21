@@ -6,8 +6,12 @@ const Home = ({ navigate }) => {
     <div>
       <NavBar/>
    
-<h1>this is the home page for now</h1>
-    </div>
+<h1>BoozersWeepers</h1>
+  <a href='/signup'>Please Register</a><br/>
+  or <br/>
+  <a href='/login'>Sign in</a>
+    
+  </div>
   )
 }
 
