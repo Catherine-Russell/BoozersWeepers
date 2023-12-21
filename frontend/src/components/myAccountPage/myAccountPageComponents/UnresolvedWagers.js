@@ -17,7 +17,7 @@ const UnresolvedWagers = ({ navigate, unresolvedWagers }) => {
 					<div key={wager.id}>
 						
 					<a href={`/Wager/${wager._id}`} >
-						<NotificationDetails  userId = {wager.peopleInvolved[0]} messageBeforeName ={"you have an Unresolved Wager with "}/>
+						<NotificationDetails  userId = {wager.peopleInvolved[0]} messageBeforeName ={"Time's up! Who won the wager with "} messageAfterName = {"?"}/>
 					</a>
 					</div>))}
 				</div>
