@@ -269,6 +269,44 @@ describe("POST, user accepting a wager", () => {
       expect(response.status).toEqual(200);
   });
 
+
+let wager;
+
+describe("POST, user accepting a wager", () => {
+  beforeAll( async () => {
+    let user1 = new User({email: "user1@test.com", username: "user1", password: "12345678!"});
+		let challengedUser = new User({email: "challengerUser@test.com", username: "challengerUser", password: "98765432!"})
+    wager = new Wager({peopleInvolved: [user1._id, challengedUser._id], description: "test wager", datemade: testDate, deadline: testDeadline, token: token })
+    await user1.save();
+		await challengedUser.save();
+    await wager.save();
+    console.log(`immediately after save, wager dets are ${wager}`)
+    console.log(`immediately after save, wager id is ${wager._id}`)
+
+// Sets up user and token for each test
+    token = JWT.sign({
+      user_id: challengedUser.id,
+      // Backdate this token of 5 minutes
+      iat: Math.floor(Date.now() / 1000) - (5 * 60),
+      // Set the JWT token to expire in 10 minutes
+      exp: Math.floor(Date.now() / 1000) + (10 * 60)
+    }, secret);
+  });
+
+  afterAll( async () => {
+    await User.deleteMany({});
+    await Wager.deleteMany({});
+  })
+
+  test("responds with a 200", async () => {
+    console.log(`wager dets are currently ${wager}`)
+    let response = await request(app)
+      .post(`/wagers/${wager._id}/accept`)
+      .set("Authorization", `Bearer ${token}`)
+    expect(response.status).toEqual(200);
+  });
+
+
   test("returns a new token", async () => {
     let response = await request(app)
     .post(`/wagers/${wager._id}/accept`)
@@ -278,7 +316,11 @@ describe("POST, user accepting a wager", () => {
     expect(newPayload.iat > originalPayload.iat).toEqual(true);
   });
   
+
   test("changes database 'approved' status to 'true'", async () => {
+
+  test("changes database 'approved' status to 'false'", async () => {
+
     await request(app)
     .post(`/wagers/${wager._id}/accept`)
     .set("Authorization", `Bearer ${token}`)
@@ -286,3 +328,13 @@ describe("POST, user accepting a wager", () => {
     expect(updatedWager.approved).toEqual(true);
   });  
 })
+
+    console.log(`in failing test wager is ${wager}`)
+    console.log(`updatedWager is ${updatedWager}`)
+    expect(updatedWager.approved).toEqual(true);
+  });  
+})
+
+
+
+
