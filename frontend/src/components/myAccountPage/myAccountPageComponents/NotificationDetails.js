@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-const NotificationDeatils = (props) =>{
+const NotificationDetails = (props) =>{
   const [userData, setUserData] = useState(null)
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
@@ -27,10 +27,8 @@ const NotificationDeatils = (props) =>{
       .then(async userData => {
         window.localStorage.setItem("token", userData.token);
         setToken(window.localStorage.getItem("token"));
-        console.log(userData.username)
 
         // Set user data obtained from the API response to the state
-        console.log(userData)
         setUserData(userData.user);
 
       
@@ -57,4 +55,4 @@ return(
 }
 
 
-export default NotificationDeatils;
+export default NotificationDetails;

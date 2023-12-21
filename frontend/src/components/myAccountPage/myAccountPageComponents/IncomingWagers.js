@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import NotificationDeatils from './notificationDeatails';
+import NotificationDetails from './NotificationDetails';
 
 
 const IncomingWagers = (props, { navigate }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [wagers, setData] = useState(props.wagers)
   const [userBet, setUserBet] = useState(null)
-  
-  console.log(props.wagers)
-
-
-  
 
   
 
@@ -24,10 +19,14 @@ const IncomingWagers = (props, { navigate }) => {
           user details for each   */}
         
 
-          <div>{props.wagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDeatils  userId = {wager.peopleInvolved[0]} messageAfterName ={"would Like To Wager!!"}/></a></h6>))}</div>
+          <div>{props.wagers.map((wager) => (
+            <a key={wager._id} href={`/Wager/${wager._id}`} >
+              <NotificationDetails  userId = {wager.peopleInvolved[0]} messageAfterName ={"would like to wager!"}/>
+            </a>))}
+          </div>
 
         </div>
-   
+
       )
     } else {
     navigate('/login')
