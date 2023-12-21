@@ -1,5 +1,5 @@
-import React, { navigate, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import NavBar from '../NavBar/NavBar';
 import SinglePendingWager from './childComponents/SinglePendingWager';
