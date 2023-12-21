@@ -12,6 +12,8 @@ let testDate = new Date("2022-03-25")
 let testDeadline = new Date("2022-03-27")
 let user1;
 let challengedUser;
+let wager;
+
 
 
 describe("POST /wagers -> create new wager", () => {
@@ -40,6 +42,7 @@ describe("POST /wagers -> create new wager", () => {
     await Wager.deleteMany({});
   })
 
+// TESTS for creating a new wager when the user is logged in (successful)
 
   describe("POST, when token is present", () => {
     test("responds with a 201", async () => {
@@ -88,6 +91,7 @@ describe("POST /wagers -> create new wager", () => {
       expect(String(wagers[0].peopleInvolved[1])).toEqual(challengedUser.id);
 		})
   });
+// TESTS for creating a new wager when the user is logged out (unsuccessful)
   
   describe("POST, when token is missing", () => {
     test("responds with a 401", async () => {
@@ -113,11 +117,10 @@ describe("POST /wagers -> create new wager", () => {
     });
   })
   describe("GET, when token is present", () => {
-    test("returns every post in the collection", async () => {
+    test("returns every wager in the collection", async () => {
       let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       await wager1.save();
-  
       await wager2.save();
       let response = await request(app)
         .get("/wagers")
@@ -132,7 +135,6 @@ describe("POST /wagers -> create new wager", () => {
       let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       await wager1.save();
-  
       await wager2.save();
       let response = await request(app)
         .get("/wagers")
@@ -146,7 +148,6 @@ describe("POST /wagers -> create new wager", () => {
       let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       await wager1.save();
-  
       await wager2.save();
       let response = await request(app)
         .get("/wagers")
@@ -159,7 +160,7 @@ describe("POST /wagers -> create new wager", () => {
   })
 
   describe("GET, when token is missing", () => {
-    test("returns no posts", async () => {
+    test("returns no wagers", async () => {
       let wager1 = Wager({ description: "test wager1", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       let wager2 = Wager({ description: "test wager2", datemade: testDate, deadline: testDeadline, challengedUser: challengedUser.id, token: token })
       await wager1.save();
@@ -189,8 +190,7 @@ describe("POST /wagers -> create new wager", () => {
       expect(response.body.token).toEqual(undefined);
     })
   })
-  
-
+// TESTS for updating a winner
   describe("GET UpdateWinner", () => {
     test("wager has 'null' in winner before it is updated", async () => {
       await request(app)
@@ -219,8 +219,7 @@ describe("POST /wagers -> create new wager", () => {
 			let wagers = await Wager.find();
       expect(response.status).toEqual(200);
       expect(wagers[0].winner).toEqual(user1._id);
-
-    })
+    }),
   
     test("the winner is the person who was challenged", async () => {
       // makes a wager to update
@@ -241,10 +240,35 @@ describe("POST /wagers -> create new wager", () => {
       expect(response.status).toEqual(200);
       expect(wagers[0].winner).toEqual(challengedUser._id);
     })
-  
-    })
+  })
+})
 
-});
+// TESTS for a wager being accepted by challenged user
+
+describe("POST, user accepting a wager", () => {
+  beforeAll( async () => {
+  // Create a wager and send to database
+    wager = new Wager({peopleInvolved: [user1._id, challengedUser._id], description: "test wager", datemade: testDate, deadline: testDeadline, token: token })
+    await wager.save();
+    await request(app)
+      .post("/wagers")
+      .set("Authorization", `Bearer ${token}`)
+      .send(wager)
+  });
+
+  afterAll( async () => {
+    await User.deleteMany({});
+    await Wager.deleteMany({});
+  })
+
+  test("responds with a 200", async () => {
+    let response = await request(app)
+      .post(`/wagers/${wager._id}/accept`)
+      .set("Authorization", `Bearer ${token}`)
+      let wagers = await Wager.find();
+      expect(response.status).toEqual(200);
+  });
+
 
 let wager;
 
@@ -282,6 +306,7 @@ describe("POST, user accepting a wager", () => {
     expect(response.status).toEqual(200);
   });
 
+
   test("returns a new token", async () => {
     let response = await request(app)
     .post(`/wagers/${wager._id}/accept`)
@@ -291,16 +316,25 @@ describe("POST, user accepting a wager", () => {
     expect(newPayload.iat > originalPayload.iat).toEqual(true);
   });
   
+
+  test("changes database 'approved' status to 'true'", async () => {
+
   test("changes database 'approved' status to 'false'", async () => {
+
     await request(app)
     .post(`/wagers/${wager._id}/accept`)
     .set("Authorization", `Bearer ${token}`)
     let updatedWager = await Wager.findById(wager._id);
+    expect(updatedWager.approved).toEqual(true);
+  });  
+})
+
     console.log(`in failing test wager is ${wager}`)
     console.log(`updatedWager is ${updatedWager}`)
     expect(updatedWager.approved).toEqual(true);
   });  
 })
+
 
 
 

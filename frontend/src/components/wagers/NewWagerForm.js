@@ -29,10 +29,10 @@ const NewWagerForm = ({ navigate }) => {
 		
 		.then(response => {
 			if (response.status === 201) {
-				console.log("THE WAGER HAS BEEN CREATED")
+				console.log("Your wager has been created")
 				return response.json();
 			} else {
-				console.log("CREATE WAGER FAILED")
+				console.log("Failed to create a wager")
 			}
 		})
 	} navigate("/myAccount");

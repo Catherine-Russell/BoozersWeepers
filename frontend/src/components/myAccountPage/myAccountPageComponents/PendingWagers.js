@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NotificationDeatils from './notificationDeatails';
+import NotificationDetails from './NotificationDetails';
 
 const PendingWagers = ({ navigate, pendingWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -10,13 +10,13 @@ const PendingWagers = ({ navigate, pendingWagers }) => {
         
           <div id="pending-wagers-header" className="MyAccountSubheading">Your Pending Wagers:</div>
 
-          
-            
 						<div id="pending-wager" className='wager'>
-              <div>{pendingWagers.map((wager) => (<h6><a href={`/Wager/${wager._id}`} ><NotificationDeatils messageBeforeName = {"waiting for"} userId = {wager.peopleInvolved[1]} messageAfterName ={`to respond to your wager that ${wager.description}`}/></a></h6>))}</div>
+              <div>{pendingWagers.map((wager) => (
+                <a key={wager._id} href={`/Wager/${wager._id}`} >
+                  <NotificationDetails messageBeforeName = {"waiting for"} userId = {wager.peopleInvolved[1]} messageAfterName ={`to respond to your wager`}/>
+                </a>))}
               </div>
-					
-					
+            </div>
 
         </div>
       )
