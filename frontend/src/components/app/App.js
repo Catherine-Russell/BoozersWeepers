@@ -6,10 +6,9 @@ import NewWagerForm from '../wagers/NewWagerForm'
 import Home from '../home/Home';
 import MyAccountPage from '../myAccountPage/MyAccountPage';
 import UserList from '../userlist/userlist';
-import WagerInfoPage from '../singleWagerPage/wagerInfoPage.js';
-import SingleWager from '../singlewager/singlewager';
+import WagerInfoPage from '../singleWagerPage/WagerInfoPage';
 import SignUpPage from '../../Pages/signup';
-import Workshop from '../workshop/workshop';
+import Workshop from '../Template/template';
 import ProfilePage from '../../Pages/profilepage';
 
 

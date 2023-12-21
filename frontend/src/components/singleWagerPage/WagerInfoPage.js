@@ -2,7 +2,7 @@ import './WagerInfoPage.css'
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getSessionUserID from '../Utility/getSignedInUser_id';
-import NavBar from '../NavBar/NavBar';
+import VertNavbar from '../VertNavBar/VertNavBar';
 import SinglePendingWager from './childComponents/SinglePendingWager';
 import SingleWagerRequest from './childComponents/SingleWagerRequest';
 import SingleOngoingWager from './childComponents/SingleOngoingWager';
@@ -14,6 +14,7 @@ const WagerInfoPage = ({ navigate }) => {
   const { wagerID } = useParams();
   const [wagerData, setWagerData] = useState(null);
   const [token, setToken] = useState(window.localStorage.getItem('token'));
+  const [expanded, setExpanded] = useState(true);
   const loggedInUser = getSessionUserID(token)
   
   useEffect(() => {
@@ -36,19 +37,25 @@ const WagerInfoPage = ({ navigate }) => {
     fetchData();
   }, [token, wagerID]);
 
+const toggleExpand = () => {setExpanded(!expanded);};
+
 
 if (!wagerData) {
   return(
-    <p id='loading-message' className='loading-message'>Loading...</p>
+    <div>
+    <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+    <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+      <p id='loading-message' className='loading-message'>Loading...</p>
+    </div>
+  </div>
   )
 } else {
 
   return (
       <div id='single-wager-page' className='single-wager-page'>
-				<NavBar />
-
+				<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+        <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
         <h1 id='single-wager-page-header' className='page-heading'>Wager Details</h1>
-        
         { wagerData.approved === false && wagerData.peopleInvolved[0]._id === loggedInUser ? (
       
             <SinglePendingWager wagerData={wagerData}/>
@@ -71,6 +78,7 @@ if (!wagerData) {
 
         <br />
           <button id='return-button' className='return-button' onClick={() => navigate('/myAccount')}>Return to All Wagers</button>
+        </div>
         </div>
       )
     }

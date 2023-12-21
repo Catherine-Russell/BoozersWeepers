@@ -4,9 +4,9 @@ import VertNavbar from '../VertNavBar/VertNavBar';
 import '../../Pages/style.css'
 import Header from '../header/Header';
 
-const Workshop = ({ navigate }) => {
-  const [userToken, setUserToken] = useState(window.localStorage.getItem('token'));
-  const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(userToken));
+const Template = ({ navigate }) => {
+  const [token, setUserToken] = useState(window.localStorage.getItem('token'));
+  const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(true);
 
   const toggleExpand = () => {setExpanded(!expanded);};
@@ -36,4 +36,4 @@ const Workshop = ({ navigate }) => {
   );
 };
 
-export default Workshop;
+export default Template;
