@@ -7,6 +7,7 @@ import SinglePendingWager from './childComponents/SinglePendingWager';
 import SingleWagerRequest from './childComponents/SingleWagerRequest';
 import SingleOngoingWager from './childComponents/SingleOngoingWager';
 import SingleResolvedWager from './childComponents/SingleResolvedWager';
+import Header from '../header/Header';
 
 
 
@@ -43,6 +44,7 @@ const toggleExpand = () => {setExpanded(!expanded);};
 if (!wagerData) {
   return(
     <div>
+      <Header/>
     <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
     <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
       <p id='loading-message' className='loading-message'>Loading...</p>
@@ -53,6 +55,7 @@ if (!wagerData) {
 
   return (
       <div id='single-wager-page' className='single-wager-page'>
+        <Header/>
 				<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
         <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
         <h1 id='single-wager-page-header' className='page-heading'>Wager Details</h1>
