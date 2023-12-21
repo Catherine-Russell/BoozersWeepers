@@ -1,8 +1,10 @@
 import getSessionUserID from "../../Utility/getSignedInUser_id";
 import React, { navigate } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 const SingleOngoingWager = (wagerData) => {
+    const navigate = useNavigate()
     const token = window.localStorage.getItem('token');
     const loggedInUser = getSessionUserID(token)
     const wager = wagerData.wagerData

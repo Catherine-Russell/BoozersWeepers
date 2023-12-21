@@ -21,7 +21,7 @@ const IncomingWagers = (props, { navigate }) => {
 
           <div>{props.wagers.map((wager) => (
             <a key={wager._id} href={`/Wager/${wager._id}`} >
-              <NotificationDetails  userId = {wager.peopleInvolved[0]} messageAfterName ={"would like To Wager!!"}/>
+              <NotificationDetails  userId = {wager.peopleInvolved[0]} messageAfterName ={"would like to wager!"}/>
             </a>))}
           </div>
 
