@@ -1,3 +1,4 @@
+import './WagerInfoPage.css'
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getSessionUserID from '../Utility/getSignedInUser_id';

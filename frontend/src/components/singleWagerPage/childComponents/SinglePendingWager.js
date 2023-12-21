@@ -14,7 +14,11 @@ const SinglePendingWager = (wagerData) => {
     }
     return (
         <div id='single-pending-wager' className="single-wager-info">
-            Waiting for {wager.peopleInvolved[1].username} to respond to your wager that {wager.description} by {deadlineDate} <br />
+            <div id='pending-wager-header' className='pending-wager-header'>Waiting for {wager.peopleInvolved[1].username} to respond to your wager!</div>
+            <div id='wager-details'>
+                Wager details: {wager.description} <br />
+                Winnings: {wager.quantity} drink<br /> 
+                Deadline: {deadlineDate} </div><br />
             <button id='cancel-request-button' onClick={ handleCancelButtonClick }>Cancel Request</button>
         </div>
     )

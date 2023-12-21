@@ -11,7 +11,9 @@ const SingleOngoingWager = (wagerData) => {
 
     const dateParts = wager.deadline.slice(0, 10).split("-");
     const deadlineDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`
-  
+
+    const checkIfOngoing = new Date(wager.deadline) > new Date()
+
     const handleIWonClick = () => {
       console.log("I won")
       if(token) {
@@ -76,7 +78,10 @@ const SingleOngoingWager = (wagerData) => {
       
       return (
         <div id='single-ongoing-wager' className='single-wager'>
-        Who won the wager that {wager.description} would happen by {deadlineDate}? <br /> <br />
+          { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has timed out!</div>
+          )}
+        Who won the wager that {wager.description}?<br />
+        <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div>  
         <button id='I-won-button' className='I-won-button' onClick={ handleIWonClick }>I won</button>
         <button id='I-lost-button' className='I-lost-button' onClick={ handleUser2WonClick }>{wager.peopleInvolved[1].username} won</button>
         </div>
@@ -85,19 +90,27 @@ const SingleOngoingWager = (wagerData) => {
 
       return (
         <div id='single-ongoing-wager' className='single-wager'>
-        Who won the wager that {wager.description} would happen by {deadlineDate}? <br /> <br />
+          { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has timed out!</div>
+          )}
+        Who won the wager that {wager.description}?<br />
+        <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div> <br /> <br />
         <button id='I-won-button' className='I-won-button' onClick={ handleIWonClick }>I won</button>
         <button id='I-lost-button' className='I-lost-button' onClick={ handleUser1WonClick }>{wager.peopleInvolved[0].username} won</button>
         </div>
       )
       } else { 
 
-        return (
-          <div id='single-ongoing-wager' className='single-wager'>
-          Who won the wager that {wager.description} would happen by {deadlineDate}? <br /> <br />
-          <button id='user1-won-button' className='other-user-won-button' onClick={ handleUser1WonClick }>{wager.peopleInvolved[0].username} won</button>
-          <button id='user2-won-button' className='other-user-won-button' onClick={ handleUser2WonClick }>{wager.peopleInvolved[1].username} won</button>
-          </div>
+      return (
+        <div id='single-ongoing-wager' className='single-wager'>
+        { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has timed out!</div>
+        )}
+        Who won the wager that {wager.description}?<br />
+        <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div>
+
+         <br /> <br />
+        <button id='user1-won-button' className='other-user-won-button' onClick={ handleUser1WonClick }>{wager.peopleInvolved[0].username} won</button>
+        <button id='user2-won-button' className='other-user-won-button' onClick={ handleUser2WonClick }>{wager.peopleInvolved[1].username} won</button>
+        </div>
         )
       }
     }
