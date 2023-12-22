@@ -1,0 +1,17 @@
+
+.HeaderMainBar {
+    color: #fff;
+    width: 100%;
+    text-align: right;
+    align-items: center; /* Center content vertically */
+    justify-content: flex-end; /* Align content to the right */
+  }
+  
+  .HeaderMainBar img {
+    padding-top: 2px;
+    height: auto;
+    width: 160px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-right: 50px;
+  }
