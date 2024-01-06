@@ -26,7 +26,7 @@ const App = () => {
           <Route path='/Wager/:wagerID' element={<WagerInfoPage navigate={ useNavigate() }/>}/>
           <Route path='/workshop' element={<Workshop navigate={ useNavigate() }/>}/>
           <Route path='/profile/:userID' element={<ProfilePage navigate={ useNavigate() }/>}/>
-          <Route path='/pint/:userID' element={<SinglePint navigate={ useNavigate() }/>}/>
+          <Route path='/pint/:PintID' element={<SinglePint navigate={ useNavigate() }/>}/>
 
 
 

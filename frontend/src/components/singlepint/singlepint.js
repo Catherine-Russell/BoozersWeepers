@@ -7,7 +7,7 @@ import PintInfo from './pintinfo';
 import Header from '../header/Header';
 
 const SinglePint = ({ navigate }) => {
-  const { userID } = useParams();
+  const { PintID } = useParams();
   const [userToken, setUserToken] = useState(window.localStorage.getItem('token'));
   const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(userToken));
   const [expanded, setExpanded] = useState(true);
@@ -25,7 +25,7 @@ const SinglePint = ({ navigate }) => {
         
         {isLoggedIn ? (
           <div>
-            <PintInfo pintId={'6599af58f1692e50926db41e'} />  
+            <PintInfo pintId={PintID} />  
           </div>
         ) : (
           <div>Please <a href="/login">log in</a> to access this page</div>
