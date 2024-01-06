@@ -10,6 +10,7 @@ import WagerInfoPage from '../singleWagerPage/WagerInfoPage';
 import SignUpPage from '../../Pages/signup';
 import Workshop from '../Template/template';
 import ProfilePage from '../../Pages/profilepage';
+import SinglePint from '../singlepint/singlepint';
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='/Wager/:wagerID' element={<WagerInfoPage navigate={ useNavigate() }/>}/>
           <Route path='/workshop' element={<Workshop navigate={ useNavigate() }/>}/>
           <Route path='/profile/:userID' element={<ProfilePage navigate={ useNavigate() }/>}/>
+          <Route path='/pint/:userID' element={<SinglePint navigate={ useNavigate() }/>}/>
 
 
 

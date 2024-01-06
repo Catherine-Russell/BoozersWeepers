@@ -29,6 +29,19 @@ const PintsController = {
       }
     });
   },
-};
 
+  FindByID: (req, res) => {
+    const pintID = req.params.id;
+    Pint.findById(pintID)
+    .populate('owner owed_by bet')
+      .exec((err, pint) => { 
+        if (err) {
+          return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (!pint) { return res.status(404).json({ error: 'Pint not found' });}
+        const token = TokenGenerator.jsonwebtoken(req.user_id);
+        return res.status(200).json({ pint: pint, token: token }); 
+      });
+  },
+};
 module.exports = PintsController;
