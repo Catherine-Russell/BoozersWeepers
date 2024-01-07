@@ -36,3 +36,5 @@ const SinglePint = ({ navigate }) => {
 };
 
 export default SinglePint;
+
+
