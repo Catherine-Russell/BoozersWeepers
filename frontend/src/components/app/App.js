@@ -11,6 +11,7 @@ import SignUpPage from '../../Pages/signup';
 import Workshop from '../Template/template';
 import ProfilePage from '../../Pages/profilepage';
 import SinglePint from '../singlepint/singlepint';
+import WalletPage from '../../Pages/wallet';
 
 
 
@@ -27,7 +28,7 @@ const App = () => {
           <Route path='/workshop' element={<Workshop navigate={ useNavigate() }/>}/>
           <Route path='/profile/:userID' element={<ProfilePage navigate={ useNavigate() }/>}/>
           <Route path='/pint/:PintID' element={<SinglePint navigate={ useNavigate() }/>}/>
-
+          <Route path='/wallet' element={<WalletPage navigate={ useNavigate() }/>}/>
 
 
 

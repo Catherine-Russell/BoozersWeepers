@@ -38,7 +38,7 @@ const PintInfo = ({ pintId }) => {
           if (response.status === 200) {
             console.log("Pint Claimed!");
             return response.json();
-          } else {console.log("Pint Failed to be Claimed!");}
+          } else {console.log("Pint failed to be Claimed!");}
         })
         .catch(error => {
           console.error('Error claiming pint:', error);
