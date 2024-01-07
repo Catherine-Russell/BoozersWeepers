@@ -11,15 +11,11 @@ const PintInfo = ({ pintId }) => {
           headers: { Authorization: `Bearer ${userToken}` }
         });
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!response.ok) {throw new Error('Network response was not ok');}
 
         const fetchedData = await response.json();
         setPintData(fetchedData);
-      } catch (error) {
-        console.error('Error fetching pint data:', error);
-      }
+      } catch (error) {console.error('Error fetching pint data:', error);}
     };
 
     fetchPintData();
@@ -38,7 +34,7 @@ const PintInfo = ({ pintId }) => {
           if (response.status === 200) {
             console.log("Pint Claimed!");
             return response.json();
-          } else {console.log("Pint failed to be Claimed!");}
+          } else {console.log("Pint failed to be Claimed");}
         })
         .catch(error => {
           console.error('Error claiming pint:', error);
@@ -52,10 +48,11 @@ const PintInfo = ({ pintId }) => {
     <div>
       {pintData ? (
         <div>
-          <p>Owed to: {pintData.pint.owner.username}</p>
-          <p>Datemade: {pintData.pint.datemade}</p>
-          <p>Owed by: {pintData.pint.owed_by.username}</p>
-          <p>Bet: {pintData.pint.bet.description}</p>
+          <b>Pint: {pintData.pint.owner._id}<br /></b>
+          Owed to: {pintData.pint.owner.username}<br />
+          Datemade: {pintData.pint.datemade}<br />
+          Owed by: {pintData.pint.owed_by.username}<br />
+          Bet: {pintData.pint.bet.description}<br />
           <button onClick={claimPint}>Claim</button>
         </div>
       ) : (

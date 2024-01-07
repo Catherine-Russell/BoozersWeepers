@@ -56,6 +56,7 @@ const PintsController = {
         return res.status(200).json({ pint: pint, token: token }); 
       });
   },
+
   SwitchClaimedToTrue: async (req, res) => {
     const pintID = req.params.id;
     const pint = await Pint.updateOne({_id: pintID}, {$set: {claimed: true}});
@@ -66,6 +67,20 @@ const PintsController = {
     }
     },
 
+    FindAllOwnedPints: (req, res) => {
+      const OwnerID = req.params.owner_id;
+      Pint.find({ owner: OwnerID, claimed:false })
+      .populate('owner owed_by bet')
+        .exec((err, foundPints) => {
+          if (err) {
+            return res.status(500).json({ error: 'Internal Server Error' });
+          } else {
+            const token = TokenGenerator.jsonwebtoken(req.user_id);
+            return res.status(200).json({ pints: foundPints, token: token });
+          }
+        });
+    },
+    
 
 };
 module.exports = PintsController;

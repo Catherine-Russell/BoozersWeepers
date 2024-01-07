@@ -26,7 +26,6 @@ const WalletPage = ({ navigate }) => {
         {isLoggedIn ? (
           <div>
             {/* Additional content for logged-in users */}
-            LoggedInContent Here!
             <WalletComponent UserID={SessionUserId}/>
           </div>
         ) : (
