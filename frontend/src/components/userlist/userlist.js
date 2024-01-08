@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SingleUser from './Singleuser';
 import NavBar from '../NavBar/NavBar';
+import SerchBar from '../SerchBar/SerchBar';
 
 const UserList = () => {
   const [ListOfUsers, setUsernames] = useState([]);
@@ -15,6 +16,7 @@ const UserList = () => {
         const userData = await response.json();
         const userList = userData.users.map((user) => user); 
         setUsernames(userList);
+        console.log(userList)
 
     } catch (error) {console.error('Error fetching user data:', error);}
     };
@@ -25,6 +27,7 @@ const UserList = () => {
   return (
 	<div>
 		<NavBar/>
+    <SerchBar message={"serch for a user..."} list={ListOfUsers}/>
 	  <ul>
 		{ListOfUsers.map((user) => (
 		  <SingleUser SelectedUser={user} key={user._id} />
