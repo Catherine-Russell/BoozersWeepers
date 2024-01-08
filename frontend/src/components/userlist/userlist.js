@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import './userlist.css'
+import Header from '../header/Header';
 
 const UserList = () => {
   const [ListOfUsers, setUsernames] = useState([]);
@@ -36,8 +37,10 @@ const UserList = () => {
 
   return (
 	<div>
+    <Header/>
           <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
           <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+
          
       
     </div >
