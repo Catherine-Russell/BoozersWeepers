@@ -14,15 +14,13 @@ const LogInPage = ({ navigate }) => {
   const toggleExpand = () => {setExpanded(!expanded);};
 
   useEffect(() => {
-    console.log(token)
 
     if (isLoggedIn) {navigate('/myAccount');}
-    
     }, [token,navigate]);
 
   return (
     <div>
-     
+      <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
       <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
         <Header/>
         <h1>Sign in to your account</h1>
