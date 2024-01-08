@@ -1,4 +1,3 @@
-/* Add styles to your SearchBar.css file */
 
 .search-bar {
     display: flex;
@@ -22,7 +21,7 @@
   
   button {
     background-color: #cd561b;
-    color: #fff;
+    color: #ffffff;
     border: none;
     padding: 10px 12px;
     border-radius: 4px;
@@ -42,7 +41,7 @@
     padding: 0;
   }
   
-  .searchres {
+  .searchRes {
     display: block;
     padding: 10px;
     border: 1px solid #ccc;
@@ -52,7 +51,7 @@
     color: #333;
   }
   
-  .searchres:hover {
-    background-color: #f0f0f0;
+  .searchRes:hover {
+    background-color: #cd561b;
   }
   
