@@ -52,6 +52,20 @@
   }
   
   .searchRes:hover {
-    background-color: #cd561b;
+    background-color: #eee9e7;
+  }
+  .searchMessage {
+    background-color: #fcfcfc;
+    color: #111111;
+    border: 1px solid #fefefe;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .close-icon {
+    margin-left: 8px;
+    cursor: pointer;
   }
   

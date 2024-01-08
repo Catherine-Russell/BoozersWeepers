@@ -4,6 +4,7 @@ import NavBar from '../NavBar/NavBar';
 import SearchBar from '../SearchBar/SearchBar';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import getSessionUserID from '../Utility/getSignedInUser_id';
+import './userlist.css'
 
 const UserList = () => {
   const [ListOfUsers, setUsernames] = useState([]);
@@ -40,12 +41,15 @@ const UserList = () => {
          
       
     </div >
+    <div className="pageTitle">
+    <h1>who do you wanna make a wager with?</h1>
     <SearchBar message={"serch for a user..."} list={ListOfUsers}/>
-	  <li>
+	  <ul>
 		{ListOfUsers.map((user) => (
 		  <SingleUser SelectedUser={user} key={user._id} />
 		))}
-	  </li>
+	  </ul>
+    </div>
 	</div>
   );
 };
