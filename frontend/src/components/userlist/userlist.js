@@ -40,7 +40,7 @@ const UserList = () => {
          
       
     </div >
-    <SearchBar message={"serch for a user..."} list={ListOfUsers}/>
+    <SearchBar message={"Search for a user..."} list={ListOfUsers}/>
 	  <li>
 		{ListOfUsers.map((user) => (
 		  <SingleUser SelectedUser={user} key={user._id} />
