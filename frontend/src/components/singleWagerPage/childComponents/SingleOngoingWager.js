@@ -16,6 +16,7 @@ const SingleOngoingWager = (wagerData) => {
 
     const checkIfOngoing = new Date(wager.deadline) > new Date()
 
+    // Handle I Won Currently Does not award Pints
     const handleIWonClick = () => {
       console.log("I won")
       if(token) {
@@ -38,45 +39,85 @@ const SingleOngoingWager = (wagerData) => {
     }
 
 
-    const handleUser1WonClick  = () => {
-      if(token) {
-        fetch( `/wagers/updateWinner/${wager._id}/${user1._id}`, {
+    const handleUser1WonClick = () => {
+      if (token) {
+        fetch(`/wagers/updateWinner/${wager._id}/${user1._id}`, {
           method: 'post',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          }
-        })      
-      .then(response => {
-        if (response.status === 200) {
-          console.log("Wager winner updated to other user")
-          return response.json();
-        } else {
-          console.log("Wager winner failed to be updated")
-        }
-      })
-    } navigate("/myAccount");
-  }
+          headers: {'Authorization': `Bearer ${token}`,}
+        })
+          .then(response => {
+            if (response.status === 200) {
+              console.log("Wager winner updated to other user")
+              return response.json();
+            } else {console.log("Wager winner failed to be updated")}
+          })
+          .then(() => {
+            return fetch('/pints', {
+              method: 'post',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                owner: user1._id,
+                owed_by: user2.id,
+                bet: wager._id
+              })
+            })
+          })
+          .then(response => {
+            if (response.status === 201) {
+              console.log("A Pint for User 1 has been created");
+              return response.json();
+            } else {console.log("Failed to create a pint");}
+          })
+          .then(() => {navigate("/myAccount");})
+          .catch(error => {console.error("Error occurred:", error);});
+      }
+    };
 
-    const handleUser2WonClick  = () => {
-      if(token) {
-        fetch( `/wagers/updateWinner/${wager._id}/${user2._id}`, {
+    const handleUser2WonClick = () => {
+      if (token) {
+        fetch(`/wagers/updateWinner/${wager._id}/${user2._id}`, {
           method: 'post',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          }
-        })      
-      .then(response => {
-        if (response.status === 200) {
-          console.log("Wager winner updated to other user")
-          return response.json();
-        } else {
-          console.log("Wager winner failed to be updated")
-        }
-      })
-    } navigate("/myAccount");
-    }
+          headers: {'Authorization': `Bearer ${token}`,}
+        })
+          .then(response => {
+            if (response.status === 200) {
+              console.log("Wager winner updated to user 2")
+              return response.json();
+            } else {console.log("Wager winner failed to be updated")}
+          })
+          .then(() => {
+            return fetch('/pints', {
+              method: 'post',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                owner: user2._id,
+                owed_by: user1._id,
+                bet: wager._id
+              })
+            })
+          })
+          .then(response => {
+            if (response.status === 201) {
+              console.log("A Pint for User 2 has been created");
+              return response.json();
+            } else {console.log("Failed to create a pint");}
+          })
+          .then(() => {
+            navigate("/myAccount");
+          })
+          .catch(error => {
+            console.error("Error occurred:", error);
+          });
+      }
+    };
 
-    if (loggedInUser === wager.peopleInvolved[0]._id) { // for when the logged in user was the challenger
+    if (loggedInUser === wager.peopleInvolved[0]._id) {
       
       return (
         <div id='single-ongoing-wager' className='single-wager'>
