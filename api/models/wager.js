@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const WagerSchema = new mongoose.Schema({
   peopleInvolved:{
-  type: [mongoose.Schema.Types.ObjectId],
-  ref: 'User',
-  default: []},
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'User',
+    default: []},
   quantity: {type: Number, default: 1},
   description: {type: String, required: true},
   datemade: {type: Date, default: new Date()},
@@ -20,4 +20,3 @@ const WagerSchema = new mongoose.Schema({
 const Wager = mongoose.model("Wager", WagerSchema);
 
 module.exports = Wager;
-
