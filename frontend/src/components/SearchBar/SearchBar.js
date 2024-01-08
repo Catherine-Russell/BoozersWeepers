@@ -78,7 +78,7 @@ const SearchBar = (props) =>{
       <div className="result-container">
         <ul>
           {searchRes.map((user) => (
-            <SingleUser SelectedUser={user} key={user._id} />
+             <a href={`/newWager/${user._id}`} className='searchres'>{user.username}</a>
           ))}
         </ul>
       </div>

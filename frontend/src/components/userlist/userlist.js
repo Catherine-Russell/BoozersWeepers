@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SingleUser from './Singleuser';
 import NavBar from '../NavBar/NavBar';
 import SearchBar from '../SearchBar/SearchBar';
+import VertNavbar from '../VertNavBar/VertNavBar';
 
 const UserList = () => {
   const [ListOfUsers, setUsernames] = useState([]);
