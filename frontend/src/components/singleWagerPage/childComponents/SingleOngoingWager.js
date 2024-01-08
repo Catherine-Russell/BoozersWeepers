@@ -14,108 +14,73 @@ const SingleOngoingWager = (wagerData) => {
     const dateParts = wager.deadline.slice(0, 10).split("-");
     const deadlineDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`
 
-    const checkIfOngoing = new Date(wager.deadline) > new Date()
-
-    const handleIWonClick = () => {
-      console.log("I won")
-      if(token) {
-        fetch( `/wagers/updateWinner/${wager._id}/${loggedInUser}`, {
+    const handleWinner = (WinnerID,LoserID) => {
+      if (token) {
+        fetch(`/wagers/updateWinner/${wager._id}/${WinnerID}`, {
           method: 'post',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          }
-        })      
-      .then(response => {
-        if (response.status === 200) {
-          console.log("Wager winner updated to you")
-          return response.json();
-        } else {
-          console.log("Wager winner failed to be updated")
-        }
-      })
-    } navigate("/myAccount");
-    }
-
-
-    const handleUser1WonClick  = () => {
-      if(token) {
-        fetch( `/wagers/updateWinner/${wager._id}/${user1._id}`, {
-          method: 'post',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          }
-        })      
-      .then(response => {
-        if (response.status === 200) {
-          console.log("Wager winner updated to other user")
-          return response.json();
-        } else {
-          console.log("Wager winner failed to be updated")
-        }
-      })
-    } navigate("/myAccount");
-  }
-
-    const handleUser2WonClick  = () => {
-      if(token) {
-        fetch( `/wagers/updateWinner/${wager._id}/${user2._id}`, {
-          method: 'post',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          }
-        })      
-      .then(response => {
-        if (response.status === 200) {
-          console.log("Wager winner updated to other user")
-          return response.json();
-        } else {
-          console.log("Wager winner failed to be updated")
-        }
-      })
-    } navigate("/myAccount");
-    }
-
-    if (loggedInUser === wager.peopleInvolved[0]._id) { // for when the logged in user was the challenger
-      
-      return (
-        <div id='single-ongoing-wager' className='single-wager'>
-          { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has reached the deadline!</div>
-          )}
-        Who won the wager that {wager.description}?<br />
-        <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div>  
-        <button id='I-won-button' className='I-won-button' onClick={ handleIWonClick }>I won</button>
-        <button id='I-lost-button' className='I-lost-button' onClick={ handleUser2WonClick }>{wager.peopleInvolved[1].username} won</button>
-        </div>
-      )
-    } else if (loggedInUser === wager.peopleInvolved[1]._id) { //for when logged-in user was the challenged user
-
-      return (
-        <div id='single-ongoing-wager' className='single-wager'>
-          { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has reached the deadline!</div>
-          )}
-        Who won the wager that {wager.description}?<br />
-        <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div> <br /> <br />
-        <button id='I-won-button' className='I-won-button' onClick={ handleIWonClick }>I won</button>
-        <button id='I-lost-button' className='I-lost-button' onClick={ handleUser1WonClick }>{wager.peopleInvolved[0].username} won</button>
-        </div>
-      )
-      } else { 
-
-      return (
-        <div id='single-ongoing-wager' className='single-wager'>
-        { checkIfOngoing ? (<div id='ongoing-status-description'>You have an ongoing wager with {wager.peopleInvolved[1].username}!</div>) : (<div id='ongoing-status-description'>Your wager with {wager.peopleInvolved[1].username} has reached the deadline!</div>
-        )}
-        Who won the wager that {wager.description}?<br />
-        <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div>
-
-        <br /> <br />
-        <button id='user1-won-button' className='other-user-won-button' onClick={ handleUser1WonClick }>{wager.peopleInvolved[0].username} won</button>
-        <button id='user2-won-button' className='other-user-won-button' onClick={ handleUser2WonClick }>{wager.peopleInvolved[1].username} won</button>
-        </div>
-        )
+          headers: {'Authorization': `Bearer ${token}`,}
+        })
+          .then(response => {
+            if (response.status === 200) {
+              console.log(`Wager winner updated to ${WinnerID}`)
+              return response.json();
+            } else {console.log("Wager winner failed to be updated")}
+          })
+          .then(() => {
+            return fetch('/pints', {
+              method: 'post',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                owner: WinnerID,
+                owed_by: LoserID,
+                bet: wager._id
+              })
+            })
+          })
+          .then(response => {
+            if (response.status === 201) {
+              console.log(`A Pint for ${WinnerID} has been created`);
+              return response.json();
+            } else {console.log("Failed to create a pint");}
+          })
+          .then(() => {
+            navigate("/myAccount");
+          })
+          .catch(error => {
+            console.error("Error occurred:", error);
+          });
       }
-    }
+    };
 
+
+      
+    if (user1 === loggedInUser) {
+      return (
+        <div>
+          You bet {user2.username} that {wager.description} would happen before {deadlineDate} <br />
+          So...Who won?
+          <br/>
+          <button onClick={() => handleWinner(user1._id, user2._id)}>I Win</button>
+          <button onClick={() => handleWinner(user2._id, user1._id)}>{user2.username} wins</button>
+
+        </div>
+      );
+  } else {
+      return (
+        <div>
+        {user1.username} bet you that {wager.description} would happen before {deadlineDate}  <br />
+        So...Who Won?
+        <br/>
+        <button onClick={() => handleWinner(user2._id, user1._id)}>I win</button>
+        <button onClick={() => handleWinner(user1._id, user2._id)}>{user1.username} Wins</button>
+        
+
+        </div>
+      );
+  }
+};
 
 export default SingleOngoingWager;
