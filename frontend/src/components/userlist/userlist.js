@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SingleUser from './Singleuser';
 import NavBar from '../NavBar/NavBar';
-import SerchBar from '../SerchBar/SerchBar';
+import SearchBar from '../SearchBar/SearchBar';
 
 const UserList = () => {
   const [ListOfUsers, setUsernames] = useState([]);
@@ -27,7 +27,7 @@ const UserList = () => {
   return (
 	<div>
 		<NavBar/>
-    <SerchBar message={"serch for a user..."} list={ListOfUsers}/>
+    <SearchBar message={"serch for a user..."} list={ListOfUsers}/>
 	  <ul>
 		{ListOfUsers.map((user) => (
 		  <SingleUser SelectedUser={user} key={user._id} />

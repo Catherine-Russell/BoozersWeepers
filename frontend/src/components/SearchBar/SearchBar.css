@@ -1,0 +1,12 @@
+.search-bar {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-container {
+    display: flex;
+  }
+  
+  .result-container {
+    margin-top: 10px;
+  }
