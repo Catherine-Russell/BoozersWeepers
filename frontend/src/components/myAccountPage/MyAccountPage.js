@@ -10,7 +10,7 @@ import NotificationDetails from './myAccountPageComponents/NotificationDetails';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import Header from '../header/Header';
 import '../../Pages/style.css'
-
+import LoggedInUser from './myAccountPageComponents/LoggedinUserDetails';
 
 
 
@@ -20,6 +20,7 @@ const MyAccountPage = ({ navigate }) => {
   const [wagers, setWagers] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(true);
+  const [LoggedInUserID, setLoggedInUserID] = useState (getSessionUserID(token))
 
 
 
@@ -31,21 +32,26 @@ const MyAccountPage = ({ navigate }) => {
     }
 
 
-  useEffect((event) => {
-    
-    // Gets Wagers data from backend
-    if(token) {
-      fetch("/wagers", {
-        method: 'get',
-        headers: {'Authorization': `Bearer ${token}`}
-      })
-        .then(response => response.json())
-        .then(async data => {
-          window.localStorage.setItem("token", data.token)
-          setToken(window.localStorage.getItem("token"))
-          setWagers(data.wagers)
-        })
-      }
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          if (token) {
+            const response = await fetch('/wagers', {
+              method: 'GET',
+              headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const data = await response.json();
+            window.localStorage.setItem('token', data.token);
+            setToken(window.localStorage.getItem('token'));
+            setWagers(data.wagers);
+          }
+        } catch (error) {
+          console.error('Error fetching wagers:', error);
+          // Handle error (e.g., set state to display an error message)
+        }
+      };
+      fetchData();
+      console.log(wagers)
 
 
     if (!isLoggedIn) {navigate('/');}
@@ -53,15 +59,15 @@ const MyAccountPage = ({ navigate }) => {
 
     
     // added an extra filter to show wagers that the signed in user is involved with
-    const myWagers = wagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) || wager.peopleInvolved[1] === getSessionUserID(token))
+    const myWagers = wagers.filter(wager => wager.peopleInvolved[0]._id === LoggedInUserID || wager.peopleInvolved[1]._id === LoggedInUserID)
     // Gets wagers which have been sent from other users to be approved by logged-in user
-    const wagerRequests = myWagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
+    const wagerRequests = myWagers.filter(wager => wager.approved === false && wager.peopleInvolved[1]._id === LoggedInUserID)
     // Gets ongoing wagers -> they have been approved by both users and are still within the time limit
     const ongoingWagers = myWagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline) && wager.winner === null)
     // Gets pending wagers -> they have been sent but not yet approved by the person you sent it to
-    const pendingWagers = myWagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) && wager.approved === false)
+    const pendingWagers = myWagers.filter(wager => wager.peopleInvolved[0]._id === LoggedInUserID && wager.approved === false)
     // Gets unresolved wagers -> they are past the deadline, have been approved  but haven't declared a winner yet
-    const unresolvedWagers = myWagers.filter(wager => checkIfOngoing(wager.deadline) === false && wager.winner === null && wager.approved !== false)
+    const unresolvedWagers = myWagers.filter(wager => checkIfOngoing(wager.deadline) === false && wager.winner._id === null && wager.approved !== false)
     // Gets past wagers -> wagers which have been resolved and have a winner declared
     const pastWagers = myWagers.filter(wager => wager.winner != null)
     
@@ -71,16 +77,13 @@ const MyAccountPage = ({ navigate }) => {
 
       if (!isLoggedIn) {navigate('/');}
       }, [navigate, isLoggedIn]);
-
-      console.log({myWagers})
   
       return (
         <div>
           <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
           <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
           <Header />
-          <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
-
+          <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {LoggedInUserID} messageAfterName={"'s Wagers"} /></h1>
           <IncomingWagers wagers = { wagerRequests }/>    
 					<OngoingWagers ongoingWagers = { ongoingWagers }/>
 					<PendingWagers pendingWagers = { pendingWagers }/>
