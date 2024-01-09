@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IoHome, IoPint } from 'react-icons/io5';
+import { IoHome, IoPint, IoWallet } from 'react-icons/io5';
 import { BiExpandHorizontal } from 'react-icons/bi';
 import { FaHandshakeSimple } from 'react-icons/fa6';
 import { FiLogIn,FiLogOut } from 'react-icons/fi';
@@ -29,7 +29,7 @@ const navigate = useNavigate();
           <li className="spacer"></li>
           <li><a href="/myAccount"><span>Home</span><IoHome className="react-icon" size={30} /></a></li>
           <li><a href="/userlist"><span>New Bet</span><FaHandshakeSimple className="react-icon" size={30} /></a></li>
-          <li><span>Option 3</span><IoPint className="react-icon" size={30} /></li>
+          <li><a href="/wallet"><span>Wallet</span><IoWallet className="react-icon" size={30} /></a></li>
           </ul>
           ) : (
             <ul>

@@ -321,9 +321,40 @@ describe("POST, user accepting a wager", () => {
     let updatedWager = await Wager.findById(wager._id);
     expect(updatedWager.approved).toEqual(true);
   });  
-})  
 })
+});  
 
 
+// TESTS for a wager being cancelled (deleted from database)
+describe("wager is created and then cancelled, thus removing wager from database", () => {
+  beforeEach( async () => {
+  // Create a wager and send to database
+    wager = new Wager({peopleInvolved: [user1._id, challengedUser._id], description: "test wager to be cancelled", datemade: testDate, deadline: testDeadline, token: token })
+    await wager.save();
+    await request(app)
+      .post("/wagers")
+      .set("Authorization", `Bearer ${token}`)
+      .send(wager)
+    
+    });
+    
+    test("cancelling wager responds with a 200", async () => {
+      let response = await request(app)
+        .post(`/wagers/${wager._id}/cancel`)
+        .set("Authorization", `Bearer ${token}`)
+        // let wagers = await Wager.find();
+      expect(response.status).toEqual(200);
+      });
 
-
+    test("cancelling wager that no longer exists responds with a 404", async () => {
+      await request(app)
+    // Deletes existing wager
+        .post(`/wagers/${wager._id}/cancel`)
+        .set("Authorization", `Bearer ${token}`)
+    // Already deleted wager cannot be found in db
+      let response = await request(app)
+        .post(`/wagers/${wager._id}/cancel`)
+        .set("Authorization", `Bearer ${token}`)
+        expect(response.status).toEqual(404);
+      });
+})

@@ -1,16 +1,23 @@
 import { useNavigate } from 'react-router-dom';
-
+import React from 'react';
 
 const SinglePendingWager = (wagerData) => {
     const navigate = useNavigate()
-    const wager = wagerData.wagerData
+    const wager = wagerData.wagerData;
+    const token = window.localStorage.getItem('token');
     const dateParts = wager.deadline.slice(0, 10).split("-");
     const deadlineDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`
 
     const handleCancelButtonClick = () => {
+        fetch( `/wagers/${wager._id}/cancel`, {
+            method: 'post',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })      
         console.log("cancel button clicked")
         navigate("/myAccount")
-
     }
     return (
         <div id='single-pending-wager' className="single-wager-info">

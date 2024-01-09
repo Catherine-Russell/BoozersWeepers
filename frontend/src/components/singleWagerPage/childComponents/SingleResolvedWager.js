@@ -1,4 +1,5 @@
 import getSessionUserID from '../../Utility/getSignedInUser_id';
+import React from 'react';
 
 const SingleResolvedWager = (wagerData) => {
   const loggedInUser = getSessionUserID(window.localStorage.getItem('token'))
