@@ -36,8 +36,9 @@ const PubGroupsPage = ({ navigate }) => {
 		const joinedGroups = pubGroups.filter(pubGroup => pubGroup.members.includes(getSessionUserID(token)))
 		console.log(joinedGroups)
   return(
-    <div className="pub-groups-page-container">
-    {/* <VertNavbar expanded={expanded} toggleExpand={toggleExpand} /> */}
+    <div className="pub-groups-page">
+    <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+			<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 		
 			<div className="my-groups">
 				<h1>My groups:</h1>
@@ -47,7 +48,7 @@ const PubGroupsPage = ({ navigate }) => {
 					{pubGroups.map((pubGroup) => (
 					<div key={pubGroup.id}>
 						
-					<a href={`/pubGroup/${pubGroup._id}`} >
+					<a href={`/groups/${pubGroup._id}`} >
 						{pubGroup.name} members are {pubGroup.members} 
 					</a>
 					</div>))}
@@ -55,9 +56,9 @@ const PubGroupsPage = ({ navigate }) => {
 					{joinedGroups.map((pubGroup) => (
 					<div key={pubGroup.id}>
 						
-					<a href={`/pubGroup/${pubGroup._id}`} >
+					<a href={`/groups/${pubGroup._id}`} >
 						{pubGroup.name}
-						
+
 					</a>
 					</div>))}
 
@@ -67,6 +68,7 @@ const PubGroupsPage = ({ navigate }) => {
 			put search bar here and button to go to that individual page
 			</div>
             
+			</div>
     </div>
 	)
 }
