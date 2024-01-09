@@ -7,7 +7,12 @@ const UsersController = {
       if (err) {
         
         if(err.code === 11000){
-          return res.status(400).json({message: 'This email or Username is already in use'})
+          if(err.keyPattern.email){
+            return res.status(400).json({message: 'email is already in use'})
+
+          }
+          else if(err.keyPattern.username)
+          return res.status(400).json({ message: 'username is already in use' });
 
         }
         else{
