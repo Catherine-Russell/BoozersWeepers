@@ -18,6 +18,16 @@ const PubGroupsController = {
 		})
 	},
 
+	Index: (req, res) => {
+		PubGroup.find((err, pubGroups) => {
+			if (err) {
+				return res.status(500).json({ error: 'Internal Server Error' });
+			}
+			const token = TokenGenerator.jsonwebtoken(req.user_id);
+			return res.status(200).json({ pubGroups: pubGroups, token: token });
+		});
+	},
+
 	UpdateAddMember: async (req, res) => {
 			// Finds the pubGroup to update
 			try{
@@ -39,16 +49,6 @@ const PubGroupsController = {
 				res.status(500).json({ error: 'Internal Server Error.' });
 			}
 	}
-
-		// Index: (req, res) => {
-		// 	PubGroup.find((err, pubGroups) => {
-		// 		if (err) {
-		// 			return res.status(500).json({ error: 'Internal Server Error' });
-		// 		}
-		// 		const token = TokenGenerator.jsonwebtoken(req.user_id);
-		// 		return res.status(200).json({ pubGroups: pubGroups, token: token });
-		// 	});
-		// },
 
 		// FindInfoByGroupID: (req, res) => {
 		// 	const pubGroupID = req.params.id;

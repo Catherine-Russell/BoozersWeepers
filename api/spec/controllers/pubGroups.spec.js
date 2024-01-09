@@ -92,7 +92,53 @@ describe("POST /pubgroup -> creates a new wager", () => {
     });
   });
 
-  // TESTS for adding a new member
+// Tests for Index function:
+describe("Index function returns all groups in the database", () => {
+  test("returns every pubGroup in the collection", async () => {
+    let pubGroup1 = PubGroup({ name: "test group 1"})
+    let pubGroup2 = PubGroup({ name: "test group 2"})
+    await pubGroup1.save();
+    await pubGroup2.save();
+    let response = await request(app)
+      .get("/pubGroups")
+      .set("Authorization", `Bearer ${token}`)
+      .send({token: token});
+    let pubGroupNames = response.body.pubGroups.map((pubGroups) => ( pubGroups.name ));
+    expect(pubGroupNames).toEqual(["test group 1", "test group 2"]);
+  })
+
+
+  test("the response code is 200", async () => {
+    let pubGroup1 = PubGroup({ name: "test group 1"})
+    let pubGroup2 = PubGroup({ name: "test group 2"})
+    await pubGroup1.save();
+    await pubGroup2.save();
+
+    let response = await request(app)
+      .get("/pubGroups")
+      .set("Authorization", `Bearer ${token}`)
+      .send({token: token});
+    expect(response.status).toEqual(200);
+  })
+
+
+  test("returns a new token", async () => {
+    let pubGroup1 = PubGroup({ name: "test group 1"})
+    let pubGroup2 = PubGroup({ name: "test group 2"})
+    await pubGroup1.save();
+    await pubGroup2.save();
+
+    let response = await request(app)
+      .get("/pubGroups")
+      .set("Authorization", `Bearer ${token}`)
+      .send({token: token});
+    let newPayload = JWT.decode(response.body.token, process.env.JWT_SECRET);
+    let originalPayload = JWT.decode(token, process.env.JWT_SECRET);
+    expect(newPayload.iat > originalPayload.iat).toEqual(true);
+  })
+})
+
+// TESTS for adding a new member
   describe("adding a new member adds their id to the members array", () => {
     test("server response is 200 when member successfully added", async () => {
       let pubGroup = new PubGroup({name: "Test Group"});
