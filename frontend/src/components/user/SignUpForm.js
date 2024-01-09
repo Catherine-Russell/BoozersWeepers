@@ -7,8 +7,6 @@ const SignUpForm = ({ navigate }) => {
   const [username, setUsername] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -27,9 +25,9 @@ const SignUpForm = ({ navigate }) => {
           navigate('/signup') 
           setErrorMsg(errorData.message)
           console.log(errorData.message)
-      }
+      } 
     })
-  }
+}
   
   const handleEmailChange = (event) => {setEmail(event.target.value)}
   

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import VertNavbar from '../VertNavBar/VertNavBar';
-import './home.css'
+import React, { useState } from 'react';
+import "./Home.css"
+
 
 
 const Home = ({ navigate }) => {
@@ -8,10 +9,10 @@ const Home = ({ navigate }) => {
   const toggleExpand = () => {setExpanded(!expanded);};
 
   return(
-    <div className="HomePage">
-      <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
-   
-<h1>BoozersWeepers</h1>
+    <div className='logged-out-page-container'>
+    <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+
+<h1 className='main-title'>BoozersWeepers</h1>
   <a href='/signup'>Please Register</a><br/>
   or <br/>
   <a href='/login'>Sign in</a>
