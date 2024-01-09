@@ -4,7 +4,6 @@ import IncomingWagers from './myAccountPageComponents/IncomingWagers';
 import OngoingWagers from './myAccountPageComponents/ongoingWagers';
 import PendingWagers from './myAccountPageComponents/PendingWagers';
 import PastWagers from './myAccountPageComponents/PastWagers';
-import NavBar from '../NavBar/NavBar';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import UnresolvedWagers from './myAccountPageComponents/UnresolvedWagers';
 import NotificationDetails from './myAccountPageComponents/NotificationDetails';
@@ -53,7 +52,6 @@ const MyAccountPage = ({ navigate }) => {
     }, [navigate, isLoggedIn, token]);
 
     
-    
     // added an extra filter to show wagers that the signed in user is involved with
     const myWagers = wagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) || wager.peopleInvolved[1] === getSessionUserID(token))
     // Gets wagers which have been sent from other users to be approved by logged-in user
@@ -73,6 +71,8 @@ const MyAccountPage = ({ navigate }) => {
 
       if (!isLoggedIn) {navigate('/');}
       }, [navigate, isLoggedIn]);
+
+      console.log({myWagers})
   
       return (
         <div>
@@ -86,7 +86,6 @@ const MyAccountPage = ({ navigate }) => {
 					<PendingWagers pendingWagers = { pendingWagers }/>
 					<UnresolvedWagers unresolvedWagers = { unresolvedWagers }/>
 					<PastWagers pastWagers = { pastWagers }/>
-          {/* <button onClick={logout}>Logout</button> */}
 
           </div>
         </div>
