@@ -50,8 +50,6 @@ const MyAccountPage = ({ navigate }) => {
         }
       };
       fetchData();
-      console.log(wagers)
-
 
     if (!isLoggedIn) {navigate('/');}
     }, [navigate, isLoggedIn, token]);
