@@ -5,12 +5,13 @@ const User = require('../../models/user');
 const PubGroup = require('../../models/pubGroup');
 
 const JWT = require("jsonwebtoken");
+const { purge } = require("superagent");
 const secret = process.env.JWT_SECRET;
 
 let user
 let token
 
-describe("POST /pubgroup -> creates a new wager", () => {
+describe("/pubgroup ", () => {
   beforeAll( async () => {
     user = new User({email: "user@test.com", username: "user", password: "12345678!"});
     await user.save();
@@ -177,5 +178,60 @@ describe("Index function returns all groups in the database", () => {
 
     });
 });
-
 });
+
+
+
+// NEW test suite to set up users and pub groups properly in the before all
+let testPubGroup
+
+describe("POST /pubgroup -> creates a new wager", () => {
+  beforeAll( async () => {
+    // Sets up user and token for each test
+    const user1 = new User({email: "user1@test.com", username: "user", password: "12345678!"});
+    const user2 = new User({email: "user2@test.com", username: "user2", password: "12345678!"});
+    const user3 = new User({email: "user3@test.com", username: "user3", password: "12345678!"});
+    await user1.save();
+    await user2.save();
+    await user3.save();
+
+    token = JWT.sign({
+      user_id: user1.id,
+      // Backdate this token of 5 minutes
+      iat: Math.floor(Date.now() / 1000) - (5 * 60),
+      // Set the JWT token to expire in 10 minutes
+      exp: Math.floor(Date.now() / 1000) + (10 * 60)
+    }, secret);
+    
+    testPubGroup = new PubGroup({name: "Test Pub Group", members: [user1._id, user2._id, user3._id]});
+    await testPubGroup.save();
+
+  });
+
+  afterAll( async () => {
+    await User.deleteMany({});
+    await PubGroup.deleteMany({});
+  })
+  
+  // Test for getting the information about members by pubGroup id
+  describe("gets information about members in a group from the pubGroup id", () => {
+    test("returns a list of member objects", async () => {
+      console.log('THIS IS THE NEW TEST AND THE PUBGROUP ID IS:', testPubGroup._id)
+      let response = await request(app)
+      .get(`/pubGroups/${testPubGroup._id}`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({token: token});
+      expect(response.status).toEqual(200);
+    });
+    
+  });
+});
+
+// NOW WRITE THE TEST BUT CHECKING THAT THE OBJECTS FOR MEMBERS ARE SAME AS THE USER123 thing
+// async () => {
+//   let response = await request(app)
+//     .get("/userdata")
+//     .set("Authorization", `Bearer ${token}`)
+//     .send({token: token});
+//   let usernames= response.body.users.map((user) => ( user.username ));
+//   expect(usernames).toEqual(["mrstest", "mrtest"]);
