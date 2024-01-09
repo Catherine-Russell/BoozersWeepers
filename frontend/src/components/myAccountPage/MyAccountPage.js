@@ -4,7 +4,6 @@ import IncomingWagers from './myAccountPageComponents/IncomingWagers';
 import OngoingWagers from './myAccountPageComponents/ongoingWagers';
 import PendingWagers from './myAccountPageComponents/PendingWagers';
 import PastWagers from './myAccountPageComponents/PastWagers';
-import NavBar from '../NavBar/NavBar';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import UnresolvedWagers from './myAccountPageComponents/UnresolvedWagers';
 import NotificationDetails from './myAccountPageComponents/NotificationDetails';
