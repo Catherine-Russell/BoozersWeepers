@@ -1,0 +1,14 @@
+/* Add styles to your CSS file */
+
+.pageTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh; /* Adjust as needed */
+  }
+  
+  h1 {
+    margin-bottom: 20px; /* Add margin for spacing */
+  }
+  

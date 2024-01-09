@@ -17,6 +17,11 @@ const SearchBar = (props) =>{
 
   const navigate = useNavigate();
 
+  const handleButtonClick = (event)=>{
+    setSearchMessage(null)
+    event.preventDefault()
+  }
+
 
   const handleChange =(event) => {
     setSearch(event.target.value)
@@ -62,6 +67,7 @@ const SearchBar = (props) =>{
 
 
 
+
   return (
     <form className="search-bar" onSubmit={handleSubmit}>
     <div className="search-container">
@@ -78,12 +84,12 @@ const SearchBar = (props) =>{
       <div className="result-container">
         <ul>
           {searchRes.map((user) => (
-             <a href={`/newWager/${user._id}`} className='searchRes'>{user.username}</a>
+             <a href={`/newWager/${user._id}`} key={user._id} className='searchRes'>{user.username} </a>
           ))}
         </ul>
       </div>
     )}
-    {searchMessage && <h2>{searchMessage}</h2>}
+    {searchMessage && <button className="searchMessage" onClick={handleButtonClick}>{searchMessage}<span className="close-icon">×</span></button>}
   </form>
 );
 

@@ -4,11 +4,30 @@ import NavBar from '../NavBar/NavBar';
 import SearchBar from '../SearchBar/SearchBar';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import getSessionUserID from '../Utility/getSignedInUser_id';
+import './userlist.css'
+import Header from '../header/Header';
 
 const UserList = () => {
   const [ListOfUsers, setUsernames] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [expanded, setExpanded] = useState(true);
+  const [showAll, setShowAll] = useState(null);
+  const [showAllMessage, setShowAllMessage] = useState("Show All")
+
+
+  const showAllClick = (event) =>{
+    if(showAll === null){
+    setShowAll(true)
+    event.preventDefault();
+    setShowAllMessage("hide")
+    }
+    else{
+      setShowAll(null)
+      setShowAllMessage(" Show All")
+    }
+    
+  }
+
   
   
   const toggleExpand = () => {setExpanded(!expanded);};
@@ -35,17 +54,28 @@ const UserList = () => {
 
   return (
 	<div>
+    <Header/>
           <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
           <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+
          
       
     </div >
-    <SearchBar message={"Search for a user..."} list={ListOfUsers}/>
-	  <li>
+    <div className="pageTitle">
+    <h1>who do you wanna make a wager with?</h1>
+    <SearchBar message={"search for a user..."} list={ListOfUsers}/>
+	  <button onClick={showAllClick} className='show all button'>{showAllMessage} </button>
+    {showAll &&
+    
+    <ul>
+      
+
 		{ListOfUsers.map((user) => (
 		  <SingleUser SelectedUser={user} key={user._id} />
 		))}
-	  </li>
+	  </ul>
+}
+    </div>
 	</div>
   );
 };
