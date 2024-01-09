@@ -21,7 +21,7 @@ const PubGroupsController = {
 	UpdateAddMember: async (req, res) => {
 			// Finds the pubGroup to update
 			try{
-				const pubGroupId = req.params;
+				const pubGroupId = req.params.pubGroupId;
 				const userId = req.user_id;
 				if (!pubGroupId || !userId) {
 					return res.status(400).json({ error: 'Both Pub Group ID and user ID are required.' });
@@ -32,7 +32,7 @@ const PubGroupsController = {
 				}
 	
 				// Add member
-				await PubGroup.updateOne({ _id: pubGroupId }, { $push: { member: userId } });
+				await PubGroup.updateOne({ _id: pubGroupId }, { $push: { members: userId } });
 				res.status(200).json({ message: 'Member added successfully.' });
 			} catch (error) {
 				console.error('Error adding new member:', error);

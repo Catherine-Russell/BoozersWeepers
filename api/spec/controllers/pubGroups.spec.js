@@ -7,9 +7,12 @@ const PubGroup = require('../../models/pubGroup');
 const JWT = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 
+let user
+let token
+
 describe("POST /pubgroup -> creates a new wager", () => {
   beforeAll( async () => {
-    let user = new User({email: "user@test.com", username: "user", password: "12345678!"});
+    user = new User({email: "user@test.com", username: "user", password: "12345678!"});
     await user.save();
 
 // Sets up user and token for each test
@@ -36,7 +39,7 @@ describe("POST /pubgroup -> creates a new wager", () => {
   describe("POST, when token is present creates new pubgroup", () => {
     test("responds with a 201", async () => {
       let response = await request(app)
-        .post("/pubgroups")
+        .post("/pubGroups")
         .set("Authorization", `Bearer ${token}`)
         .send({ name: "test group", token: token });
       expect(response.status).toEqual(201);
@@ -72,7 +75,6 @@ describe("POST /pubgroup -> creates a new wager", () => {
 			.send({ name: "test group"})
       expect(response.status).toEqual(401);
     });
-  });
   
     test("a pub Group is not created", async () => {
       await request(app)
@@ -89,3 +91,45 @@ describe("POST /pubgroup -> creates a new wager", () => {
       expect(response.body.token).toEqual(undefined);
     });
   });
+
+  // TESTS for adding a new member
+  describe("adding a new member adds their id to the members array", () => {
+    test("server response is 200 when member successfully added", async () => {
+      let pubGroup = new PubGroup({name: "Test Group"});
+      await pubGroup.save();
+      let response = await request(app)
+    	  .post(`/pubGroups/${pubGroup._id}/addMember/`)
+        .set("Authorization", `Bearer ${token}`)
+      expect(response.status).toEqual(200);
+    });
+
+    test("first member appears in list", async () => {
+      let pubGroup = new PubGroup({name: "Test Group"});
+      await pubGroup.save();
+      await request(app)
+        .post(`/pubGroups/${pubGroup._id}/addMember/`)
+        .set("Authorization", `Bearer ${token}`)
+			let pubGroups = await PubGroup.find();
+      expect(pubGroups[0].members[0]).toEqual(user._id);
+    })
+  
+    test("multiple members added appear in list", async () => {
+      const user2 = new User({email: "user2@test.com", username: "user2", password: "12345678!"});
+      const user3 = new User({email: "user3@test.com", username: "user3", password: "12345678!"});
+      await user2.save();
+      await user3.save();
+
+      let pubGroup = new PubGroup({name: "Test Group", members: [user2._id, user3._id]});
+      await pubGroup.save();
+      await request(app)
+        .post(`/pubGroups/${pubGroup._id}/addMember/`)
+        .set("Authorization", `Bearer ${token}`)
+			let pubGroups = await PubGroup.find();
+      expect(pubGroups[0].members[0]).toEqual(user2._id);
+      expect(pubGroups[0].members[1]).toEqual(user3._id);
+      expect(pubGroups[0].members[2]).toEqual(user._id);
+
+    });
+});
+
+});

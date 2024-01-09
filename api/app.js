@@ -46,7 +46,7 @@ app.use("/tokens", authenticationRouter);
 app.use("/users", usersRouter);
 app.use("/userdata", tokenChecker, userdataRouter);
 app.use("/wagers", tokenChecker, wagersRouter);
-app.use("/pubgroups", tokenChecker, pubGroupsRouter);
+app.use("/pubGroups", tokenChecker, pubGroupsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
