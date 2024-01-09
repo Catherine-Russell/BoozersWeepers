@@ -57,6 +57,7 @@ const PubGroupsPage = ({ navigate }) => {
 						
 					<a href={`/pubGroup/${pubGroup._id}`} >
 						{pubGroup.name}
+						
 					</a>
 					</div>))}
 
