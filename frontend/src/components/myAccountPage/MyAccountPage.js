@@ -10,7 +10,6 @@ import NotificationDetails from './myAccountPageComponents/NotificationDetails';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import Header from '../header/Header';
 import '../../Pages/style.css'
-import LoggedInUser from './myAccountPageComponents/LoggedinUserDetails';
 
 
 
