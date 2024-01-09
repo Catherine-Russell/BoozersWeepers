@@ -11,6 +11,23 @@ const UserList = () => {
   const [ListOfUsers, setUsernames] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [expanded, setExpanded] = useState(true);
+  const [showAll, setShowAll] = useState(null);
+  const [showAllMessage, setShowAllMessage] = useState("Show All")
+
+
+  const showAllClick = (event) =>{
+    if(showAll === null){
+    setShowAll(true)
+    event.preventDefault();
+    setShowAllMessage("hide")
+    }
+    else{
+      setShowAll(null)
+      setShowAllMessage(" Show All")
+    }
+    
+  }
+
   
   
   const toggleExpand = () => {setExpanded(!expanded);};
@@ -46,12 +63,18 @@ const UserList = () => {
     </div >
     <div className="pageTitle">
     <h1>who do you wanna make a wager with?</h1>
-    <SearchBar message={"serch for a user..."} list={ListOfUsers}/>
-	  <ul>
+    <SearchBar message={"search for a user..."} list={ListOfUsers}/>
+	  <button onClick={showAllClick} className='show all button'>{showAllMessage} </button>
+    {showAll &&
+    
+    <ul>
+      
+
 		{ListOfUsers.map((user) => (
 		  <SingleUser SelectedUser={user} key={user._id} />
 		))}
 	  </ul>
+}
     </div>
 	</div>
   );
