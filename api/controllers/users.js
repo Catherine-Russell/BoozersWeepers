@@ -5,7 +5,22 @@ const UsersController = {
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
-        res.status(400).json({message: 'Bad request'})
+        
+        if(err.code === 11000){
+          if(err.keyPattern.email){
+            return res.status(400).json({message: 'email is already in use'})
+
+          }
+          else if(err.keyPattern.username)
+          return res.status(400).json({ message: 'username is already in use' });
+
+        }
+        else{
+          res.status(400).json({message: 'Bad request'})
+
+        }
+      
+      
       } else {
         res.status(201).json({ message: 'OK' });
       }
