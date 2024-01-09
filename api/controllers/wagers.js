@@ -90,7 +90,26 @@ const WagersController = {
     }
 },
 
-
+  Cancel: async (req, res) => {
+    const wagerID = req.params.wager_id;
+    console.log(`wager ID is ${wagerID}`);
+    
+    if (!wagerID) {
+      // error message for debugging - in theory this path should never be used because can't go along this route if no wager id is in the route parameters 
+      console.log("Cancelling wager attempt failed - wager ID not provided")
+        return res.status(400).json({ error: 'Wager ID not provided in route parameters' });
+      }
+    const existingWager = await Wager.findById(wagerID);
+    if (!existingWager) {
+      return res.status(404).json({ error: 'Wager not found in database' });
+    }
+    else {
+      await Wager.findByIdAndDelete(wagerID);
+      const token = TokenGenerator.jsonwebtoken(req.user_id)
+      console.log("Cancelling wager attempt successful - wager removed from database")
+      res.status(200).json({ message: 'Wager successfully removed from database', token: token });
+    } 
+  },
 }
 
 module.exports = WagersController;
