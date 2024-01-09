@@ -10,12 +10,12 @@ const SingleGroupPage = () => {
     const toggleExpand = () => {setExpanded(!expanded);};
 
     return (
-			<div className="single-group-page">
+			<div id='single-group-page'>
 			<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
 
 				<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 
-					<h1 className='pub-group-name-title'>This is the name of the group</h1>
+					<h1 id='pub-group-name' className='pub-group-name-title'>This is the name of the group</h1>
 					<div className='members-list'>
 						List of members go here
 					</div>
