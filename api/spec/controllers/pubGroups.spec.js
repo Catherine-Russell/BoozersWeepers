@@ -188,7 +188,7 @@ let testPubGroup
 describe("POST /pubgroup -> creates a new wager", () => {
   beforeAll( async () => {
     // Sets up user and token for each test
-    const user1 = new User({email: "user1@test.com", username: "user", password: "12345678!"});
+    const user1 = new User({email: "user1@test.com", username: "user1", password: "12345678!"});
     const user2 = new User({email: "user2@test.com", username: "user2", password: "12345678!"});
     const user3 = new User({email: "user3@test.com", username: "user3", password: "12345678!"});
     await user1.save();
@@ -216,7 +216,6 @@ describe("POST /pubgroup -> creates a new wager", () => {
   // Test for getting the information about members by pubGroup id
   describe("gets information about members in a group from the pubGroup id", () => {
     test("returns a list of member objects", async () => {
-      console.log('THIS IS THE NEW TEST AND THE PUBGROUP ID IS:', testPubGroup._id)
       let response = await request(app)
       .get(`/pubGroups/${testPubGroup._id}`)
       .set("Authorization", `Bearer ${token}`)
@@ -224,14 +223,35 @@ describe("POST /pubgroup -> creates a new wager", () => {
       expect(response.status).toEqual(200);
     });
     
-  });
-});
+    test("returns the info about the correct pubGroupfrom db", async () => {
+      let response = await request(app)
+      .get(`/pubGroups/${testPubGroup._id}`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({token: token});
+      let groups = response.body.pubGroup
+      console.log('THIS IS THE NEW TEST AND THE PUBGROUP ID IS:', testPubGroup._id)
+      console.log('THIS IS THE NEW TEST AND THIS IS WHAT THE DB GIVES:', groups._id)
 
-// NOW WRITE THE TEST BUT CHECKING THAT THE OBJECTS FOR MEMBERS ARE SAME AS THE USER123 thing
-// async () => {
-//   let response = await request(app)
-//     .get("/userdata")
-//     .set("Authorization", `Bearer ${token}`)
-//     .send({token: token});
-//   let usernames= response.body.users.map((user) => ( user.username ));
-//   expect(usernames).toEqual(["mrstest", "mrtest"]);
+      expect(groups._id.toString()).toEqual(testPubGroup._id.toString());
+    });
+
+      test("returns a list of groups with member objects populated", async () => {
+        let response = await request(app)
+        .get(`/pubGroups/${testPubGroup._id}`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({token: token});
+      let memberNames = response.body.pubGroup.members.map((member) => (member.username))
+      
+    expect(memberNames).toEqual(["user1", "user2", "user3"]);
+  });
+  test("returns a token", async () => {
+    let response = await request(app)
+    .get(`/pubGroups/${testPubGroup._id}`)
+    .set("Authorization", `Bearer ${token}`)
+    .send({token: token});
+    let newPayload = JWT.decode(response.body.token, process.env.JWT_SECRET);
+    let originalPayload = JWT.decode(token, process.env.JWT_SECRET);
+    expect(newPayload.iat > originalPayload.iat).toEqual(true);
+});
+});
+});
