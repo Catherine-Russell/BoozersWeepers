@@ -10,7 +10,7 @@ import NotificationDetails from './myAccountPageComponents/NotificationDetails';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import Header from '../header/Header';
 import '../../Pages/style.css'
-
+import './MyAccountPage.css'
 
 
 
@@ -142,20 +142,28 @@ const toggleHistory = (event) =>{
           <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
           <div className="button-container">
         <button onClick={toggleIncoming}>Show Incoming ({wagerRequests.length} incoming wager requests)</button>
+        <button onClick={toggleOngoing}>Show Ongoing ({ongoingWagers.length} Ongoing Wagers)</button>
+        <button onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</button>
+        <button onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</button>
+        <button onClick={toggleHistory}>See Your Past Wagers </button>
+        </div>
+        
+        
         {showIncoming && <IncomingWagers wagers={wagerRequests} />}
         
-        <button onClick={toggleOngoing}>Show Ongoing ({ongoingWagers.length} Ongoing Wagers)</button>
+        
         {showOngoing && <OngoingWagers ongoingWagers={ongoingWagers} />}
         
-        <button onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</button>
+        
         {showPending && <PendingWagers pendingWagers={pendingWagers} />}
         
-        <button onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</button>
+       
         {showUnresolved && <UnresolvedWagers unresolvedWagers={unresolvedWagers} />}
         
-        <button onClick={toggleHistory}>See Your Past Wagers ({pastWagers.length} past wagers)</button>
+        
+        
         {showHistory && <PastWagers pastWagers={pastWagers} />}
-      </div>
+      
     </div>
   </div>
       )};
