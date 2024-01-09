@@ -51,7 +51,10 @@ const PubGroupsController = {
 	},
 
 		FindMemberInfoByPubGroupID: (req, res) => {
+			console.log("IM IN YOUR FUNCTION")
+			console.log(req.params.pubGroupId)
 			const pubGroupID = req.params.pubGroupId;
+			console.log(pubGroupID)
 			PubGroup.findById(pubGroupID)
 			.populate('members')
 			.exec((err, pubGroup) => {
@@ -65,7 +68,6 @@ const PubGroupsController = {
 					return res.status(200).json({ pubGroup: pubGroup, token: token });
 				});
 		},
-
 };
 
 

@@ -19,6 +19,8 @@ const WagerInfoPage = ({ navigate }) => {
   const loggedInUser = getSessionUserID(token)
   
   useEffect(() => {
+    console.log("I've got this from the URL-", wagerID)
+
     const fetchData = async () => {
       try {
         const response = await fetch(`/wagers/${wagerID}`, {
