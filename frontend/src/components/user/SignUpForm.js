@@ -5,6 +5,8 @@ const SignUpForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
   
 
   const handleSubmit = async (event) => {
@@ -17,11 +19,14 @@ const SignUpForm = ({ navigate }) => {
       },
       body: JSON.stringify({ email: email, password: password, username: username })
     })
-    .then(response => {
+    .then(async response => {
       if(response.status === 201) {
         navigate('/login')
       } else {
-        navigate('/signup')
+        const errorData = await response.json();
+          navigate('/signup') 
+          setErrorMsg(errorData.message)
+          console.log(errorData.message)
       }
     })
   }
@@ -42,7 +47,9 @@ const SignUpForm = ({ navigate }) => {
           <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} /> <br/>
   
         <input id='submit' type="submit" value="Submit" />
+        <h1>{errorMsg}</h1>
       </form>
+      
     );
   
 }
