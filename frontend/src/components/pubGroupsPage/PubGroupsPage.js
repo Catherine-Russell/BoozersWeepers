@@ -9,11 +9,13 @@ const PubGroupsPage = () => {
 
     return(
         <div className="pub-groups-page-container">
-        <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+        {/* <VertNavbar expanded={expanded} toggleExpand={toggleExpand} /> */}
 				
 				<div className="my-groups">
 					<h1>My groups:</h1>
+					list of groups
 				</div>
+				<br></br>
 				<div className="new-groups">
 					put search bar here and button to go to that individual page
 				</div>
