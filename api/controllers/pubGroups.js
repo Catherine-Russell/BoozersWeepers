@@ -48,23 +48,23 @@ const PubGroupsController = {
 				console.error('Error adding new member:', error);
 				res.status(500).json({ error: 'Internal Server Error.' });
 			}
-	}
+	},
 
-		// FindInfoByGroupID: (req, res) => {
-		// 	const pubGroupID = req.params.id;
-		// 	PubGroup.findById(pubGroupID)
-		// 	// .populate('peopleInvolved winner')
-		// 	.exec((err, pubGroup) => {
-		// 			if (err) {
-		// 				return res.status(500).json({ error: 'Internal Server Error' });
-		// 			}
-		// 			if (!pubGroup) {
-		// 				return res.status(404).json({ error: 'Pub Group not found' });
-		// 			}
-		// 			const token = TokenGenerator.jsonwebtoken(req.user_id);
-		// 			return res.status(200).json({ pubGroup: pubGroup, token: token });
-		// 		});
-		// },
+		FindMemberInfoByPubGroupID: (req, res) => {
+			const pubGroupID = req.params.pubGroupId;
+			PubGroup.findById(pubGroupID)
+			.populate('members')
+			.exec((err, pubGroup) => {
+					if (err) {
+						return res.status(500).json({ error: 'Internal Server Error' });
+					}
+					if (!pubGroup) {
+						return res.status(404).json({ error: 'Pub Group not found' });
+					}
+					const token = TokenGenerator.jsonwebtoken(req.user_id);
+					return res.status(200).json({ pubGroup: pubGroup, token: token });
+				});
+		},
 
 };
 
