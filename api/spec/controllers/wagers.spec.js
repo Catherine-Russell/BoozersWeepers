@@ -280,8 +280,6 @@ describe("POST, user accepting a wager", () => {
     await user1.save();
 		await challengedUser.save();
     await wager.save();
-    console.log(`immediately after save, wager dets are ${wager}`)
-    console.log(`immediately after save, wager id is ${wager._id}`)
 
 // Sets up user and token for each test
     token = JWT.sign({
@@ -299,7 +297,6 @@ describe("POST, user accepting a wager", () => {
   })
 
   test("responds with a 200", async () => {
-    console.log(`wager dets are currently ${wager}`)
     let response = await request(app)
       .post(`/wagers/${wager._id}/accept`)
       .set("Authorization", `Bearer ${token}`)
@@ -318,21 +315,13 @@ describe("POST, user accepting a wager", () => {
   
 
   test("changes database 'approved' status to 'true'", async () => {
-
-  test("changes database 'approved' status to 'false'", async () => {
-
     await request(app)
     .post(`/wagers/${wager._id}/accept`)
     .set("Authorization", `Bearer ${token}`)
     let updatedWager = await Wager.findById(wager._id);
     expect(updatedWager.approved).toEqual(true);
   });  
-})
-
-    console.log(`in failing test wager is ${wager}`)
-    console.log(`updatedWager is ${updatedWager}`)
-    expect(updatedWager.approved).toEqual(true);
-  });  
+})  
 })
 
 
