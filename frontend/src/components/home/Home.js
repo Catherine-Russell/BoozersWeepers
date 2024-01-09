@@ -1,10 +1,15 @@
-import React from 'react';
-import NavBar from '../NavBar/NavBar';
+import React, { useState } from 'react';
+import VertNavbar from '../VertNavBar/VertNavBar';
+import './home.css'
+
 
 const Home = ({ navigate }) => {
+  const [expanded, setExpanded] = useState(true);
+  const toggleExpand = () => {setExpanded(!expanded);};
+
   return(
-    <div>
-      <NavBar/>
+    <div className="HomePage">
+      <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
    
 <h1>BoozersWeepers</h1>
   <a href='/signup'>Please Register</a><br/>
