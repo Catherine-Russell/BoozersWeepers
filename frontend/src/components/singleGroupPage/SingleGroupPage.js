@@ -2,16 +2,20 @@ import VertNavbar from '../VertNavBar/VertNavBar';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import isTokenValid from '../Utility/isTokenValid';
+import getSessionUserID from '../Utility/getSignedInUser_id';
+
 
 
 
 const SingleGroupPage = ({ navigate }) => {
   const { pubGroupId } = useParams();
   const [pubGroupData, setpubGroupData] = useState(null);
+	const [wagers, setWagers] = useState(null);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(true);
-	
+
+	// Get group and member info
 	useEffect(() => {
 		if(token) {
       fetch(`/pubGroups/${pubGroupId}`, {
@@ -28,13 +32,41 @@ const SingleGroupPage = ({ navigate }) => {
 			if (!isLoggedIn) {navigate('/');}
     }, [navigate, isLoggedIn, token]);
 
+// get wager info based on the members
+		useEffect(() => {
+			if(token) {
+				fetch(`/pubGroups/${pubGroupId}`, {
+					method: 'get',
+					headers: {'Authorization': `Bearer ${token}`}
+				})
+					.then(response => response.json())
+					.then(async data => {
+						window.localStorage.setItem("token", data.token)
+						setToken(window.localStorage.getItem("token"))
+						setpubGroupData(data.pubGroup)
+					})
+				}
+				if (!isLoggedIn) {navigate('/');}
+			}, [navigate, isLoggedIn, token]);
 
-    const members = pubGroupData?.members
+		const members = pubGroupData?.members
+		
+		// checks to see whether the person who is logged in is in the group already
+		const memberIds = members?.map((member) => member._id) || [];
+		let isGroupMember = (memberIds?.includes(getSessionUserID(token)))
+		
+		
 		console.log(members)
+		console.log(memberIds)
+		console.log(isGroupMember, members?.username, getSessionUserID(token))
+		
+		
 		// const ongoingGroupWagers = 
-		// const resolvedGroupWagers = 
-    const toggleExpand = () => {setExpanded(!expanded);};
+		// const resolvedGroupWagers =
 
+
+		// for NavBar:
+    const toggleExpand = () => {setExpanded(!expanded);};
     return (
 			<div id='single-group-page'>
 			<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
