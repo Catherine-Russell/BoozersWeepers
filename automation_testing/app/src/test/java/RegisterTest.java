@@ -42,20 +42,20 @@ public class RegisterTest {
         assertEquals("Sign in to your account", driver.findElement(By.cssSelector("h1")).getText());
     }
 
-//    @Test
-//    public void userAttemptsRegisterWithUsernameThatAlreadyExistsAndThrowsErrorMessage() throws InterruptedException {
-//        driver.get("http://localhost:3000/");
-//        driver.findElement(By.linkText("Please Register")).click();
-//        driver.findElement(By.id("email")).click();
-//        driver.findElement(By.id("email")).sendKeys("test2@email.com");
-//        driver.findElement(By.id("username")).click();
-//        driver.findElement(By.id("username")).sendKeys("test1");
-//        driver.findElement(By.id("password")).click();
-//        driver.findElement(By.id("password")).sendKeys("1234");
-//        driver.findElement(By.id("submit")).click();
-//        Thread.sleep(5000);
-//        assertEquals("username is already in use", driver.findElement(By.cssSelector("h1")).getText());
-//    }
+    @Test
+    public void userAttemptsRegisterWithUsernameThatAlreadyExistsAndThrowsErrorMessage() throws InterruptedException {
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.linkText("Please Register")).click();
+        driver.findElement(By.id("email")).click();
+        driver.findElement(By.id("email")).sendKeys("test2@email.com");
+        driver.findElement(By.id("username")).click();
+        driver.findElement(By.id("username")).sendKeys("test1");
+        driver.findElement(By.id("password")).click();
+        driver.findElement(By.id("password")).sendKeys("1234");
+        driver.findElement(By.id("submit")).click();
+        Thread.sleep(5000);
+        assertEquals("username is already in use", driver.findElement(By.cssSelector("h1")).getText());
+    }
 
     @AfterAll
     static void closeBrowser() {
