@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './popup.css'
 
 const PintInfo = ({ pintId }) => {
   const [pintData, setPintData] = useState(null);

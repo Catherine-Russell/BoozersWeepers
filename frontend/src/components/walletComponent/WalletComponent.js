@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PintInfo from '../singlepint/pintinfo';
+import './popup.css';
 
 const WalletComponent = ({ UserID }) => {
   const [WalletData, setWalletData] = useState(null);
@@ -48,7 +49,7 @@ const WalletComponent = ({ UserID }) => {
         <div className="popup">
           <div className="popup_inner">
             <span className="close_popup" onClick={closePintInfo}>
-              &times;
+            &times;
             </span>
             <PintInfo pintId={selectedPint} />
           </div>
