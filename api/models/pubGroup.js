@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PubGroupSchema = new mongoose.Schema({
-    name: String,
+    name: { type: String, required: true, unique: true },
     members: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'User',

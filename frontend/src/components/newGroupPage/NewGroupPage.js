@@ -6,8 +6,9 @@ import '../../Pages/style.css'
 const NewGroupPage = ({ navigate }) => {
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
 	const loggedInUserId = getSessionUserID(token)
-  const [expanded, setExpanded] = useState(true);
+  	const [expanded, setExpanded] = useState(true);
 	const [groupName, setGroupName] = useState("")
+	const [errorMsg, setErrorMsg] = useState("");
 
   const toggleExpand = () => {setExpanded(!expanded);};
 
@@ -33,15 +34,18 @@ const NewGroupPage = ({ navigate }) => {
 				})
 			})
 		
-		.then(response => {
+		.then(async response => {
 			if (response.status === 201) {
 				console.log("Your group has been created")
-				return response.json();
+				navigate("/groups");
 			} else {
-				console.log("Failed to create a group")
+				const errorData = await response.json();
+				navigate('/groups/new') 
+				setErrorMsg(errorData.message)
+				console.log(errorData.message)
 			}
 		})
-	} navigate("/groups");
+	} 
 	}
 
 
@@ -57,6 +61,7 @@ const NewGroupPage = ({ navigate }) => {
           <input placeholder="Group name" id="new-group-name" type='text' value={ groupName } onChange={handlegroupNameChange} />
 
         <input id='submit' type="submit" value="Submit" />
+		<h2>{errorMsg}</h2>
       </form>
 		</div>
 		</div>

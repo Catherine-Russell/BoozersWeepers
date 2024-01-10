@@ -4,6 +4,7 @@ const TokenGenerator = require("../lib/token_generator")
 
 const PubGroupsController = {
   Create: (req, res) => {
+	console.log(req.body)
     const pubGroup = new PubGroup({
 			name: req.body.name,
 			members: req.body.members
@@ -11,11 +12,16 @@ const PubGroupsController = {
 	
 		pubGroup.save((err) => {
 			if (err) {
-        return res.status(401).json({ message: 'Pub Group not created' });
-      } else {
-        const token = TokenGenerator.jsonwebtoken(req.user_id);
-        return res.status(201).json({ message: 'Pub Group created', token: token });
-      }
+				console.log(err)
+				if(err.code === 11000){
+					return res.status(400).json({message: 'Group name is already in use. Use a unique group name.'})
+				} else {
+					return res.status(401).json({ message: 'Group not created' });
+				}
+			} else {
+				const token = TokenGenerator.jsonwebtoken(req.user_id);
+				return res.status(201).json({ message: 'Group created', token: token });
+			}
 		})
 	},
 
@@ -35,7 +41,7 @@ const PubGroupsController = {
 				const pubGroupId = req.params.pubGroupId;
 				const userId = req.user_id;
 				if (!pubGroupId || !userId) {
-					return res.status(400).json({ error: 'Both Pub Group ID and user ID are required.' });
+					return res.status(400).json({ error: 'Both Group ID and user ID are required.' });
 				}
 				const existingPubGroup = await PubGroup.findById(pubGroupId);
 				if (!existingPubGroup) {
@@ -61,7 +67,7 @@ const PubGroupsController = {
 						return res.status(500).json({ error: 'Internal Server Error' });
 					}
 					if (!pubGroup) {
-						return res.status(404).json({ error: 'Pub Group not found' });
+						return res.status(404).json({ error: 'Group not found' });
 					}
 					const token = TokenGenerator.jsonwebtoken(req.user_id);
 					return res.status(200).json({ pubGroup: pubGroup, token: token });
