@@ -32,10 +32,7 @@ const Stats = ({ UserID }) => {
         const pintsData = await responsePints.json();
         window.localStorage.setItem('token', pintsData.token);
         setPintData(pintsData.pints);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle errors here
-      }
+      } catch (error) {console.error('Error fetching data:', error);}
     };
 
     fetchData();

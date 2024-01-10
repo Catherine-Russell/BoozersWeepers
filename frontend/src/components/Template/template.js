@@ -24,7 +24,7 @@ const Template = ({ navigate }) => {
           <div>
             {/* Additional content for logged-in users */}
             <p>Welcome! User is logged in</p>
-            <Stats UserID={'659d5bf870d413587f88fb28'}/>
+            <Stats UserID={'659d5d8270d413587f88fb2f'}/>
             
           </div>
         ) : (
