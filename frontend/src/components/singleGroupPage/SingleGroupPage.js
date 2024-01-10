@@ -53,18 +53,17 @@ const SingleGroupPage = ({ navigate }) => {
 // Sorts through data received from DB to make them usable in frontend
 		const members = pubGroupData?.members
 		const allMemberIds = members?.map((member) => member._id) || [];
-
-		const allGroupWagers = wagers.filter((wager) => allMemberIds.includes(wager.peopleInvolved[0]) && allMemberIds.includes(wager.peopleInvolved[1]))
+		const allGroupWagers = wagers.filter((wager) => allMemberIds.includes(wager.peopleInvolved[0]._id) && allMemberIds.includes(wager.peopleInvolved[1]._id))
 		const resolvedGroupWagers = allGroupWagers.filter(wager => wager.winner != null)
 		const checkIfOngoing = (deadline) => {
 			return new Date(deadline) > new Date()
-			}
+		}
 		const ongoingGroupWagers = allGroupWagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline) && wager.winner === null)
 		
+		console.log(wagers)
+		console.log(ongoingGroupWagers)
 		// checks to see whether the person who is logged in is in the group already - for join/leave button
 		let isGroupMember = (allMemberIds?.includes(getSessionUserID(token)))
-		
-		
 		
 
 
@@ -113,11 +112,19 @@ const SingleGroupPage = ({ navigate }) => {
 					<div className='list-of-wins-losses'>
 					<h2>recent wins and losses go here - Boozers and Losers</h2>
             <ul>
-              {ongoingGroupWagers.map((wager) => (
-								<li id='resolved-wager' key={wager._id}>
-									{wager._id}
-                </li>
-              ))}
+						{resolvedGroupWagers.map((wager) => (
+							<li id='resolved-wager' key={wager._id}>
+								{wager.winner === wager.peopleInvolved[0] ? (
+									<>
+										{wager.description} - {wager.winner.username} was a winner and {wager.peopleInvolved[1].username} was a loser
+									</>
+								) : (
+									<>
+										{wager.description} - {wager.winner.username} was a winner and {wager.peopleInvolved[0].username} was a loser
+									</>
+								)}
+							</li>
+						))}
 						</ul>
           </div>
 				</div>
