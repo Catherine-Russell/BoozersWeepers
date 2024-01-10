@@ -21,18 +21,19 @@ const WagersController = {
 
   Index: (req, res) => {
     Wager.find()
-      .populate('peopleInvolved -password') // Populate the 'peopleInvolved' field with User data
-      .exec((err, wagers) => {
-        if (err) {
-          return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        const token = TokenGenerator.jsonwebtoken(req.user_id);
-        return res.status(200).json({ wagers: wagers, token: token });
-      });
+
+    .populate('peopleInvolved  -password')
+    .populate('winner', '_id username')
+    .exec((err, wagers) => {
+      if (err) {
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      const token = TokenGenerator.jsonwebtoken(req.user_id);
+      return res.status(200).json({ wagers: wagers, token: token });
+    });
   },
 
   Accept: async (req, res) => {
-	console.log("************coming through to Accept handler in wagers controller")
 	const wagerID = req.params.wager_id;
 	const wager = await Wager.updateOne({_id: wagerID}, {$set: {approved: true}});
 	if (!wager) {

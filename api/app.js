@@ -10,6 +10,8 @@ const usersRouter = require("./routes/users");
 const userdataRouter = require ("./routes/userdata")
 const wagersRouter = require("./routes/wagers");
 const pintsRouter = require("./routes/pints")
+const pubGroupsRouter = require("./routes/pubGroups");
+
 const app = express();
 
 // setup for receiving JSON
@@ -41,12 +43,12 @@ const tokenChecker = (req, res, next) => {
 };
 
 // route setup
-// app.use("/posts", tokenChecker, postsRouter);
 app.use("/tokens", authenticationRouter);
 app.use("/users", usersRouter);
 app.use("/userdata", tokenChecker, userdataRouter);
 app.use("/wagers", tokenChecker, wagersRouter);
 app.use("/pints", tokenChecker, pintsRouter);
+app.use("/pubGroups", tokenChecker, pubGroupsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
