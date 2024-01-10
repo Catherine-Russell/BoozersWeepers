@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './popup.css'
 
 const PintInfo = ({ pintId }) => {
   const [pintData, setPintData] = useState(null);
@@ -45,7 +46,7 @@ const PintInfo = ({ pintId }) => {
   };
 
   return (
-    <div>
+    <div className='singlepint'>
       {pintData ? (
         <div>
           <b>Pint: {pintData.pint.owner._id}<br /></b>
