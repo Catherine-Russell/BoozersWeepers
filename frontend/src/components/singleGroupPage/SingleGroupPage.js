@@ -63,8 +63,6 @@ const SingleGroupPage = ({ navigate }) => {
 		const ongoingGroupWagers = allGroupWagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline) && wager.winner === null)
 		
 		// checks to see whether the person who is logged in is in the group already - for join/leave button
-		
-		// checks to see whether the person who is logged in is in the group already
 		const memberIds = members?.map((member) => member._id) || [];
 		let isGroupMember = (memberIds?.includes(getSessionUserID(token)))
 		
@@ -79,7 +77,14 @@ const SingleGroupPage = ({ navigate }) => {
 			})
 			}
 		
-		
+			const handleLeaveGroup = () =>  {
+				setHasJoinedGroup(true)
+	
+				fetch(`/pubGroups/${pubGroupId}/removeMember`, {
+					method: 'post',
+					headers: {'Authorization': `Bearer ${token}`}
+				})
+				}
 
 
 		// for NavBar:
@@ -91,9 +96,10 @@ const SingleGroupPage = ({ navigate }) => {
 				<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 
 					<h1 id='pub-group-name' className='group-page-main-title'>{pubGroupData?.name}</h1>
-
+				
+					{/* JOIN BUTTON */}
 					<div id='join-group-button'>
-						{!hasJoinedGroup && (
+						{!hasJoinedGroup && isGroupMember === false && (
 							<button onClick={handleJoinGroup}>
 								Join Group
 						</button>
@@ -101,9 +107,20 @@ const SingleGroupPage = ({ navigate }) => {
 						{hasJoinedGroup && (
 							<h1 id='group-joined'>You've joined this group</h1> 
 							)}
+					</div>
 
+					{/* LEAVE BUTTON */}
+					<div id='leave-group-button'>
+							{isGroupMember === true && (
+								<button onClick={handleLeaveGroup}>
+									Join Group
+							</button>
+							)}
+							{hasJoinedGroup && (
+								<h1 id='group-joined'>You've joined this group</h1> 
+								)}
+					</div>
 							<h1 id='pub-group-name' className='group-page-main-title'>Group members</h1>
-				</div>
 					<div className='members-list'>
         {members && members.length > 0 ? (
           <div id="member-name" className='member-name'>
