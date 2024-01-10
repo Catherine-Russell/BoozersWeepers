@@ -16,18 +16,12 @@ const Stats = ({ UserID }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseUser = await fetch(`/userdata/${UserID}`, { headers: { Authorization: `Bearer ${userToken}` }});
-        if (!responseUser.ok) throw new Error('Network response was not ok');
-        const fetchedUserData = await responseUser.json();
-        window.localStorage.setItem('token', fetchedUserData.token);
-        setUserToken(fetchedUserData.token);
-        setUserData(fetchedUserData.user);
-
+        // Fetch wager data
         const responseWagers = await fetch('/wagers', { method: 'GET', headers: { Authorization: `Bearer ${userToken}` }});
         const wagersData = await responseWagers.json();
         window.localStorage.setItem('token', wagersData.token);
         setWagerData(wagersData.wagers);
-
+        // Fetch Pints data
         const responsePints = await fetch('/pints', { method: 'GET', headers: { Authorization: `Bearer ${userToken}` }});
         const pintsData = await responsePints.json();
         window.localStorage.setItem('token', pintsData.token);
@@ -61,6 +55,7 @@ const Stats = ({ UserID }) => {
       setPintsOwed(listOfOutstandingPints.length);
     }
   }, [wagerData, pintData, UserID]);
+
 
   return (
     <div>

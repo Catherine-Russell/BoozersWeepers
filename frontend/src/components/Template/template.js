@@ -4,6 +4,7 @@ import VertNavbar from '../VertNavBar/VertNavBar';
 import '../../Pages/style.css'
 import Header from '../header/Header';
 import Stats from '../stats/stats';
+import Trial from '../stats/stats'
 
 const Template = ({ navigate }) => {
   const [token, setUserToken] = useState(window.localStorage.getItem('token'));
@@ -24,8 +25,6 @@ const Template = ({ navigate }) => {
           <div>
             {/* Additional content for logged-in users */}
             <p>Welcome! User is logged in</p>
-            <Stats UserID={'659d5d8270d413587f88fb2f'}/>
-            
           </div>
         ) : (
           <div>
