@@ -57,6 +57,8 @@ public class RegisterTest {
         driver.findElement(By.id("password")).sendKeys("1234");
         driver.findElement(By.id("submit")).click();
         Thread.sleep(5000);
+        assertEquals("username is already in use", driver.findElement(By.cssSelector("h1")).getText());
+
 
         //comment for change
         assertEquals("username is already in use", driver.findElement(By.cssSelector("h1")).getText());
