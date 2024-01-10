@@ -138,12 +138,14 @@ const SingleGroupPage = ({ navigate }) => {
         )}
       </div>
 
+				{isGroupMember ? (
+					<div id='members-only-section'>
 
 					<div className='list-of-ongoing-wagers'>
 						<h2>ongoing wagers in the group go here:</h2>
             <ul>
               {ongoingGroupWagers.map((wager) => (
-                <li id='ongoing-wager' key={wager._id}>
+								<li id='ongoing-wager' key={wager._id}>
 									{wager.peopleInvolved[0].username} and {wager.peopleInvolved[1].username} are battling it out! Who will win the wager that {wager.description}?
                 </li>
               ))}
@@ -170,6 +172,11 @@ const SingleGroupPage = ({ navigate }) => {
 						</ul>
           </div>
 						recent wins and losses go here
+				</div>
+				) : (
+
+					<p id='non-member-message' className='non-member'>You are not a member of the group. Join to see stuff</p>
+				)}
 					</div>
 					
 				</div>
