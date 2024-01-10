@@ -57,6 +57,28 @@ const PubGroupsController = {
 			}
 	},
 
+	UpdateRemoveMember: async (req, res) => {
+		// Finds the pubGroup to update
+		try{
+			const pubGroupId = req.params.pubGroupId;
+			const userId = req.user_id;
+			if (!pubGroupId || !userId) {
+				return res.status(400).json({ error: 'Both Pub Group ID and user ID are required.' });
+			}
+			const existingPubGroup = await PubGroup.findById(pubGroupId);
+			if (!existingPubGroup) {
+				return res.status(404).json({ error: 'Group not found.' });
+			}
+
+			// Remove member
+			await PubGroup.updateOne({ _id: pubGroupId }, { $pull: { members: userId } });
+			res.status(200).json({ message: 'Member removed successfully.' });
+		} catch (error) {
+			console.error('Error removing new member:', error);
+			res.status(500).json({ error: 'Internal Server Error.' });
+		}
+},
+
 		FindMemberInfoByPubGroupID: (req, res) => {
 			const pubGroupID = req.params.pubGroupId;
 			console.log(pubGroupID)

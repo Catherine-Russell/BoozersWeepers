@@ -125,7 +125,7 @@ const toggleHistory = (event) =>{
     // Gets pending wagers -> they have been sent but not yet approved by the person you sent it to
     const pendingWagers = myWagers.filter(wager => wager.peopleInvolved[0]._id === LoggedInUserID && wager.approved === false)
     // Gets unresolved wagers -> they are past the deadline, have been approved  but haven't declared a winner yet
-    const unresolvedWagers = myWagers.filter(wager => checkIfOngoing(wager.deadline) === false && wager.winner._id === null && wager.approved !== false)
+    const unresolvedWagers = myWagers.filter(wager => checkIfOngoing(wager.deadline) === false && wager.winner === null && wager.approved !== false)
     // Gets past wagers -> wagers which have been resolved and have a winner declared
     const pastWagers = myWagers.filter(wager => wager.winner != null)
     
