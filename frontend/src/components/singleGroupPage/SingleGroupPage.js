@@ -60,12 +60,9 @@ const SingleGroupPage = ({ navigate }) => {
 		}
 		const ongoingGroupWagers = allGroupWagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline) && wager.winner === null)
 		
-		console.log(wagers)
-		console.log(ongoingGroupWagers)
 		// checks to see whether the person who is logged in is in the group already - for join/leave button
 		let isGroupMember = (allMemberIds?.includes(getSessionUserID(token)))
 		
-
 
 		
     const toggleExpand = () => {setExpanded(!expanded);}; // for NavBar
@@ -96,13 +93,12 @@ const SingleGroupPage = ({ navigate }) => {
       </div>
 					
 
-
 					<div className='list-of-ongoing-wagers'>
 						<h2>ongoing wagers in the group go here:</h2>
             <ul>
               {ongoingGroupWagers.map((wager) => (
                 <li id='ongoing-wager' key={wager._id}>
-									{wager._id}
+									{wager.peopleInvolved[0].username} and {wager.peopleInvolved[1].username} are battling it out! Who will win the wager that {wager.description}?
                 </li>
               ))}
             </ul>
