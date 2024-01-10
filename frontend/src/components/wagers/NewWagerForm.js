@@ -1,13 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./NewWagerForm.css";
 import { useParams } from "react-router-dom"
-import NavBar from '../NavBar/NavBar';
+import VertNavbar from '../VertNavBar/VertNavBar';
 
 const NewWagerForm = ({ navigate }) => {
 	const {challengedUserID} = useParams()
 	const [description, setDescription] = useState("");
 	const [deadline, setDeadline] = useState("");
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
+	const [expanded, setExpanded] = useState(true);
+	const [userData, setUserData] = useState(null)
+
+	const toggleExpand = () => {setExpanded(!expanded);};
+
+
+	useEffect(() => {
+    if (token) {
+    
+      fetch(`/userData/${challengedUserID}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => response.json())
+      .then(async userData => {
+        window.localStorage.setItem("token", userData.token);
+        setToken(window.localStorage.getItem("token"));
+        
+
+        setUserData(userData.user);
+
+       
+
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+       
+      });
+    }
+  }, []); 
+
+
+
+
+
+
+
+
+
 
 
 	const handleWagerSubmit = async (event) => {
@@ -49,18 +89,24 @@ if (token) {
 
 	return (
 		<>
-		<NavBar/>
-		<form onSubmit={handleWagerSubmit}>
-		<h1 id="create-a-wager-heading">Create a Wager</h1>
-
-          <input placeholder="Description" id="description" type='text' value={ description } onChange={handleDescriptionChange} />
-        <input placeholder="deadline" id="deadline" type='date' value={ deadline } onChange={handleDeadlineChange} />
-
-  
-        <input id='submit' type="submit" value="Submit" />
-      </form>
-			</>
-		)
+			{userData && (
+				<>
+					<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+					<div className="NewWager">
+						<form onSubmit={handleWagerSubmit}>
+							<h1 id="create-a-wager-heading">Create a Wager with {userData.username}</h1>
+	
+							<input placeholder="Description" id="description" type='text' value={description} onChange={handleDescriptionChange} />
+							<input placeholder="Deadline" id="deadline" type='date' value={deadline} onChange={handleDeadlineChange} />
+	
+							<input id='submit' type="submit" value="Submit" />
+						</form>
+					</div>
+				</>
+			)}
+		</>
+	);
+	
 } else {
 	navigate("/../login");
 }
