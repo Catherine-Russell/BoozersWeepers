@@ -56,20 +56,10 @@ const PubGroupsPage = ({ navigate }) => {
 					</div>))}
 
 					<br></br>
-					list of ALL groups (for developing - TO BE REMOVED):
-					{pubGroups.map((pubGroup) => (
-					<div key={pubGroup.id}>
-						<SearchBar message={"search for a group..."} list={pubGroups} group={true}/>
 						
-					<a href={`/groups/${pubGroup._id}`} >
-						{pubGroup.name} members are {pubGroup.members} 
-					</a>
-					</div>))}
-
-			</div>
 
 			<div className="search-groups">
-			put search bar here and button to go to that individual page
+						<SearchBar message={"search for a group..."} list={pubGroups} group={true}/>
 			</div>
 
 					<div id='create-new-group'>
@@ -79,6 +69,7 @@ const PubGroupsPage = ({ navigate }) => {
 		<br></br>
 			</div>
     </div>
+	</div>
 	)
 }
 

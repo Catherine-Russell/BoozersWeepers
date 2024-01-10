@@ -11,4 +11,8 @@
   h1 {
     margin-bottom: 20px; /* Add margin for spacing */
   }
+
+  .shifted-content {
+    margin-left: 200px;
+  }
   
