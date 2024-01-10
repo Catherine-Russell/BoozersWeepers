@@ -3,6 +3,8 @@ import isTokenValid from '../Utility/isTokenValid';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import '../../Pages/style.css'
 import Header from '../header/Header';
+import Stats from '../stats/stats';
+import Trial from '../stats/stats'
 
 const Template = ({ navigate }) => {
   const [token, setUserToken] = useState(window.localStorage.getItem('token'));
@@ -11,34 +13,7 @@ const Template = ({ navigate }) => {
 
   const toggleExpand = () => {setExpanded(!expanded);};
 
-  const handlePintSubmit = async (event) => {
-		event.preventDefault();
-
-    if(token) {
-			fetch( '/pints', {
-				method: 'post',
-				headers: {
-					'Authorization': `Bearer ${token}`,
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					owner: "65784bb12edaba69155c7499",
-					owed_by: "65784bb12edaba69155c7499",
-					bet:"657a2f8a1aeee60e3d796b48"
-				})
-			})
-		
-		.then(response => {
-			if (response.status === 201) {
-				console.log("Your pint has been created")
-				return response.json();
-			} else {
-				console.log("Failed to create a pint")
-			}
-		})
-	} navigate("/myAccount");
-	}
-
+  
   return (
     <div>
       <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
@@ -50,8 +25,6 @@ const Template = ({ navigate }) => {
           <div>
             {/* Additional content for logged-in users */}
             <p>Welcome! User is logged in</p>
-            <button onClick={handlePintSubmit}>Click to Add Pint</button>
-            
           </div>
         ) : (
           <div>
