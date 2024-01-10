@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaBell } from 'react-icons/fa';
 import isTokenValid from '../Utility/isTokenValid';
 import IncomingWagers from './myAccountPageComponents/IncomingWagers';
 import OngoingWagers from './myAccountPageComponents/ongoingWagers';
@@ -25,6 +26,7 @@ const MyAccountPage = ({ navigate }) => {
   const [showPending, setShowPending] = useState(null)
   const [showUnresolved, setShowUnresolved] = useState(null)
   const [showHistory, setShowHistory] = useState(null)
+  
 
 
 const toggleIncoming = (event) =>{
@@ -105,6 +107,9 @@ const toggleHistory = (event) =>{
           window.localStorage.setItem("token", data.token)
           setToken(window.localStorage.getItem("token"))
           setWagers(data.wagers)
+         
+          
+          
         })
       }
 
@@ -139,9 +144,16 @@ const toggleHistory = (event) =>{
           <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
           <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
           <Header />
+          
+          {wagerRequests.length > 0 && (
+          <button onClick={toggleIncoming} className='NotificationButton'>
+            <FaBell /> 
+            <span className='NotificationBadge'>{wagerRequests.length}</span>
+          </button>
+            )}
           <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
           <div className="button-container">
-        <button onClick={toggleIncoming}>Show Incoming ({wagerRequests.length} incoming wager requests)</button>
+        
         <button onClick={toggleOngoing}>Show Ongoing ({ongoingWagers.length} Ongoing Wagers)</button>
         <button onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</button>
         <button onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</button>
