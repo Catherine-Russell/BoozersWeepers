@@ -35,6 +35,10 @@ const PubGroupsPage = ({ navigate }) => {
 		// Gets a list of the groups which the logged-in user is a member of
 		const joinedGroups = pubGroups.filter(pubGroup => pubGroup.members.includes(getSessionUserID(token)))
 		console.log(joinedGroups)
+
+		const handleCreateGroupButtonClick = () => {
+			navigate('/groups/new')
+		}
   return(
     <div className="pub-groups-page">
     <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
@@ -42,9 +46,15 @@ const PubGroupsPage = ({ navigate }) => {
 		
 			<div className="my-groups">
 				<h1>My groups:</h1>
-					list of groups
-					by the way my user id is {getSessionUserID(token)}
-					these are the pubgroups: 
+					{joinedGroups.map((pubGroup) => (
+					<div key={pubGroup.id}>
+					<a href={`/groups/${pubGroup._id}`} >
+						{pubGroup.name}
+					</a>
+					</div>))}
+
+					<br></br>
+					list of ALL groups (for developing - TO BE REMOVED):
 					{pubGroups.map((pubGroup) => (
 					<div key={pubGroup.id}>
 						
@@ -52,22 +62,18 @@ const PubGroupsPage = ({ navigate }) => {
 						{pubGroup.name} members are {pubGroup.members} 
 					</a>
 					</div>))}
-					these are the ones I'm part of: 
-					{joinedGroups.map((pubGroup) => (
-					<div key={pubGroup.id}>
-						
-					<a href={`/groups/${pubGroup._id}`} >
-						{pubGroup.name}
-
-					</a>
-					</div>))}
 
 			</div>
-		<br></br>
-			<div className="new-groups">
+
+			<div className="search-groups">
 			put search bar here and button to go to that individual page
 			</div>
-            
+
+					<div id='create-new-group'>
+						<h1>Create a new group</h1>
+						<button onClick={handleCreateGroupButtonClick}>Create group</button>
+					</div>
+		<br></br>
 			</div>
     </div>
 	)
