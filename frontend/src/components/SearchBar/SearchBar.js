@@ -27,13 +27,13 @@ const SearchBar = (props) =>{
   const handleChange =(event) => {
     setSearch(event.target.value)
     if(group && search.length > 0){
-      const result = props.list.filter(user => group.name.toLowerCase().includes(search.toLowerCase()))
+      const result = props.list.filter(group => group.name.toLowerCase().includes(search.toLowerCase()))
     
       setSearchRes(result)
       event.preventDefault();
 
     }
-    if(search.length > 0 && !group){
+    if(search.length > 0 && group != true){
       const result = props.list.filter(user => user.username.toLowerCase().includes(search.toLowerCase()))
     
       setSearchRes(result)
@@ -50,7 +50,7 @@ const SearchBar = (props) =>{
 
 
   const handleSubmit = (event) =>{
-    if(!group){
+    if(group != true){
       const result = props.list.filter(user => user.username.toLowerCase().includes(search.toLowerCase()))
       setSearchRes(result)
       setSearchSubmit(result)

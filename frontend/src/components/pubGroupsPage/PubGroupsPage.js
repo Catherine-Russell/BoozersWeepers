@@ -3,6 +3,7 @@ import isTokenValid from '../Utility/isTokenValid';
 import React, { useEffect, useState } from 'react';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import '../../Pages/style.css'
+import SearchBar from "../SearchBar/SearchBar";
 
 
 const PubGroupsPage = ({ navigate }) => {
@@ -43,6 +44,7 @@ const PubGroupsPage = ({ navigate }) => {
     <div className="pub-groups-page">
     <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
 			<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+			
 		
 			<div className="my-groups">
 				<h1>My groups:</h1>
@@ -54,19 +56,10 @@ const PubGroupsPage = ({ navigate }) => {
 					</div>))}
 
 					<br></br>
-					list of ALL groups (for developing - TO BE REMOVED):
-					{pubGroups.map((pubGroup) => (
-					<div key={pubGroup.id}>
 						
-					<a href={`/groups/${pubGroup._id}`} >
-						{pubGroup.name} members are {pubGroup.members} 
-					</a>
-					</div>))}
-
-			</div>
 
 			<div className="search-groups">
-			put search bar here and button to go to that individual page
+						<SearchBar message={"search for a group..."} list={pubGroups} group={true}/>
 			</div>
 
 					<div id='create-new-group'>
@@ -76,6 +69,7 @@ const PubGroupsPage = ({ navigate }) => {
 		<br></br>
 			</div>
     </div>
+	</div>
 	)
 }
 
