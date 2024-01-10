@@ -14,6 +14,7 @@ const SingleGroupPage = ({ navigate }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(true);
+  const [hasJoinedGroup, setHasJoinedGroup] = useState(false);
 
 	// Get group and member info
 	useEffect(() => {
@@ -59,6 +60,21 @@ const SingleGroupPage = ({ navigate }) => {
 		console.log(members)
 		console.log(memberIds)
 		console.log(isGroupMember, members?.username, getSessionUserID(token))
+
+		const handleJoinGroup = () =>  {
+			setHasJoinedGroup(true)
+
+			fetch(`/pubGroups/${pubGroupId}/addMember`, {
+				method: 'post',
+				headers: {'Authorization': `Bearer ${token}`}
+			  })
+				// .then(response => response.json())
+				// .then(async data => {
+				//   window.localStorage.setItem("token", data.token)
+				//   setToken(window.localStorage.getItem("token"))
+				//   setpubGroupData(data.pubGroup)
+				// })
+			  }
 		
 		
 		// const ongoingGroupWagers = 
@@ -102,6 +118,16 @@ const SingleGroupPage = ({ navigate }) => {
 					<div className='list-of-wins-losses'>
 						recent wins and losses go here
 					</div>
+					<div>
+						{!hasJoinedGroup && (
+							<button onClick={handleJoinGroup}>
+								Join Group
+						</button>
+						)}
+						{hasJoinedGroup && (
+							<h1 id='group-joined'>You've joined this group</h1> 
+						)}
+				</div>
 				</div>
 			</div>
     )
