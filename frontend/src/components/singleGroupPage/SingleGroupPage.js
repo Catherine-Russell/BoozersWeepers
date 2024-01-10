@@ -33,21 +33,21 @@ const SingleGroupPage = ({ navigate }) => {
     }, [navigate, isLoggedIn, token]);
 
 // get wager info based on the members
-		useEffect(() => {
-			if(token) {
-				fetch(`/pubGroups/${pubGroupId}`, {
-					method: 'get',
-					headers: {'Authorization': `Bearer ${token}`}
-				})
-					.then(response => response.json())
-					.then(async data => {
-						window.localStorage.setItem("token", data.token)
-						setToken(window.localStorage.getItem("token"))
-						setpubGroupData(data.pubGroup)
-					})
-				}
-				if (!isLoggedIn) {navigate('/');}
-			}, [navigate, isLoggedIn, token]);
+		// useEffect(() => {
+		// 	if(token) {
+		// 		fetch(`/pubGroups/${pubGroupId}`, {
+		// 			method: 'get',
+		// 			headers: {'Authorization': `Bearer ${token}`}
+		// 		})
+		// 			.then(response => response.json())
+		// 			.then(async data => {
+		// 				window.localStorage.setItem("token", data.token)
+		// 				setToken(window.localStorage.getItem("token"))
+		// 				setpubGroupData(data.pubGroup)
+		// 			})
+		// 		}
+		// 		if (!isLoggedIn) {navigate('/');}
+		// 	}, [navigate, isLoggedIn, token]);
 
 		const members = pubGroupData?.members
 		
