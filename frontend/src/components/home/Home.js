@@ -1,6 +1,6 @@
 import VertNavbar from '../VertNavBar/VertNavBar';
 import React, { useState } from 'react';
-import "./home.css"
+import "./Home.css"
 
 
 
