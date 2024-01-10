@@ -10,7 +10,7 @@ import NotificationDetails from './myAccountPageComponents/NotificationDetails';
 import VertNavbar from '../VertNavBar/VertNavBar';
 import Header from '../header/Header';
 import '../../Pages/style.css'
-
+import './MyAccountPage.css'
 
 
 
@@ -20,6 +20,67 @@ const MyAccountPage = ({ navigate }) => {
   const [wagers, setWagers] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(true);
+  const [showIncoming, setShowIncoming] = useState(null)
+  const [showOngoing, setShowOngoing] = useState(null)
+  const [showPending, setShowPending] = useState(null)
+  const [showUnresolved, setShowUnresolved] = useState(null)
+  const [showHistory, setShowHistory] = useState(null)
+
+
+const toggleIncoming = (event) =>{
+  if(showIncoming === null){
+    setShowIncoming(true)
+  event.preventDefault()
+  }
+  else{
+    setShowIncoming(null)
+  event.preventDefault()
+  }
+}
+const toggleOngoing = (event) =>{
+  if(showOngoing === null){
+    setShowOngoing(true)
+  event.preventDefault()
+  }
+  else{
+    setShowOngoing(null)
+  event.preventDefault()
+  }
+}
+const togglePending = (event) =>{
+  if(showPending === null){
+    setShowPending(true)
+  event.preventDefault()
+  }
+  else{
+    setShowPending(null)
+  event.preventDefault()
+  }
+}
+const toggleUnresolved = (event) =>{
+  if(showUnresolved === null){
+    setShowUnresolved(true)
+   
+  event.preventDefault()
+  }
+  else{
+   
+    setShowUnresolved(null)
+  
+  }
+}
+const toggleHistory = (event) =>{
+  if(showHistory === null){
+    setShowHistory(true)
+   
+  event.preventDefault()
+  }
+  else{
+   
+    setShowHistory(null)
+  
+  }
+}
 
 
 
@@ -79,16 +140,32 @@ const MyAccountPage = ({ navigate }) => {
           <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
           <Header />
           <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
-
-          <IncomingWagers wagers = { wagerRequests }/>    
-					<OngoingWagers ongoingWagers = { ongoingWagers }/>
-					<PendingWagers pendingWagers = { pendingWagers }/>
-					<UnresolvedWagers unresolvedWagers = { unresolvedWagers }/>
-					<PastWagers pastWagers = { pastWagers }/>
-          {/* <button onClick={logout}>Logout</button> */}
-
-          </div>
+          <div className="button-container">
+        <button onClick={toggleIncoming}>Show Incoming ({wagerRequests.length} incoming wager requests)</button>
+        <button onClick={toggleOngoing}>Show Ongoing ({ongoingWagers.length} Ongoing Wagers)</button>
+        <button onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</button>
+        <button onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</button>
+        <button onClick={toggleHistory}>See Your Past Wagers </button>
         </div>
+        
+        
+        {showIncoming && <IncomingWagers wagers={wagerRequests} />}
+        
+        
+        {showOngoing && <OngoingWagers ongoingWagers={ongoingWagers} />}
+        
+        
+        {showPending && <PendingWagers pendingWagers={pendingWagers} />}
+        
+       
+        {showUnresolved && <UnresolvedWagers unresolvedWagers={unresolvedWagers} />}
+        
+        
+        
+        {showHistory && <PastWagers pastWagers={pastWagers} />}
+      
+    </div>
+  </div>
       )};
     
   export default MyAccountPage;
