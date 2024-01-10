@@ -57,6 +57,7 @@ public class RegisterTest {
         driver.findElement(By.id("password")).sendKeys("1234");
         driver.findElement(By.id("submit")).click();
         Thread.sleep(5000);
+        //comment for change
         assertEquals("username is already in use", driver.findElement(By.cssSelector("h1")).getText());
         //Note: h1 should be changed so that everything has a unique locator (e.g. h2, h3, etc.)
     }
