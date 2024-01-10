@@ -26,7 +26,7 @@ const MyAccountPage = ({ navigate }) => {
   const [showPending, setShowPending] = useState(null)
   const [showUnresolved, setShowUnresolved] = useState(null)
   const [showHistory, setShowHistory] = useState(null)
-  const [areNotifications, setAreNotifications] = useState(null)
+  
 
 
 const toggleIncoming = (event) =>{
@@ -108,13 +108,8 @@ const toggleHistory = (event) =>{
           setToken(window.localStorage.getItem("token"))
           setWagers(data.wagers)
          
-          const myWagers = wagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) || wager.peopleInvolved[1] === getSessionUserID(token))
-          // this is a very clunky way to get the notification button to show up, I will try to simplify it tommorow
-            const wagerRequests = myWagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
-          if(wagerRequests.length > 0){
-            setAreNotifications(true)
-
-          }
+          
+          
         })
       }
 
@@ -151,8 +146,9 @@ const toggleHistory = (event) =>{
           <Header />
           
           {wagerRequests.length > 0 && (
-          <button onClick={toggleIncoming}>
-            <FaBell /> Show Incoming ({wagerRequests.length} incoming wager requests)
+          <button onClick={toggleIncoming} className='NotificationButton'>
+            <FaBell /> 
+            <span className='NotificationBadge'>{wagerRequests.length}</span>
           </button>
             )}
           <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
