@@ -178,14 +178,53 @@ describe("Index function returns all groups in the database", () => {
 
     });
 });
+// TESTS for removing a new member
+describe("removing a new member removes their id from the members array", () => {
+  test("server response is 200 when member successfully removed", async () => {
+    let pubGroup = new PubGroup({name: "Test Group", members: [user._id]});
+    await pubGroup.save();
+    let response = await request(app)
+      .post(`/pubGroups/${pubGroup._id}/removeMember/`)
+      .set("Authorization", `Bearer ${token}`)
+    expect(response.status).toEqual(200);
+  });
+
+  test("member no longer appears in members list when removed", async () => {
+    let pubGroup = new PubGroup({name: "Test Group", members: [user._id]});
+    await pubGroup.save();
+    let response = await request(app)
+      .post(`/pubGroups/${pubGroup._id}/removeMember/`)
+      .set("Authorization", `Bearer ${token}`)
+
+    let pubGroups = await PubGroup.find();
+    expect(!pubGroups[0].members.includes(user._id));
+  });
+
+  test("other members not removed", async () => {
+    const user2 = new User({email: "seconduser@gmail.com", username: "seconduser", password: "12345678!"});
+    await user2.save();
+
+    let pubGroup = new PubGroup({name: "Test Group", members: [user._id, user2.id]});
+    await pubGroup.save();
+    let response = await request(app)
+      .post(`/pubGroups/${pubGroup._id}/removeMember/`)
+      .set("Authorization", `Bearer ${token}`)
+
+    let pubGroups = await PubGroup.find();
+    expect(!pubGroups[0].members.includes(user._id));
+    expect(pubGroups[0].members.includes(user2._id));
+
+  });
 });
+});
+
 
 
 
 // NEW test suite to set up users and pub groups properly in the before all
 let testPubGroup
 
-describe("POST /pubgroup -> creates a new wager", () => {
+describe("GET /pubgroup/:pubGroup id -> get info about a pubgroup", () => {
   beforeAll( async () => {
     // Sets up user and token for each test
     const user1 = new User({email: "user1@test.com", username: "user1", password: "12345678!"});
@@ -229,8 +268,6 @@ describe("POST /pubgroup -> creates a new wager", () => {
       .set("Authorization", `Bearer ${token}`)
       .send({token: token});
       let groups = response.body.pubGroup
-      console.log('THIS IS THE NEW TEST AND THE PUBGROUP ID IS:', testPubGroup._id)
-      console.log('THIS IS THE NEW TEST AND THIS IS WHAT THE DB GIVES:', groups._id)
 
       expect(groups._id.toString()).toEqual(testPubGroup._id.toString());
     });

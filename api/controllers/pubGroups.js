@@ -68,7 +68,7 @@ const PubGroupsController = {
 			await PubGroup.updateOne({ _id: pubGroupId }, { $pull: { members: userId } });
 			res.status(200).json({ message: 'Member removed successfully.' });
 		} catch (error) {
-			console.error('Error adding new member:', error);
+			console.error('Error removing new member:', error);
 			res.status(500).json({ error: 'Internal Server Error.' });
 		}
 },
