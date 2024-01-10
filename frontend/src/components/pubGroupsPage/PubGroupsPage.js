@@ -3,6 +3,7 @@ import isTokenValid from '../Utility/isTokenValid';
 import React, { useEffect, useState } from 'react';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import '../../Pages/style.css'
+import SearchBar from "../SearchBar/SearchBar";
 
 
 const PubGroupsPage = ({ navigate }) => {
@@ -43,6 +44,7 @@ const PubGroupsPage = ({ navigate }) => {
     <div className="pub-groups-page">
     <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
 			<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+			
 		
 			<div className="my-groups">
 				<h1>My groups:</h1>
@@ -57,6 +59,7 @@ const PubGroupsPage = ({ navigate }) => {
 					list of ALL groups (for developing - TO BE REMOVED):
 					{pubGroups.map((pubGroup) => (
 					<div key={pubGroup.id}>
+						<SearchBar message={"search for a group..."} list={pubGroups} group={true}/>
 						
 					<a href={`/groups/${pubGroup._id}`} >
 						{pubGroup.name} members are {pubGroup.members} 
