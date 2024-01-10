@@ -46,9 +46,15 @@ const PubGroupsPage = ({ navigate }) => {
 		
 			<div className="my-groups">
 				<h1>My groups:</h1>
-					list of groups
-					by the way my user id is {getSessionUserID(token)}
-					these are the pubgroups: 
+					{joinedGroups.map((pubGroup) => (
+					<div key={pubGroup.id}>
+					<a href={`/groups/${pubGroup._id}`} >
+						{pubGroup.name}
+					</a>
+					</div>))}
+
+					<br></br>
+					list of ALL groups (for developing - TO BE REMOVED):
 					{pubGroups.map((pubGroup) => (
 					<div key={pubGroup.id}>
 						
@@ -57,13 +63,6 @@ const PubGroupsPage = ({ navigate }) => {
 					</a>
 					</div>))}
 
-					these are the ones I'm part of: 
-					{joinedGroups.map((pubGroup) => (
-					<div key={pubGroup.id}>
-					<a href={`/groups/${pubGroup._id}`} >
-						{pubGroup.name}
-					</a>
-					</div>))}
 			</div>
 
 			<div className="search-groups">
