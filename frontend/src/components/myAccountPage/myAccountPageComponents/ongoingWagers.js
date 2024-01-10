@@ -1,54 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import "../MyAccountPage.css"
 import getSessionUserID from '../../Utility/getSignedInUser_id';
-import NotificationDetails from './NotificationDetails';
+// import NotificationDetails from './NotificationDetails';
 
 const OngoingWagers = ({ navigate, ongoingWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const loggedInUser = getSessionUserID(token)
 
-    if(token) {
-      return(
-        <div id="ongoing-wagers-feed">
-          <div id="ongoing-wagers-header" className="MyAccountSubheading">Your Ongoing Wagers:</div>
-
-          {ongoingWagers.map((wager) => (
-        <div key={wager.id}>
-          {loggedInUser === wager.peopleInvolved[0] ? (
-
-            <div id="ongoing-wager" className='wager'>
-              <div>{ongoingWagers.map((wager) => (
-                <a href={`/Wager/${wager._id}`} >
-                    <NotificationDetails messageBeforeName = {"You have a bet with"} userId = {wager.peopleInvolved[1]} messageAfterName ={`that ${wager.description}`}/>
-                </a>))}
-              </div>
-            </div>
-
-          ) : loggedInUser === wager.peopleInvolved[1] ? (
-
-              <div id="ongoing-wager" className='wager'>
-              <div>{ongoingWagers.map((wager) => (
-                <a href={`/Wager/${wager._id}`} >
-                    <NotificationDetails messageBeforeName = {"You have a bet with"} userId = {wager.peopleInvolved[0]} messageAfterName ={`that ${wager.description}`}/>
-                </a>))}
-              </div>
-            </div>
-
-          ) : (
-
-            <div> Note to developer - this wager does not link to the person logged in. Do we want to show it?</div>
-
-
-          )}
+  if (token) {
+    return (
+      <div id="ongoing-wagers-feed">
+        <div id="ongoing-wagers-header" className="MyAccountSubheading">
+          Your Ongoing Wagers:
         </div>
-      ))}
-    </div>
+        {ongoingWagers.map((wager, index) => (
+          <div key={index}>
+            {wager.peopleInvolved[0]._id === loggedInUser ? 
+            (
 
-            )
-            } else {
-      navigate('/login')
-    }
+              <p>
+              <a href={`/wager/${wager._id}`}>You bet {wager.peopleInvolved[1].username} that {wager.description}</a>
+               </p>
+            ) 
+            : 
+            (
+              <p>
+              <a href={`/wager/${wager._id}`}>{wager.peopleInvolved[0].username} bet you that {wager.description}</a>
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  } else {
+    navigate('/login');
+    return null; // Return null or any other UI component if necessary
   }
-
+};
 
 export default OngoingWagers;

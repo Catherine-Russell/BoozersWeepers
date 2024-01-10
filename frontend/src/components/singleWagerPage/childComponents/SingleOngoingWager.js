@@ -57,7 +57,7 @@ const SingleOngoingWager = (wagerData) => {
 
 
       
-    if (user1 === loggedInUser) {
+    if (user1._id === loggedInUser) {
       return (
         <div>
           You bet {user2.username} that {wager.description} would happen before {deadlineDate} <br />
@@ -68,7 +68,7 @@ const SingleOngoingWager = (wagerData) => {
 
         </div>
       );
-  } else {
+  } else if (user2._id === loggedInUser) {
       return (
         <div>
         {user1.username} bet you that {wager.description} would happen before {deadlineDate}  <br />
@@ -80,7 +80,10 @@ const SingleOngoingWager = (wagerData) => {
 
         </div>
       );
-  }
+  } else { return (
+    <div>
+    You Are Not Involved in this bet!
+  </div>)}
 };
 
 export default SingleOngoingWager;
