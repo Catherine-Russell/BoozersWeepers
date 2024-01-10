@@ -10,12 +10,13 @@ import getSessionUserID from '../Utility/getSignedInUser_id';
 const SingleGroupPage = ({ navigate }) => {
   const { pubGroupId } = useParams();
   const [pubGroupData, setpubGroupData] = useState(null);
-	const [wagers, setWagers] = useState(null);
+  const [wagers, setWagers] = useState([])
+
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(true);
 
-	// Get group and member info
+	// Get group and member info, also wager info
 	useEffect(() => {
 		if(token) {
       fetch(`/pubGroups/${pubGroupId}`, {
@@ -32,41 +33,44 @@ const SingleGroupPage = ({ navigate }) => {
 			if (!isLoggedIn) {navigate('/');}
     }, [navigate, isLoggedIn, token]);
 
-// get wager info based on the members
-		// useEffect(() => {
-		// 	if(token) {
-		// 		fetch(`/pubGroups/${pubGroupId}`, {
-		// 			method: 'get',
-		// 			headers: {'Authorization': `Bearer ${token}`}
-		// 		})
-		// 			.then(response => response.json())
-		// 			.then(async data => {
-		// 				window.localStorage.setItem("token", data.token)
-		// 				setToken(window.localStorage.getItem("token"))
-		// 				setpubGroupData(data.pubGroup)
-		// 			})
-		// 		}
-		// 		if (!isLoggedIn) {navigate('/');}
-		// 	}, [navigate, isLoggedIn, token]);
+// Gets all wager info
+		useEffect(() => {
+			if(token) {
+				fetch("/wagers", {
+					method: 'get',
+					headers: {'Authorization': `Bearer ${token}`}
+				})
+					.then(response => response.json())
+					.then(async data => {
+						window.localStorage.setItem("token", data.token)
+						setToken(window.localStorage.getItem("token"))
+						setWagers(data.wagers)
+					})
+				}
+			if (!isLoggedIn) {navigate('/');}
+			}, [navigate, isLoggedIn, token]);
 
+// Sorts through data received from DB to make them usable in frontend
 		const members = pubGroupData?.members
+		const allMemberIds = members?.map((member) => member._id) || [];
+
+		const allGroupWagers = wagers.filter((wager) => allMemberIds.includes(wager.peopleInvolved[0]) && allMemberIds.includes(wager.peopleInvolved[1]))
+		const resolvedGroupWagers = allGroupWagers.filter(wager => wager.winner != null)
+		const checkIfOngoing = (deadline) => {
+			return new Date(deadline) > new Date()
+			}
+		const ongoingGroupWagers = allGroupWagers.filter(wager => wager.approved === true && checkIfOngoing(wager.deadline) && wager.winner === null)
 		
-		// checks to see whether the person who is logged in is in the group already
-		const memberIds = members?.map((member) => member._id) || [];
-		let isGroupMember = (memberIds?.includes(getSessionUserID(token)))
+		// checks to see whether the person who is logged in is in the group already - for join/leave button
+		let isGroupMember = (allMemberIds?.includes(getSessionUserID(token)))
 		
 		
-		console.log(members)
-		console.log(memberIds)
-		console.log(isGroupMember, members?.username, getSessionUserID(token))
 		
-		
-		// const ongoingGroupWagers = 
-		// const resolvedGroupWagers =
 
 
-		// for NavBar:
-    const toggleExpand = () => {setExpanded(!expanded);};
+		
+    const toggleExpand = () => {setExpanded(!expanded);}; // for NavBar
+
     return (
 			<div id='single-group-page'>
 			<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
@@ -88,16 +92,23 @@ const SingleGroupPage = ({ navigate }) => {
             </ul>
           </div>
         ) : (
-          <p>No members available.</p>
+          <p>No members in group</p>
         )}
       </div>
 					
 
 
-
-
 					<div className='list-of-ongoing-wagers'>
-						ongoing wagers in the group go here
+						<h2>ongoing wagers in the group go here:</h2>
+						<div id="member-name" className='member-name'>
+            <ul>
+              {ongoingGroupWagers.map((wager) => (
+                <li id='ongoing-wager' key={wager._id}>
+									{wager._id}
+                </li>
+              ))}
+            </ul>
+          </div>
 					</div>
 					<div className='list-of-wins-losses'>
 						recent wins and losses go here
