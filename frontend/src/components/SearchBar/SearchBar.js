@@ -10,6 +10,7 @@ const SearchBar = (props) =>{
   const [searchRes, setSearchRes] = useState(null)
   const [searchSubmit, setSearchSubmit] = useState(null)
   const [searchMessage, setSearchMessage] = useState("")
+  const [group, setGroup] = useState(props.group)
 
 
 
@@ -25,7 +26,14 @@ const SearchBar = (props) =>{
 
   const handleChange =(event) => {
     setSearch(event.target.value)
-    if(search.length > 0){
+    if(group && search.length > 0){
+      const result = props.list.filter(user => group.name.toLowerCase().includes(search.toLowerCase()))
+    
+      setSearchRes(result)
+      event.preventDefault();
+
+    }
+    if(search.length > 0 && !group){
       const result = props.list.filter(user => user.username.toLowerCase().includes(search.toLowerCase()))
     
       setSearchRes(result)
@@ -34,11 +42,16 @@ const SearchBar = (props) =>{
     }
   
   }
-  const handleSubmit = (event) =>{
-    const result = props.list.filter(user => user.username.toLowerCase().includes(search.toLowerCase()))
-   
 
-    
+
+
+
+
+
+
+  const handleSubmit = (event) =>{
+    if(!group){
+      const result = props.list.filter(user => user.username.toLowerCase().includes(search.toLowerCase()))
       setSearchRes(result)
       setSearchSubmit(result)
       event.preventDefault();
@@ -54,6 +67,34 @@ const SearchBar = (props) =>{
       event.preventDefault();
 
 
+    }
+   
+
+
+    }
+
+    if(group){
+      const result = props.list.filter(group => group.name.toLowerCase().includes(search.toLowerCase()))
+      setSearchRes(result)
+      setSearchSubmit(result)
+      event.preventDefault();
+    if(result.length === 1){
+      navigate(`/groups/${result[0]._id}`)
+      console.log(searchSubmit[0])
+      event.preventDefault();
+
+    }
+    else if(result.length === 0){
+      setSearchMessage("group not found")
+      console.log(searchSubmit[0])
+      event.preventDefault();
+
+
+    }
+
+
+
+
 
     }
     
@@ -63,9 +104,6 @@ const SearchBar = (props) =>{
   
 
   }
-
-
-
 
 
   return (
@@ -80,11 +118,20 @@ const SearchBar = (props) =>{
       />
       <button type="submit">Search</button>
     </div>
-    {searchRes && (
+    {searchRes  && !group && (
       <div className="result-container">
         <ul>
           {searchRes.map((user) => (
              <a href={`/newWager/${user._id}`} key={user._id} className='searchRes'>{user.username} </a>
+          ))}
+        </ul>
+      </div>
+    )}
+    {searchRes  && group && (
+      <div className="result-container">
+        <ul>
+          {searchRes.map((group) => (
+             <a href={`/groups/${group._id}`} key={group._id} className='searchRes'>{group.name} </a>
           ))}
         </ul>
       </div>
