@@ -21,7 +21,8 @@ const WagersController = {
 
   Index: (req, res) => {
     Wager.find()
-    .populate('peopleInvolved', '_id username')
+
+    .populate('peopleInvolved  -password')
     .populate('winner', '_id username')
     .exec((err, wagers) => {
       if (err) {
