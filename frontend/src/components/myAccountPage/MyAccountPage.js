@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaBell } from 'react-icons/fa';
 import isTokenValid from '../Utility/isTokenValid';
 import IncomingWagers from './myAccountPageComponents/IncomingWagers';
 import OngoingWagers from './myAccountPageComponents/ongoingWagers';
@@ -25,6 +26,7 @@ const MyAccountPage = ({ navigate }) => {
   const [showPending, setShowPending] = useState(null)
   const [showUnresolved, setShowUnresolved] = useState(null)
   const [showHistory, setShowHistory] = useState(null)
+  const [areNotifications, setAreNotifications] = useState(null)
 
 
 const toggleIncoming = (event) =>{
@@ -105,6 +107,14 @@ const toggleHistory = (event) =>{
           window.localStorage.setItem("token", data.token)
           setToken(window.localStorage.getItem("token"))
           setWagers(data.wagers)
+         
+          const myWagers = wagers.filter(wager => wager.peopleInvolved[0] === getSessionUserID(token) || wager.peopleInvolved[1] === getSessionUserID(token))
+          // this is a very clunky way to get the notification button to show up, I will try to simplify it tommorow
+            const wagerRequests = myWagers.filter(wager => wager.approved === false && wager.peopleInvolved[1] === getSessionUserID(token))
+          if(wagerRequests.length > 0){
+            setAreNotifications(true)
+
+          }
         })
       }
 
@@ -139,9 +149,15 @@ const toggleHistory = (event) =>{
           <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
           <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
           <Header />
+          
+          {wagerRequests.length > 0 && (
+          <button onClick={toggleIncoming}>
+            <FaBell /> Show Incoming ({wagerRequests.length} incoming wager requests)
+          </button>
+            )}
           <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
           <div className="button-container">
-        <button onClick={toggleIncoming}>Show Incoming ({wagerRequests.length} incoming wager requests)</button>
+        
         <button onClick={toggleOngoing}>Show Ongoing ({ongoingWagers.length} Ongoing Wagers)</button>
         <button onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</button>
         <button onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</button>
