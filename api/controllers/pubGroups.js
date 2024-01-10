@@ -52,8 +52,6 @@ const PubGroupsController = {
 	},
 
 		FindMemberInfoByPubGroupID: (req, res) => {
-			console.log("IM IN YOUR FUNCTION")
-			console.log(req.params.pubGroupId)
 			const pubGroupID = req.params.pubGroupId;
 			console.log(pubGroupID)
 			PubGroup.findById(pubGroupID)

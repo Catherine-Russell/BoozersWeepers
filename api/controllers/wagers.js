@@ -20,7 +20,10 @@ const WagersController = {
   },
 
   Index: (req, res) => {
-    Wager.find((err, wagers) => {
+    Wager.find()
+    .populate('peopleInvolved', 'username')
+    .populate('winner', 'username')
+    .exec((err, wagers) => {
       if (err) {
         return res.status(500).json({ error: 'Internal Server Error' });
       }
