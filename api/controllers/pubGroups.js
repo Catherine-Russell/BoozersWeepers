@@ -55,7 +55,7 @@ const PubGroupsController = {
 			const pubGroupID = req.params.pubGroupId;
 			console.log(pubGroupID)
 			PubGroup.findById(pubGroupID)
-			.populate('members')
+			.populate('members', '_id, username')
 			.exec((err, pubGroup) => {
 					if (err) {
 						return res.status(500).json({ error: 'Internal Server Error' });
