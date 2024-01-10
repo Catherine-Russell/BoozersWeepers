@@ -6,6 +6,7 @@ const PubGroupsController = {
   Create: (req, res) => {
     const pubGroup = new PubGroup({
 			name: req.body.name,
+			members: req.body.members
     });
 	
 		pubGroup.save((err) => {
