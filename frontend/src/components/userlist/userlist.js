@@ -60,7 +60,7 @@ const UserList = () => {
 
          
       
-    </div >
+    
     <div className="pageTitle">
     <h1>who do you wanna make a wager with?</h1>
     <SearchBar message={"search for a user..."} list={ListOfUsers}/>
@@ -77,6 +77,7 @@ const UserList = () => {
 }
     </div>
 	</div>
+  </div >
   );
 };
 
