@@ -11,7 +11,7 @@ const ProfilePage = ({ navigate }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(userToken));
   const [expanded, setExpanded] = useState(true);
   const [userData,setUserData] = useState(null);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
