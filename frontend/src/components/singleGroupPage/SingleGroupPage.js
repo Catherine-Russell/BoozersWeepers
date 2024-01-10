@@ -100,7 +100,6 @@ const SingleGroupPage = ({ navigate }) => {
 
 					<div className='list-of-ongoing-wagers'>
 						<h2>ongoing wagers in the group go here:</h2>
-						<div id="member-name" className='member-name'>
             <ul>
               {ongoingGroupWagers.map((wager) => (
                 <li id='ongoing-wager' key={wager._id}>
@@ -108,11 +107,19 @@ const SingleGroupPage = ({ navigate }) => {
                 </li>
               ))}
             </ul>
-          </div>
+
 					</div>
+
 					<div className='list-of-wins-losses'>
-						recent wins and losses go here
-					</div>
+						recent wins and losses go here - Boozers and Losers
+            <ul>
+              {ongoingGroupWagers.map((wager) => (
+								<li id='resolved-wager' key={wager._id}>
+									{wager._id}
+                </li>
+              ))}
+						</ul>
+          </div>
 				</div>
 			</div>
     )
