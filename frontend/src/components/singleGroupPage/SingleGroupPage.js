@@ -15,6 +15,7 @@ const SingleGroupPage = ({ navigate }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(isTokenValid(token));
   const [expanded, setExpanded] = useState(true);
   const [hasJoinedGroup, setHasJoinedGroup] = useState(false);
+  const [hasLeftGroup, setHasLeftGroup] = useState(false);
 
 	// Get group and member info
 	useEffect(() => {
@@ -78,7 +79,7 @@ const SingleGroupPage = ({ navigate }) => {
 			}
 		
 			const handleLeaveGroup = () =>  {
-				setHasJoinedGroup(true)
+				setHasLeftGroup(true)
 	
 				fetch(`/pubGroups/${pubGroupId}/removeMember`, {
 					method: 'post',
@@ -97,7 +98,7 @@ const SingleGroupPage = ({ navigate }) => {
 
 					<h1 id='pub-group-name' className='group-page-main-title'>{pubGroupData?.name}</h1>
 				
-					{/* JOIN BUTTON */}
+					{/* JOIN BUTTON - non-members */}
 					<div id='join-group-button'>
 						{!hasJoinedGroup && isGroupMember === false && (
 							<button onClick={handleJoinGroup}>
@@ -109,15 +110,15 @@ const SingleGroupPage = ({ navigate }) => {
 							)}
 					</div>
 
-					{/* LEAVE BUTTON */}
+					{/* LEAVE BUTTON - members*/}
 					<div id='leave-group-button'>
 							{isGroupMember === true && (
 								<button onClick={handleLeaveGroup}>
-									Join Group
+									Leave Group
 							</button>
 							)}
-							{hasJoinedGroup && (
-								<h1 id='group-joined'>You've joined this group</h1> 
+							{hasLeftGroup && (
+								<h1 id='group-joined'>You've left this group</h1> 
 								)}
 					</div>
 							<h1 id='pub-group-name' className='group-page-main-title'>Group members</h1>
