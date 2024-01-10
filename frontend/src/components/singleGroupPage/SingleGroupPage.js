@@ -76,8 +76,8 @@ const SingleGroupPage = ({ navigate }) => {
 			fetch(`/pubGroups/${pubGroupId}/addMember`, {
 				method: 'post',
 				headers: {'Authorization': `Bearer ${token}`}
-			  })
-			  }
+			})
+			}
 		
 		
 
