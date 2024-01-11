@@ -32,9 +32,9 @@ const LogInPage = ({ navigate }) => {
         ) : (
           <div>
             <LogInForm navigate={ navigate }/>
+            <br></br>
           Don't have an account?
-          <br/>
-          <a href='/signup'>Register</a>
+          <a href='/signup'> Register</a>
           </div>
         )}
       </div>
