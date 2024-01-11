@@ -30,25 +30,15 @@ const NewWagerForm = ({ navigate }) => {
 
         setUserData(userData.user);
 
-       
+      
 
       })
       .catch(error => {
         console.error('Error fetching user data:', error);
-       
+      
       });
     }
   }, []); 
-
-
-
-
-
-
-
-
-
-
 
 	const handleWagerSubmit = async (event) => {
 		event.preventDefault();
