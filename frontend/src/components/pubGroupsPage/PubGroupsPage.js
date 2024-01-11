@@ -49,6 +49,7 @@ const PubGroupsPage = ({ navigate }) => {
 
 			<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 			
+			<h1 className="page_title">Groups</h1>
 		
 			<div className="my-groups">
 				<h1 id='my-groups-header' className="group-page-header">My groups:</h1>
