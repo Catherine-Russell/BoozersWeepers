@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import isTokenValid from '../Utility/isTokenValid';
 import getSessionUserID from '../Utility/getSignedInUser_id';
+import Header from '../header/Header';
+
 
 
 
@@ -93,6 +95,7 @@ const SingleGroupPage = ({ navigate }) => {
     return (
 			<div id='single-group-page'>
 			<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+			<Header />
 
 				<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 
