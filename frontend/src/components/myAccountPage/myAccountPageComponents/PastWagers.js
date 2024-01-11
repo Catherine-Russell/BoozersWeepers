@@ -6,7 +6,7 @@ import NotificationDetails from './NotificationDetails';
 const PastWagers = ({ navigate, pastWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const loggedInUser = getSessionUserID(token)
-
+  console.log(pastWagers)
     if(token) {
       return(
         <div id="past-wagers">
@@ -15,7 +15,7 @@ const PastWagers = ({ navigate, pastWagers }) => {
 
           {pastWagers.map((wager) => (
         <div key={wager._id}>
-          {loggedInUser === wager.winner && wager.peopleInvolved[0] !== loggedInUser ?( 
+          {loggedInUser === wager.winner._id && wager.peopleInvolved[0]._id !== loggedInUser ?( 
 
             <div id="past-wager" className='wager' >
               <a href={`/Wager/${wager._id}`}>
@@ -23,7 +23,7 @@ const PastWagers = ({ navigate, pastWagers }) => {
               </a>
             </div>
 
-          ) : loggedInUser === wager.winner && wager.peopleInvolved[1] !== loggedInUser ? (
+          ) : loggedInUser === wager.winner._id && wager.peopleInvolved[1]._id !== loggedInUser ? (
 
             <div id="past-wager" className='wager' >
               <a href={`/Wager/${wager._id}`}>
@@ -31,7 +31,7 @@ const PastWagers = ({ navigate, pastWagers }) => {
               </a>
             </div>
 
-          ) : loggedInUser !== wager.winner && wager.peopleInvolved[0] !== loggedInUser? (
+          ) : loggedInUser !== wager.winner._id && wager.peopleInvolved[0]._id !== loggedInUser? (
 
             <div id="past-wager" className='wager' >
               <a href={`/Wager/${wager._id}`}>
