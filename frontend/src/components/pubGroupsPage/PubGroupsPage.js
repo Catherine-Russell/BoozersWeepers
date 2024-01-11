@@ -51,7 +51,7 @@ const PubGroupsPage = ({ navigate }) => {
 			
 		
 			<div className="my-groups">
-				<h1>My groups:</h1>
+				<h1 id='my-groups-header' className="group-page-header">My groups:</h1>
 					{joinedGroups.map((pubGroup) => (
 					<div key={pubGroup.id}>
 					<a href={`/groups/${pubGroup._id}`} >
@@ -62,15 +62,15 @@ const PubGroupsPage = ({ navigate }) => {
 					<br></br>
 						
 
-			<div className="search-groups">
-						<SearchBar message={"search for a group..."} list={pubGroups} group={true}/>
+			<div id="search-groups">
+						<h1 id='search-group-header' className="group-page-header">Join a new group</h1>
+						<SearchBar message={"Search for a group..."} list={pubGroups} group={true}/>
 			</div>
-
+				<br></br>
 					<div id='create-new-group'>
-						<h1>Create a new group</h1>
+						<h1 id='new-group-header' className="group-page-header">Create a group</h1>
 						<button onClick={handleCreateGroupButtonClick}>Create group</button>
 					</div>
-		<br></br>
 			</div>
     </div>
 	</div>
