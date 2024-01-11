@@ -1,4 +1,5 @@
 /* Contains Information for shifting the Content when the Navbar Expands */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 .page-content {
   flex-grow: 1;
@@ -23,4 +24,10 @@
   
   .Button:hover {
     background-color: #e57036;
+  }
+
+  .page_title{
+    font-family: 'Permanent Marker';
+    font-size: 40px;
+    color: #cd561b;
   }

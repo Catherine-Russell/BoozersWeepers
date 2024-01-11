@@ -24,3 +24,11 @@
   border: none;
   cursor: pointer;
 }
+
+.singlepint_Button:hover {
+    background-color: #e57036;
+  }
+
+.singlepint_comment {
+    color: #6c6c6c;
+  }

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './pintinfo.css';
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
-  rel="stylesheet"
-/>
 
 const PintInfo = ({ pintId }) => {
   const [pintData, setPintData] = useState(null);
@@ -56,7 +53,7 @@ const PintInfo = ({ pintId }) => {
           <div className="singlepint_paragraph">
           <b>Owed by</b> {pintData.pint.owed_by.username} after they were wrong about <b>{pintData.pint.bet.description}</b>
           <br/>
-          <p>What a Mug...</p>
+          <p className="singlepint_comment">What a plonker...</p>
           <button className="singlepint_Button" onClick={claimPint}>Claim</button>
           </div>
         </div>

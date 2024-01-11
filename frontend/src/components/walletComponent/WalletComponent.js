@@ -40,7 +40,7 @@ const WalletComponent = ({ UserID }) => {
     <div>
       {WalletData && WalletData.pints && WalletData.pints.map((pint) => (
         <div key={pint._id}>
-          <span onClick={() => openPintInfo(pint._id)}>Free Pint from: {pint.owed_by.username}</span>
+          <span onClick={() => openPintInfo(pint._id)}>Free Pint from {pint.owed_by.username}</span>
         </div>
       ))}
 
