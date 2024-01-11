@@ -10,8 +10,6 @@ const PastWagers = ({ navigate, pastWagers }) => {
     if(token) {
       return(
         <div id="past-wagers">
-        
-          <div id="past-wagers-header" className="MyAccountSubheading">Your Past Wagers:</div>
 
           {pastWagers.map((wager) => (
         <div key={wager._id}>

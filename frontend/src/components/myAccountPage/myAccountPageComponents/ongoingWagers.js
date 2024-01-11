@@ -10,9 +10,6 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
   if (token) {
     return (
       <div id="ongoing-wagers-feed">
-        <div id="ongoing-wagers-header" className="notification">
-          Your Ongoing Wagers:
-        </div>
         {ongoingWagers.map((wager, index) => (
           <div key={index}>
             {wager.peopleInvolved[0]._id === loggedInUser ? 

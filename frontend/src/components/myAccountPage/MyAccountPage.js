@@ -161,7 +161,7 @@ const toggleHistory = (event) =>{
         
         {ongoingWagers.length > 0 && (
           <div>
-          <h2 className="showInfo" onClick={toggleOngoing}>you have ({ongoingWagers.length} Ongoing Wagers)</h2>
+          <h2 className="showInfo" onClick={toggleOngoing}>Show Ongoing Wagers ({ongoingWagers.length})</h2>
           {showOngoing && <OngoingWagers ongoingWagers={ongoingWagers} />}
           </div>
 
@@ -172,7 +172,7 @@ const toggleHistory = (event) =>{
 
         {pendingWagers.length > 0 &&(
            <div>
-           <h2 className="showInfo" onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</h2>
+           <h2 className="showInfo" onClick={togglePending}>Show Pending Wagers ({pendingWagers.length})</h2>
            {showPending && <PendingWagers pendingWagers={pendingWagers} />}
            </div>
 
@@ -182,7 +182,7 @@ const toggleHistory = (event) =>{
           {unresolvedWagers.length >0 &&(
 
             <div>
-          <h2 className="showInfo" onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</h2> 
+          <h2 className="showInfo" onClick={toggleUnresolved}>Show Unresolved Wagers ({unresolvedWagers.length})</h2> 
           {showUnresolved && <UnresolvedWagers unresolvedWagers={unresolvedWagers} />}
           </div>
 
@@ -190,7 +190,7 @@ const toggleHistory = (event) =>{
           )}
         
        
-        <h2 className="showInfo" onClick={toggleHistory}>See Your Past Wagers </h2> 
+        <h2 className="showInfo" onClick={toggleHistory}>Show Past Wagers ({pastWagers.length})</h2> 
         {showHistory && <PastWagers pastWagers={pastWagers} />}
       
     </div>
