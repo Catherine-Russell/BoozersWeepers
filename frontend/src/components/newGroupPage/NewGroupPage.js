@@ -69,7 +69,5 @@ const NewGroupPage = ({ navigate }) => {
 
 
 
-
-
 }
 export default NewGroupPage;
