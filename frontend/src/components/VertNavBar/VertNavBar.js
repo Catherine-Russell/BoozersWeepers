@@ -32,7 +32,7 @@ const navigate = useNavigate();
           <li><a href="/myAccount"><span>Home</span><IoHome className="react-icon" size={30} /></a></li>
           <li><a href="/userlist"><span>New Bet</span><FaHandshakeSimple className="react-icon" size={30} /></a></li>
           <li><a href="/wallet"><span>Wallet</span><IoWallet className="react-icon" size={30} /></a></li>
-          <li><a href="/groups"><span>Pub Groups</span><TiGroup className="react-icon" size={30} /></a></li>
+          <li><a href="/groups"><span>Groups</span><TiGroup className="react-icon" size={30} /></a></li>
           </ul>
           ) : (
             <ul>
