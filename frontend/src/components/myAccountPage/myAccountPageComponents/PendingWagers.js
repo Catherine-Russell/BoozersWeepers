@@ -8,8 +8,6 @@ const PendingWagers = ({ navigate, pendingWagers }) => {
     if(token) {
       return(
         <div id="pending-wagers">
-        
-          <div id="pending-wagers-header" className="notification">Your Pending Wagers:</div>
 
 						<div id="pending-wager" className='wager'>
               <div>{pendingWagers.map((wager) => (
