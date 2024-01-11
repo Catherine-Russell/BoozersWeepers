@@ -62,7 +62,7 @@ const NewGroupPage = ({ navigate }) => {
 			
 					<form onSubmit={handleGroupSubmit}>
 
-          <input placeholder="Group name" id="new-group-name" type='text' value={ groupName } onChange={handlegroupNameChange} />
+          <input placeholder="Enter your Group name" id="new-group-name" type='text' value={ groupName } onChange={handlegroupNameChange} />
 
         <input id='submit' type="submit" value="Submit" />
 		<h2>{errorMsg}</h2>

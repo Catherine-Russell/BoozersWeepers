@@ -14,13 +14,13 @@ const IncomingWagers = (props, { navigate }) => {
         <div id="incoming Wagers">
 
           
-          <div id="incoming-wagers-header" className="MyAccountSubheading">Your incoming Wagers:</div>
+          <div id="incoming-wagers-header" className="notification">Your incoming Wagers:</div>
           {/*  this is the main loop to crate a list of wagers, the notification details component is need to get the 
           user details for each   */}
         
 
           <div>{props.wagers.map((wager) => (
-            <a key={wager._id} href={`/Wager/${wager._id}`} >
+            <a className="notificationdetails" key={wager._id} href={`/Wager/${wager._id}`} >
               <NotificationDetails  userId = {wager.peopleInvolved[0]._id} messageAfterName ={"would like to wager!"}/>
             </a>))}
           </div>

@@ -130,6 +130,8 @@ const toggleHistory = (event) =>{
     const pastWagers = myWagers.filter(wager => wager.winner != null)
     
     const toggleExpand = () => {setExpanded(!expanded);};
+
+
   
     useEffect(() => {
 
@@ -137,9 +139,12 @@ const toggleHistory = (event) =>{
       }, [navigate, isLoggedIn]);
   
       return (
-        <div>
+        <div className='shade'>
+          <div className='blackboard'>
+            <div className='form'>
+
           <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
-          <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+          {/* <div className={`page-content ${expanded ? 'shifted-content' : ''}`}> */}
           <Header />
 
           
@@ -149,33 +154,48 @@ const toggleHistory = (event) =>{
             <span className='NotificationBadge'>{wagerRequests.length}</span>
           </button>
             )}
-          <h1 id="my-account-page-heading" className='page_title'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
-          <div className="button-container">
-        
-        <button onClick={toggleOngoing}>My Ongoing Wagers ({ongoingWagers.length})</button>
-        <button onClick={togglePending}>My Pending Wagers ({pendingWagers.length})</button>
-        <button onClick={toggleUnresolved}>My Unresolved Wagers ({unresolvedWagers.length})</button>
-        <button onClick={toggleHistory}>My Past Wagers </button>
-        </div>
+
         
         
         {showIncoming && <IncomingWagers wagers={wagerRequests} />}
         
+        {ongoingWagers.length > 0 && (
+          <div>
+          <h2 className="showInfo" onClick={toggleOngoing}>you have ({ongoingWagers.length} Ongoing Wagers)</h2>
+          {showOngoing && <OngoingWagers ongoingWagers={ongoingWagers} />}
+          </div>
+
+        )}    
         
-        {showOngoing && <OngoingWagers ongoingWagers={ongoingWagers} />}
+
+
+
+        {pendingWagers.length > 0 &&(
+           <div>
+           <h2 className="showInfo" onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</h2>
+           {showPending && <PendingWagers pendingWagers={pendingWagers} />}
+           </div>
+
+        )}
+
+       
+          {unresolvedWagers.length >0 &&(
+
+            <div>
+          <h2 className="showInfo" onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</h2> 
+          {showUnresolved && <UnresolvedWagers unresolvedWagers={unresolvedWagers} />}
+          </div>
+
+
+          )}
         
-        
-        {showPending && <PendingWagers pendingWagers={pendingWagers} />}
-        
-        
-        {showUnresolved && <UnresolvedWagers unresolvedWagers={unresolvedWagers} />}
-        
-        
-        
+       
+        <h2 className="showInfo" onClick={toggleHistory}>See Your Past Wagers </h2> 
         {showHistory && <PastWagers pastWagers={pastWagers} />}
       
     </div>
-  </div>
+    </div>
+  // </div>
       )};
     
   export default MyAccountPage;

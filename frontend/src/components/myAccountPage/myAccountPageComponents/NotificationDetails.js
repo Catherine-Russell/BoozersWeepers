@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-
+import './notification.css'
 
 const NotificationDetails = (props) =>{
   const [userData, setUserData] = useState(null)
@@ -44,7 +44,7 @@ return(
   
 <div>
   {userData && (
-    <h4>{props.messageBeforeName} {userData.username} {props.messageAfterName}</h4>
+    <h4 className='notificationdetails'>{props.messageBeforeName} {userData.username} {props.messageAfterName}</h4>
 
 
   )}
