@@ -19,7 +19,6 @@ public class LoginTest {
     @BeforeAll
     static void launchBrowser() {
         WebDriverManager.chromedriver().setup();
-
     }
 
     @BeforeEach
