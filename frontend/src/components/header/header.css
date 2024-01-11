@@ -15,3 +15,14 @@
     padding-bottom: 0px;
     padding-right: 50px;
   }
+
+  .bottom-right-image {
+    position: fixed;
+    bottom: 0px; /* Adjust this value to position the image vertically */
+    right: 0px; /* Adjust this value to position the image horizontally */
+    z-index: -1; 
+    height: 350px;
+    width: auto;
+    opacity: 0.35;
+  }
+
