@@ -1,0 +1,22 @@
+.logged-out-page-container {
+    text-align: center;
+  }
+  
+  .main-title {
+    font-family: 'Permanent Marker';
+    font-size: 70px;
+    color: #cd561b;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+    text-indent: 2em;
+  }
+
+  a:hover {
+    color: #333;
+    text-decoration: underline;
+    text-indent: 2em;
+  }
+	

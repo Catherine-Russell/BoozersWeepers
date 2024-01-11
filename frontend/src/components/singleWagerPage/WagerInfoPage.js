@@ -8,6 +8,7 @@ import SingleWagerRequest from './childComponents/SingleWagerRequest';
 import SingleOngoingWager from './childComponents/SingleOngoingWager';
 import SingleResolvedWager from './childComponents/SingleResolvedWager';
 import Header from '../header/Header';
+import '../../Pages/style.css'
 
 
 
@@ -88,6 +89,5 @@ if (!wagerData) {
       )
     }
   }
-
 
 export default WagerInfoPage;

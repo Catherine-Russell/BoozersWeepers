@@ -10,13 +10,14 @@ const UnresolvedWagers = ({ navigate, unresolvedWagers }) => {
 	if(token) {
 			return(
 				<div id="unresolved-wagers-feed">
-					<div id="unresolved-wagers-header" className="notification">Your Unresolved Wagers:</div>
+
+					<div id="unresolved-wagers-header" className="notification">Time's up! These wagers are past their deadline and it's time to declare a winner!</div>
 				
 					{unresolvedWagers.map((wager) => (
 					<div key={wager.id}>
 						
 					<a className="notificationdetails" href={`/Wager/${wager._id}`} >
-						Time's up! Who won the wager that {wager.description}?
+						Who won the wager that {wager.description}?
 					</a>
 					</div>))}
 				</div>

@@ -58,7 +58,7 @@ const NewGroupPage = ({ navigate }) => {
 			
 				<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 
-					<h1 id='new-group-page-title' className="page-head">Create a new pub group!</h1>
+					<h1 id='new-group-page-title' className="page-heading">Create a new group!</h1>
 			
 					<form onSubmit={handleGroupSubmit}>
 
@@ -70,8 +70,6 @@ const NewGroupPage = ({ navigate }) => {
 		</div>
 		</div>
     )
-
-
 
 
 

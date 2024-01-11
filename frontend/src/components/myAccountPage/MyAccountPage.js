@@ -62,11 +62,11 @@ const togglePending = (event) =>{
 const toggleUnresolved = (event) =>{
   if(showUnresolved === null){
     setShowUnresolved(true)
-   
+  
   event.preventDefault()
   }
   else{
-   
+  
     setShowUnresolved(null)
   
   }
@@ -74,11 +74,11 @@ const toggleUnresolved = (event) =>{
 const toggleHistory = (event) =>{
   if(showHistory === null){
     setShowHistory(true)
-   
+  
   event.preventDefault()
   }
   else{
-   
+  
     setShowHistory(null)
   
   }
@@ -154,14 +154,7 @@ const toggleHistory = (event) =>{
             <span className='NotificationBadge'>{wagerRequests.length}</span>
           </button>
             )}
-          <h1 id="my-account-page-heading" className='page-heading'> your wagers</h1>
-          <div className="button-container">
-        
-        {/* <button onClick={toggleOngoing}>Show Ongoing ({ongoingWagers.length} Ongoing Wagers)</button> */}
-        {/* <button onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</button> */}
-        {/* <button onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</button> */}
-        {/* <button onClick={toggleHistory}>See Your Past Wagers </button> */}
-        </div >
+
         
         
         {showIncoming && <IncomingWagers wagers={wagerRequests} />}
@@ -174,6 +167,7 @@ const toggleHistory = (event) =>{
 
         )}    
         
+
 
 
         {pendingWagers.length > 0 &&(

@@ -77,7 +77,7 @@ describe("/pubgroup ", () => {
       expect(response.status).toEqual(401);
     });
   
-    test("a pub Group is not created", async () => {
+    test("a Group is not created", async () => {
       await request(app)
 			.post("/pubGroups")
 			.send({ name: "test group"})
