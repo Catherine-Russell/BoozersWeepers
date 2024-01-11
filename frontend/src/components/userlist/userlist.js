@@ -62,8 +62,8 @@ const UserList = () => {
       
     
     <div className="pageTitle">
-    <h1>who do you wanna make a wager with?</h1>
-    <SearchBar message={"search for a user..."} list={ListOfUsers}/>
+    <h1>Who do you wanna make a wager with?</h1>
+    <SearchBar message={"Search for a user..."} list={ListOfUsers}/>
 	  <button onClick={showAllClick} className='show all button'>{showAllMessage} </button>
     {showAll &&
     
