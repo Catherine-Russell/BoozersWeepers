@@ -195,7 +195,7 @@ const toggleHistory = (event) =>{
       
     </div>
     </div>
-  // </div>
+  </div>
       )};
     
   export default MyAccountPage;
