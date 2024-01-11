@@ -62,11 +62,11 @@ const togglePending = (event) =>{
 const toggleUnresolved = (event) =>{
   if(showUnresolved === null){
     setShowUnresolved(true)
-   
+  
   event.preventDefault()
   }
   else{
-   
+  
     setShowUnresolved(null)
   
   }
@@ -74,11 +74,11 @@ const toggleUnresolved = (event) =>{
 const toggleHistory = (event) =>{
   if(showHistory === null){
     setShowHistory(true)
-   
+  
   event.preventDefault()
   }
   else{
-   
+  
     setShowHistory(null)
   
   }
@@ -149,7 +149,7 @@ const toggleHistory = (event) =>{
             <span className='NotificationBadge'>{wagerRequests.length}</span>
           </button>
             )}
-          <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
+          <h1 id="my-account-page-heading" className='page_title'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
           <div className="button-container">
         
         <button onClick={toggleOngoing}>My Ongoing Wagers ({ongoingWagers.length})</button>
