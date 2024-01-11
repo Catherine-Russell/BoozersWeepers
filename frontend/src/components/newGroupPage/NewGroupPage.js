@@ -2,6 +2,8 @@ import VertNavbar from "../VertNavBar/VertNavBar";
 import React, { useEffect, useState } from 'react';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import '../../Pages/style.css'
+import Header from '../header/Header';
+
 
 const NewGroupPage = ({ navigate }) => {
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -52,6 +54,8 @@ const NewGroupPage = ({ navigate }) => {
 	return (
 		<div id='new-group-page'>
 			<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+			<Header />
+			
 				<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 
 					<h1 id='new-group-page-title' className="page-heading">Create a new pub group!</h1>

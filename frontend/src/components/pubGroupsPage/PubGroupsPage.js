@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import '../../Pages/style.css'
 import SearchBar from "../SearchBar/SearchBar";
+import Header from '../header/Header';
+
 
 
 const PubGroupsPage = ({ navigate }) => {
@@ -43,6 +45,8 @@ const PubGroupsPage = ({ navigate }) => {
   return(
     <div className="pub-groups-page">
     <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+		<Header />
+
 			<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 			
 		
