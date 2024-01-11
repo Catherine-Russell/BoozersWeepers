@@ -3,6 +3,8 @@ import isTokenValid from '../Utility/isTokenValid';
 import React, { useEffect, useState } from 'react';
 import getSessionUserID from '../Utility/getSignedInUser_id';
 import '../../Pages/style.css'
+import './PubGroupsPage.css'
+
 import SearchBar from "../SearchBar/SearchBar";
 import Header from '../header/Header';
 
@@ -48,29 +50,28 @@ const PubGroupsPage = ({ navigate }) => {
 		<Header />
 
 			<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
-			
 		
-			<div className="my-groups">
-				<h1>My groups:</h1>
+			<div className="my-groups" >
+				<h1 id='my-groups-header' className="page_subheading">My groups:</h1>
 					{joinedGroups.map((pubGroup) => (
-					<div key={pubGroup.id}>
+					<ul key={pubGroup.id} className="group-name">
 					<a href={`/groups/${pubGroup._id}`} >
 						{pubGroup.name}
 					</a>
-					</div>))}
+					</ul>))}
 
 					<br></br>
 						
 
-			<div className="search-groups">
-						<SearchBar message={"search for a group..."} list={pubGroups} group={true}/>
+			<div id="search-groups">
+						<h1 id='search-group-header' className="page_subheading">Join a new group</h1>
+						<SearchBar message={"Search for a group..."} list={pubGroups} group={true}/>
 			</div>
-
+				<br></br>
 					<div id='create-new-group'>
-						<h1>Create a new group</h1>
+						<h1 id='new-group-header' className="page_subheading">Create a group</h1>
 						<button onClick={handleCreateGroupButtonClick}>Create group</button>
 					</div>
-		<br></br>
 			</div>
     </div>
 	</div>
