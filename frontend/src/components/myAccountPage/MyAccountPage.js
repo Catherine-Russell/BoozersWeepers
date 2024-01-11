@@ -152,10 +152,10 @@ const toggleHistory = (event) =>{
           <h1 id="my-account-page-heading" className='page-heading'> <NotificationDetails userId = {getSessionUserID(token)} messageAfterName={"'s Wagers"} /></h1>
           <div className="button-container">
         
-        <button onClick={toggleOngoing}>Show Ongoing ({ongoingWagers.length} Ongoing Wagers)</button>
-        <button onClick={togglePending}>Show Pending ({pendingWagers.length} pending wagers)</button>
-        <button onClick={toggleUnresolved}>Show Unresolved ({unresolvedWagers.length} unresolved wagers)</button>
-        <button onClick={toggleHistory}>See Your Past Wagers </button>
+        <button onClick={toggleOngoing}>My Ongoing Wagers ({ongoingWagers.length})</button>
+        <button onClick={togglePending}>My Pending Wagers ({pendingWagers.length})</button>
+        <button onClick={toggleUnresolved}>My Unresolved Wagers ({unresolvedWagers.length})</button>
+        <button onClick={toggleHistory}>My Past Wagers </button>
         </div>
         
         
@@ -167,7 +167,7 @@ const toggleHistory = (event) =>{
         
         {showPending && <PendingWagers pendingWagers={pendingWagers} />}
         
-       
+        
         {showUnresolved && <UnresolvedWagers unresolvedWagers={unresolvedWagers} />}
         
         
