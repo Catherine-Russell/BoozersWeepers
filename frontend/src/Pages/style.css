@@ -1,5 +1,7 @@
 /* Contains Information for shifting the Content when the Navbar Expands */
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 
 .page-content {
   flex-grow: 1;
@@ -30,4 +32,10 @@
     font-family: 'Permanent Marker';
     font-size: 50px;
     color: #cd561b;
+  }
+
+  .page_subheading{
+    font-family: 'Shadows Into Light';
+    font-size: 35px;
+    color: #692a0a;
   }
