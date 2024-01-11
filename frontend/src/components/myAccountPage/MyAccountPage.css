@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
 
 
 
 .MyAccountSubheading {
     font-size:xx-large;
     color: white;
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
 }
 
 
@@ -19,18 +21,19 @@
     font-size: 24px;
     margin-bottom: 20px;
     color: white;
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
   }
 
   .page-head {
     font-size: 24px;
     margin-bottom: 20px;
     color: rgb(0, 0, 0);
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
   }
   .showInfo {
     color: white;
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
+    font-size: 40px;
     
    
     cursor: pointer;
@@ -140,7 +143,7 @@
 		background-image: linear-gradient( 175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient( 200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient( ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
 		border: #2c2c2c solid 2px;
 		
-		font-family: 'Permanent Marker', cursive;
+		font-family: 'Caveat', cursive;
 		font-size: 2.2em;
 		color: rgba(0, 0, 0, 0.7);
 		text-align: center;
@@ -158,7 +161,7 @@ p {
 
 label {
 		vertical-align: middle;
-		font-family: 'Permanent Marker', cursive;
+		font-family: 'Caveat', cursive;
 		font-size: 1.6em;
 		color: rgba(238, 238, 238, 0.7);
 }

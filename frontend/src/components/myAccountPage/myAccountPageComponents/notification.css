@@ -1,26 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
 
 .notification{
     font-size: 24px;
     margin-bottom: 20px;
     color: white;
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
 }
 
 .notificationdetails{
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 20px;
     color: white;
     text-decoration: none;
-    font-family: 'Permanent Marker';
-     
+    font-family: 'Caveat';
+    
 
 }
 
 .notificationdetails:hover {
     text-decoration: underline;
-    font-family: 'Permanent Marker';
     color: white;
+    font-family: 'Caveat'; 
   }
 
