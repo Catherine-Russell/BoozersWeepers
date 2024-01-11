@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import NotificationDetails from './NotificationDetails';
+import './notification.css'
 
 const PendingWagers = ({ navigate, pendingWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -8,11 +9,11 @@ const PendingWagers = ({ navigate, pendingWagers }) => {
       return(
         <div id="pending-wagers">
         
-          <div id="pending-wagers-header" className="MyAccountSubheading">Your Pending Wagers:</div>
+          <div id="pending-wagers-header" className="notification">Your Pending Wagers:</div>
 
 						<div id="pending-wager" className='wager'>
               <div>{pendingWagers.map((wager) => (
-                <a key={wager._id} href={`/Wager/${wager._id}`} >
+                <a  className="notificationdetails" key={wager._id} href={`/Wager/${wager._id}`} >
                   <NotificationDetails messageBeforeName = {"waiting for"} userId = {wager.peopleInvolved[1]._id} messageAfterName ={`to respond to your wager`}/>
                 </a>))}
               </div>

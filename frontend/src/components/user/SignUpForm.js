@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const SignUpForm = ({ navigate }) => {
 
   const [email, setEmail] = useState("");
@@ -39,7 +40,10 @@ const SignUpForm = ({ navigate }) => {
   }
   
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+
+    
+    <form onSubmit={handleSubmit} className='signup'>
           <input placeholder="Email" id="email" type='text' value={ email } onChange={handleEmailChange} /> <br/>
         <input placeholder="Username" id="username" type='text' value={ username } onChange={handleUsernameChange} /> <br/>
           <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} /> <br/>
@@ -47,6 +51,7 @@ const SignUpForm = ({ navigate }) => {
         <input id='submit' type="submit" value="Submit" />
         <h1>{errorMsg}</h1>
       </form>
+      </div>
       
     );
   

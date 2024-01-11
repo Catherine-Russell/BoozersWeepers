@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../MyAccountPage.css"
 import getSessionUserID from '../../Utility/getSignedInUser_id';
-// import NotificationDetails from './NotificationDetails';
+import NotificationDetails from './NotificationDetails';
 
 const OngoingWagers = ({ navigate, ongoingWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -10,7 +10,7 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
   if (token) {
     return (
       <div id="ongoing-wagers-feed">
-        <div id="ongoing-wagers-header" className="MyAccountSubheading">
+        <div id="ongoing-wagers-header" className="notification">
           Your Ongoing Wagers:
         </div>
         {ongoingWagers.map((wager, index) => (
@@ -19,13 +19,13 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
             (
 
               <p>
-              <a href={`/wager/${wager._id}`}>You bet {wager.peopleInvolved[1].username} that {wager.description}</a>
+              <a className="notificationdetails" href={`/wager/${wager._id}`}>You bet {wager.peopleInvolved[1].username} that {wager.description}</a>
                </p>
             ) 
             : 
             (
               <p>
-              <a href={`/wager/${wager._id}`}>{wager.peopleInvolved[0].username} bet you that {wager.description}</a>
+              <a className="notificationdetails" href={`/wager/${wager._id}`}>{wager.peopleInvolved[0].username} bet you that {wager.description}</a>
               </p>
             )}
           </div>
