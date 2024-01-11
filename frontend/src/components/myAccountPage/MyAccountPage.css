@@ -189,7 +189,7 @@ textarea {
 
 input[type="submit"] {
 		cursor: pointer;
-		color: rgba(238, 238, 238, 0.7);
+		color: rgba(0, 0, 0, 0.7);
 		line-height: 1em;
 		padding: 0;
 }
@@ -206,7 +206,7 @@ input[type="submit"]:focus {
 }
 
 ::selection {
-		background: rgba(238, 238, 238, 0.4);
-		color: rgba(238, 238, 238, 0.3);
+		background: rgb(245, 242, 242);
+		color: rgba(0, 0, 0, 0.3);
 		text-shadow: none;
 }

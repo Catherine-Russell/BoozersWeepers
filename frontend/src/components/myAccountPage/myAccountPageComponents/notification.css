@@ -20,6 +20,7 @@
 
 .notificationdetails:hover {
     text-decoration: underline;
-    font-family: 'Permanent Marker'; 
+    font-family: 'Permanent Marker';
+    color: white;
   }
 
