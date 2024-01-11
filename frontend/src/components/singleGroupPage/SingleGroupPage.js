@@ -99,7 +99,7 @@ const SingleGroupPage = ({ navigate }) => {
 
 				<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
 
-					<h1 id='pub-group-name' className='group-page-main-title'>{pubGroupData?.name}</h1>
+					<h1 id='pub-group-name' className='page_title'>{pubGroupData?.name}</h1>
 				
 					{/* JOIN BUTTON - non-members */}
 					<div id='join-group-button'>
@@ -124,7 +124,7 @@ const SingleGroupPage = ({ navigate }) => {
 								<h1 id='group-joined'>You've left this group</h1> 
 								)}
 					</div>
-							<h1 id='pub-group-name' className='group-page-main-title'>Group members</h1>
+							<h1 id='pub-group-name' className='page_subheading'>Group members</h1>
 					<div className='members-list'>
         {members && members.length > 0 ? (
           <div id="member-name" className='member-name'>
@@ -145,7 +145,7 @@ const SingleGroupPage = ({ navigate }) => {
 					<div id='members-only-section'>
 
 					<div className='list-of-ongoing-wagers'>
-						<h2>ongoing wagers in the group go here:</h2>
+						<h2 id='ongoing-group-wagers' className='page_subheading' >Ongoing wagers in the group go here:</h2>
             <ul>
               {ongoingGroupWagers.map((wager) => (
 								<li id='ongoing-wager' key={wager._id}>
@@ -157,7 +157,7 @@ const SingleGroupPage = ({ navigate }) => {
 					</div>
 
 					<div className='list-of-wins-losses'>
-					<h2>recent wins and losses go here - Boozers and Losers</h2>
+					<h2 id='winners-and-losers' className='page_subheading'>Recent wins and losses go here - Boozers and Losers</h2>
             <ul>
 						{resolvedGroupWagers.map((wager) => (
 							<li id='resolved-wager' key={wager._id}>
@@ -174,11 +174,10 @@ const SingleGroupPage = ({ navigate }) => {
 						))}
 						</ul>
           </div>
-						recent wins and losses go here
 				</div>
 				) : (
 
-					<p id='non-member-message' className='non-member'>You are not a member of the group. Join to see stuff</p>
+					<p id='non-member-message' className='non-member'>You need to be a member of this group to see information</p>
 				)}
 					</div>
 					
