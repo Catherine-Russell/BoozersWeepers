@@ -21,7 +21,7 @@ const SignUpPage = ({ navigate }) => {
         <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
         <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
           <Header />
-          <h1>Register a New Account</h1>
+          <h1 id='signup-subheading' className='page_subheading'>Register a New Account</h1>
           {isLoggedIn ? (
             <div>
               <p>Please Log-Out to See this content</p>
