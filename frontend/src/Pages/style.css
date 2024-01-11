@@ -34,3 +34,8 @@
     color: #cd561b;
   }
 
+  .page_subheading {
+    font-family: 'Caveat', sans-serif; 
+    font-size: 40px;
+    color: #333; 
+  }
