@@ -78,6 +78,7 @@ const SingleGroupPage = ({ navigate }) => {
 				method: 'post',
 				headers: {'Authorization': `Bearer ${token}`}
 			})
+			window.location.reload();
 			}
 		
 			const handleLeaveGroup = () =>  {
@@ -87,6 +88,7 @@ const SingleGroupPage = ({ navigate }) => {
 					method: 'post',
 					headers: {'Authorization': `Bearer ${token}`}
 				})
+				navigate(`/groups`)
 				}
 
 
@@ -108,9 +110,6 @@ const SingleGroupPage = ({ navigate }) => {
 								Join Group
 						</button>
 						)}
-						{hasJoinedGroup && (
-							<h1 id='group-joined'>You've joined this group</h1> 
-							)}
 					</div>
 
 					{/* LEAVE BUTTON - members*/}
@@ -120,9 +119,6 @@ const SingleGroupPage = ({ navigate }) => {
 									Leave Group
 							</button>
 							)}
-							{hasLeftGroup && (
-								<h1 id='group-joined'>You've left this group</h1> 
-								)}
 					</div>
 							<h1 id='pub-group-name' className='page_subheading'>Group members</h1>
 					<div className='members-list'>
@@ -145,7 +141,7 @@ const SingleGroupPage = ({ navigate }) => {
 					<div id='members-only-section'>
 
 					<div className='list-of-ongoing-wagers'>
-						<h2 id='ongoing-group-wagers' className='page_subheading' >Ongoing wagers in the group go here:</h2>
+						<h2 id='ongoing-group-wagers' className='page_subheading'> Ongoing wagers</h2>
             <ul>
               {ongoingGroupWagers.map((wager) => (
 								<li id='ongoing-wager' key={wager._id}>
@@ -157,7 +153,7 @@ const SingleGroupPage = ({ navigate }) => {
 					</div>
 
 					<div className='list-of-wins-losses'>
-					<h2 id='winners-and-losers' className='page_subheading'>Recent wins and losses go here - Boozers and Losers</h2>
+					<h2 id='wins-and-losses' className='page_subheading'>Wins and losses</h2>
             <ul>
 						{resolvedGroupWagers.map((wager) => (
 							<li id='resolved-wager' key={wager._id}>

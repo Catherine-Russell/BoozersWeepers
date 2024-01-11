@@ -37,10 +37,11 @@ const WalletComponent = ({ UserID }) => {
   };
 
   return (
-    <div>
+    <div className='pint-container'>
       {WalletData && WalletData.pints && WalletData.pints.map((pint) => (
         <div key={pint._id}>
-          <span onClick={() => openPintInfo(pint._id)}>Free Pint from {pint.owed_by.username}</span>
+          <button className='pint' onClick={() => openPintInfo(pint._id)}>{pint.owed_by.username}<div>owes you a pint!</div><div>
+            Click to claim</div> </button>
         </div>
       ))}
 
