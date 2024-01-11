@@ -42,6 +42,7 @@ const PintInfo = ({ pintId }) => {
         });
 
       console.log('Now we should navigate');
+      window.location.reload();
     }
   };
 
