@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+.singlepint_title{  
+    font-family: 'Permanent Marker';
+    font-size: 40px;
+    color: #cd561b;
+    text-align: center;
+}
+
+.singlepint_paragraph{  
+    text-align: center;
+}
+
+.singlepint_Button {
+  width: 120px;
+  height: 50px; /* Set a specific height for vertical centering */
+  justify-content: center;
+  align-items: center;
+  background-color: #cd561b;
+  font-family: 'Permanent Marker';
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  padding: 6px 10px;
+  border: none;
+  cursor: pointer;
+}
