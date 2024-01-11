@@ -21,5 +21,7 @@
 
 .notificationdetails:hover {
     text-decoration: underline;
+    color: white;
     font-family: 'Caveat'; 
   }
+
