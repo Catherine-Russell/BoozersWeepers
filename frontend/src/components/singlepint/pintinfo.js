@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './pintinfo.css';
 
 const PintInfo = ({ pintId }) => {
   const [pintData, setPintData] = useState(null);
@@ -45,15 +46,16 @@ const PintInfo = ({ pintId }) => {
   };
 
   return (
-    <div>
+    <div className='singlepint'>
       {pintData ? (
         <div>
-          <b>Pint: {pintData.pint.owner._id}<br /></b>
-          Owed to: {pintData.pint.owner.username}<br />
-          Datemade: {pintData.pint.datemade}<br />
-          Owed by: {pintData.pint.owed_by.username}<br />
-          Bet: {pintData.pint.bet.description}<br />
-          <button onClick={claimPint}>Claim</button>
+          <div className="singlepint_title">I.O.U ONE DRINK</div>
+          <div className="singlepint_paragraph">
+          <b>Owed by</b> {pintData.pint.owed_by.username} after they were wrong about <b>{pintData.pint.bet.description}</b>
+          <br/>
+          <p className="singlepint_comment">What a plonker...</p>
+          <button className="singlepint_Button" onClick={claimPint}>Claim</button>
+          </div>
         </div>
       ) : (
         <p>No Data stored</p>
