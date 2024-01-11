@@ -50,17 +50,15 @@ const PubGroupsPage = ({ navigate }) => {
 		<Header />
 
 			<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
-			
-			<h1 className="page_title">Groups</h1>
 		
-			<div className="my-groups">
-				{/* <h1 id='my-groups-header' className="page_subheading">My groups:</h1> */}
+			<div className="my-groups" >
+				<h1 id='my-groups-header' className="page_subheading">My groups:</h1>
 					{joinedGroups.map((pubGroup) => (
-					<div key={pubGroup.id}>
+					<ul key={pubGroup.id} className="group-name">
 					<a href={`/groups/${pubGroup._id}`} >
 						{pubGroup.name}
 					</a>
-					</div>))}
+					</ul>))}
 
 					<br></br>
 						
