@@ -23,7 +23,7 @@ const LogInPage = ({ navigate }) => {
       <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
       <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
         <Header/>
-        <h1>Sign in to your account</h1>
+        <h1 id='sign-in-subheading' className='page_subheading' >Sign in to your account</h1>
         {isLoggedIn ? (
           <div>
             <p>Please Log-Out to See this content</p>
