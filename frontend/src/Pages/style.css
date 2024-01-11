@@ -1,6 +1,5 @@
 /* Contains Information for shifting the Content when the Navbar Expands */
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
 
 .page-content {
@@ -29,7 +28,7 @@
   }
 
   .page_title{
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
     font-size: 50px;
     color: #cd561b;
   }

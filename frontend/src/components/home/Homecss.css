@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+
 .logged-out-page-container {
     text-align: center;
   }
   
   .main-title {
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
     font-size: 70px;
     color: #cd561b;
   }
