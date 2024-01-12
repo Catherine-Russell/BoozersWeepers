@@ -1,0 +1,11 @@
+.pint-container {
+    font-family: 'Caveat', sans-serif; 
+    font-size: 25px;
+    color: #333; 
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.pint {
+    margin: 10px; 
+}

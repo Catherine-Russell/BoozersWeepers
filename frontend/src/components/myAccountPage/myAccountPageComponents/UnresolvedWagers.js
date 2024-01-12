@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "../MyAccountPage.css"
+import './notification.css'
 import getSessionUserID from '../../Utility/getSignedInUser_id';
 
 const UnresolvedWagers = ({ navigate, unresolvedWagers }) => {

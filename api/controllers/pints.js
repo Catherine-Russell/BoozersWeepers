@@ -20,7 +20,9 @@ const PintsController = {
   },
 
   index: (req, res) => {
-    Pint.find((err, foundPints) => {
+    Pint.find()
+    .populate('owner owed_by bet')
+    .exec((err, foundPints) => {
       if (err) {
         return res.status(500).json({ error: 'Internal Server Error' });
       } else {
@@ -28,9 +30,9 @@ const PintsController = {
         return res.status(200).json({ pints: foundPints, token: token });
       }
     });
-  },
+},
 
-  FindByID: (req, res) => {
+FindByID: (req, res) => {
     const pintID = req.params.id;
     Pint.findById(pintID)
     .populate('owner owed_by bet')

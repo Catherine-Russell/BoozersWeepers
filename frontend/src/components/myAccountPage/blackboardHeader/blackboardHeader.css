@@ -1,5 +1,5 @@
 
-.HeaderMainBar {
+.BBHeaderMainBar {
     color: #fff;
     width: 100%;
     text-align: right;
@@ -7,19 +7,16 @@
     justify-content: flex-end; /* Align content to the right */
   }
   
-  .HeaderMainBar img {
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    padding-top: 2px;
+.BBHeaderMainBar img {
+    padding-top: 0px;
     height: auto;
     width: 160px;
-    padding-top: 10px;
+    padding-top: 0px;
     padding-bottom: 0px;
     padding-right: 50px;
   }
 
-  .bottom-right-image {
+.BBbottom-right-image {
     position: fixed;
     bottom: 0px; /* Adjust this value to position the image vertically */
     right: 0px; /* Adjust this value to position the image horizontally */
@@ -28,4 +25,3 @@
     width: auto;
     opacity: 0.35;
   }
-

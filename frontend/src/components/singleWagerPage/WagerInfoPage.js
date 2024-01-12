@@ -61,7 +61,15 @@ if (!wagerData) {
         <Header/>
 				<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
         <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
-        <h1 id='single-wager-page-header' className='page-heading'>Wager Details</h1>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h1 id='single-wager-page-header' className='page_subheading'>Wager Details</h1>
+        <br/>
+        <br/>
         { wagerData.approved === false && wagerData.peopleInvolved[0]._id === loggedInUser ? (
       
             <SinglePendingWager wagerData={wagerData}/>
@@ -82,7 +90,8 @@ if (!wagerData) {
             <p>Error - return to account page</p>
         )}
 
-        <br />
+        <br /><br/>
+        <br/>
           <button id='return-button' className='return-button' onClick={() => navigate('/myAccount')}>Return to All Wagers</button>
         </div>
         </div>

@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.HeaderContainer {
+  position: relative;
+}
+
+.HPHeaderMainBar {
+  color: #fff;
+  width: 100%;
+  text-align: center; /* Center content horizontally */
+}
+
+.HPHeaderMainBar img {
+  height: auto;
+  width: 500px; /* 2x the size of the original 160px */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.bottom-right-img {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: -1;
+  height: 350px;
+  width: auto;
+  opacity: 0.35;
+}
+
+.centered-logo {
+  display: block;
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.register-link
+.login-link {
+  font-size: 30px;
+}

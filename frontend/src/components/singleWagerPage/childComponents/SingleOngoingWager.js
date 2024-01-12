@@ -59,23 +59,24 @@ const SingleOngoingWager = (wagerData) => {
       
     if (user1._id === loggedInUser) {
       return (
-        <div>
+        <div className="preamble">
           You bet {user2.username} that {wager.description} would happen before {deadlineDate} <br />
           So...Who won?
           <br/>
-          <button onClick={() => handleWinner(user1._id, user2._id)}>I Win</button>
-          <button onClick={() => handleWinner(user2._id, user1._id)}>{user2.username} wins</button>
+          <button onClick={() => handleWinner(user1._id, user2._id)}>I Won</button><span className="button-space"></span>
+          <button onClick={() => handleWinner(user2._id, user1._id)}>{user2.username} won</button>
 
         </div>
       );
   } else if (user2._id === loggedInUser) {
       return (
-        <div>
-        {user1.username} bet you that {wager.description} would happen before {deadlineDate}  <br />
-        So...Who Won?
+        <div className="preamble">
+        {user1.username} bet you that {wager.description} would happen before {deadlineDate}  <br /><br />
+        So...   Who won?
         <br/>
-        <button onClick={() => handleWinner(user2._id, user1._id)}>I win</button>
-        <button onClick={() => handleWinner(user1._id, user2._id)}>{user1.username} Wins</button>
+        <br/>
+        <button onClick={() => handleWinner(user2._id, user1._id)}>I Won</button><span className="button-space"></span>
+        <button onClick={() => handleWinner(user1._id, user2._id)}>{user1.username} Won</button>
         
 
         </div>

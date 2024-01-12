@@ -1,3 +1,24 @@
-.deadline {
-    text-align: right;
-}
+
+#single-wager-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust the height as needed */
+  }
+  
+  .page-content {
+    text-align: center;
+  }
+
+.preamble {
+    font-family: 'Caveat', sans-serif; 
+    font-size: 30px;
+    color: #333; 
+    text-align: center;
+
+  }
+
+	.button-space {
+		margin-right: 40px; /* Adjust the margin as needed */
+	}

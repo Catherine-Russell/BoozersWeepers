@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
-
 
 .notification{
     font-size: 24px;
@@ -10,13 +8,12 @@
 }
 
 .notificationdetails{
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 20px;
     color: white;
     text-decoration: none;
     font-family: 'Caveat';
-    
-
+		text-indent: 50px;
 }
 
 .notificationdetails:hover {

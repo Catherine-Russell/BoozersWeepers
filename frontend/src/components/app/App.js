@@ -15,6 +15,8 @@ import WalletPage from '../../Pages/wallet';
 import PubGroupsPage from '../pubGroupsPage/PubGroupsPage'
 import SingleGroupPage from '../singleGroupPage/SingleGroupPage'
 import NewGroupPage from '../newGroupPage/NewGroupPage'
+import LeaderBoard from '../leaderboard/leaderboard';
+
 
 
 const App = () => {
@@ -33,6 +35,7 @@ const App = () => {
           <Route path='/groups/new' element={<NewGroupPage navigate={ useNavigate() }/>}/>
           <Route path='/groups/:pubGroupId' element={<SingleGroupPage navigate={ useNavigate() }/>}/>
           <Route path='/groups' element={<PubGroupsPage navigate={ useNavigate() }/>}/>
+          <Route path='/leaderboard' element={<LeaderBoard navigate={ useNavigate() }/>}/>
 
           <Route path='/'  element={<Home navigate={ useNavigate() }/>}/>
 

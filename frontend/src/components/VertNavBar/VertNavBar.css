@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
 
 .VertNavbar {
   position: fixed;
@@ -15,8 +14,6 @@
   flex-direction: column;
   justify-content: space-between;
   border-radius: 0px 0px 20px 0px;
-  font-family: 'Caveat';
-  font-size: 30px;
 }
 
 .VertNavbar.expanded {

@@ -57,12 +57,24 @@ const NewGroupPage = ({ navigate }) => {
 			<Header />
 			
 				<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
-
-					<h1 id='new-group-page-title' className="page-head">Create a new group!</h1>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+					<h1 id='new-group-page-title' className="page_subheading">Create a new group!</h1>
+<br></br>
 			
 					<form onSubmit={handleGroupSubmit}>
 
           <input placeholder="Enter your Group name" id="new-group-name" type='text' value={ groupName } onChange={handlegroupNameChange} />
+		  <br></br>
+		  <br></br>
 
         <input id='submit' type="submit" value="Submit" />
 		<h2>{errorMsg}</h2>

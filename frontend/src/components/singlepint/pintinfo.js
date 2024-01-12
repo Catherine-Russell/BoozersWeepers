@@ -52,7 +52,7 @@ const PintInfo = ({ pintId }) => {
         <div>
           <div className="singlepint_title">I.O.U ONE DRINK</div>
           <div className="singlepint_paragraph">
-          <b>Owed by</b> {pintData.pint.owed_by.username} after they were wrong about <b>{pintData.pint.bet.description}</b>
+          <b>Owed by</b> {pintData.pint.owed_by.username} after they were wrong that <b>{pintData.pint.bet.description}</b>
           <br/>
           <p className="singlepint_comment">What a plonker...</p>
           <button className="singlepint_Button" onClick={claimPint}>Claim</button>

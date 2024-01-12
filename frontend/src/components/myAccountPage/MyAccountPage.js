@@ -9,7 +9,7 @@ import getSessionUserID from '../Utility/getSignedInUser_id';
 import UnresolvedWagers from './myAccountPageComponents/UnresolvedWagers';
 import NotificationDetails from './myAccountPageComponents/NotificationDetails';
 import VertNavbar from '../VertNavBar/VertNavBar';
-import Header from '../header/Header';
+import BlackboardHeader from './blackboardHeader/blackboardHeader';
 import '../../Pages/style.css'
 import './MyAccountPage.css'
 
@@ -84,8 +84,6 @@ const toggleHistory = (event) =>{
   }
 }
 
-
-
 // Returns True if deadline has not yet passed, false if deadline is over and wager is complete
   const checkIfOngoing = (deadline) => {
     const currentDate = new Date()
@@ -106,7 +104,7 @@ const toggleHistory = (event) =>{
           window.localStorage.setItem("token", data.token)
           setToken(window.localStorage.getItem("token"))
           setWagers(data.wagers)
-         
+        
           
           
         })
@@ -144,18 +142,14 @@ const toggleHistory = (event) =>{
             <div className='form'>
 
           <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
-          {/* <div className={`page-content ${expanded ? 'shifted-content' : ''}`}> */}
-          <Header />
-
-          
+          <BlackboardHeader />
+          <h1 className='username-subheading'>Catherine's wagers</h1>
           {wagerRequests.length > 0 && (
           <button onClick={toggleIncoming} className='NotificationButton'>
             <FaBell /> 
             <span className='NotificationBadge'>{wagerRequests.length}</span>
           </button>
             )}
-
-        
         
         {showIncoming && <IncomingWagers wagers={wagerRequests} />}
         
@@ -164,38 +158,39 @@ const toggleHistory = (event) =>{
           <h2 className="showInfo" onClick={toggleOngoing}>Show Ongoing Wagers ({ongoingWagers.length})</h2>
           {showOngoing && <OngoingWagers ongoingWagers={ongoingWagers} />}
           </div>
-
         )}    
         
-
-
-
         {pendingWagers.length > 0 &&(
-           <div>
-           <h2 className="showInfo" onClick={togglePending}>Show Pending Wagers ({pendingWagers.length})</h2>
-           {showPending && <PendingWagers pendingWagers={pendingWagers} />}
-           </div>
+          <div>
+          <h2 className="showInfo" onClick={togglePending}>Show Pending Wagers ({pendingWagers.length})</h2>
+          {showPending && <PendingWagers pendingWagers={pendingWagers} />}
+          </div>
 
         )}
-
-       
           {unresolvedWagers.length >0 &&(
 
             <div>
           <h2 className="showInfo" onClick={toggleUnresolved}>Show Unresolved Wagers ({unresolvedWagers.length})</h2> 
           {showUnresolved && <UnresolvedWagers unresolvedWagers={unresolvedWagers} />}
           </div>
-
-
           )}
         
-       
+        {pastWagers.length >0 &&(
+          <div>
         <h2 className="showInfo" onClick={toggleHistory}>Show Past Wagers ({pastWagers.length})</h2> 
         {showHistory && <PastWagers pastWagers={pastWagers} />}
-      
+        </div>
+        )}
+
+        {pastWagers.length === 0 && unresolvedWagers.length===0 && pendingWagers.length === 0 && ongoingWagers.length===0 &&(
+          <div>
+            <h2 className="noWagers"> You have no wagers - <a className="noWagers" href='/userlist'>challenge someone!</a></h2> 
+          </div>
+        )}
+
     </div>
     </div>
-  // </div>
+  </div>
       )};
     
   export default MyAccountPage;

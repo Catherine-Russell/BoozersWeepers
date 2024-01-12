@@ -27,7 +27,6 @@ const UserList = () => {
     }
     
   }
-
   
   
   const toggleExpand = () => {setExpanded(!expanded);};
@@ -54,10 +53,15 @@ const UserList = () => {
 
   return (
 	<div>
-    <Header/>
           <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+    <Header/>
           <div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
-      
+          <br></br>
+						<br></br>
+						<br></br>
+						<br></br>
+						<br></br>
+						<br></br>
     
     <div className="pageTitle">
     <h1 id='new-wager-heading' className='page_subheading'>Who do you wanna make a wager with?</h1>
