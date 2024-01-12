@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+.leadertitle{
+    font-family: 'Permanent Marker';
+    font-size: 40px;
+    color: whitesmoke;
+}
+
+.leadertext{
+    font-family: 'Permanent Marker';
+    color: whitesmoke
+}
+.leadercomments{
+    font-family: 'Permanent Marker';
+    color: rgba(245, 245, 245, 0.89);
+    font-size: smaller;
+    padding-left: 2%;
+}

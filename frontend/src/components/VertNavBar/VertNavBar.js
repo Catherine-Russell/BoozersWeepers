@@ -4,7 +4,7 @@ import { IoHome, IoPint, IoWallet } from 'react-icons/io5';
 import { BiExpandHorizontal } from 'react-icons/bi';
 import { FaHandshakeSimple } from 'react-icons/fa6';
 import { FiLogIn,FiLogOut } from 'react-icons/fi';
-import { MdOutlineAccountCircle } from "react-icons/md";
+import { MdOutlineAccountCircle, MdLeaderboard } from "react-icons/md";
 import { TiGroup } from "react-icons/ti"; //for groups
 
 import '../VertNavBar/VertNavBar.css';
@@ -33,6 +33,7 @@ const navigate = useNavigate();
           <li><a href="/userlist"><span>New Bet</span><FaHandshakeSimple className="react-icon" size={30} /></a></li>
           <li><a href="/wallet"><span>Wallet</span><IoWallet className="react-icon" size={30} /></a></li>
           <li><a href="/groups"><span>Groups</span><TiGroup className="react-icon" size={30} /></a></li>
+          <li><a href="/leaderboard"><span>Leaders</span><MdLeaderboard className="react-icon" size={30} /></a></li>
           </ul>
           ) : (
             <ul>
