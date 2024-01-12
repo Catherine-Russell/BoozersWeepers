@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import "./NewWagerForm.css";
 import { useParams } from "react-router-dom"
 import VertNavbar from '../VertNavBar/VertNavBar';
+import Header from '../header/Header';
+import '../../Pages/style.css'
 
 const NewWagerForm = ({ navigate }) => {
 	const {challengedUserID} = useParams()
@@ -29,8 +31,6 @@ const NewWagerForm = ({ navigate }) => {
         
 
         setUserData(userData.user);
-
-      
 
       })
       .catch(error => {
@@ -82,15 +82,26 @@ if (token) {
 			{userData && (
 				<>
 					<VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+					<Header />
+					<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
+						
 					<div className="NewWager">
 						<form onSubmit={handleWagerSubmit}>
-							<h1 id="create-a-wager-heading">Create a Wager with {userData.username}</h1>
-	
+							<h1 id="page_subheading" className='page_subheading'>Create a wager with {userData.username}</h1>
+						<br></br>
+						<br></br>
+						<br></br>
+						<br></br>
 							<input placeholder="Description" id="description" type='text' value={description} onChange={handleDescriptionChange} />
 							<input placeholder="Deadline" id="deadline" type='date' value={deadline} onChange={handleDeadlineChange} />
-	
+							<br></br>
 							<input id='submit' type="submit" value="Submit" />
 						</form>
+						<br></br>
+						<br></br>
+						<br></br>
+						<br></br>
+					</div>
 					</div>
 				</>
 			)}

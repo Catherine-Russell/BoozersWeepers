@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PintInfo from '../singlepint/pintinfo';
 import './popup.css';
+import './WalletComponent.css'
 
 const WalletComponent = ({ UserID }) => {
   const [WalletData, setWalletData] = useState(null);
@@ -37,10 +38,11 @@ const WalletComponent = ({ UserID }) => {
   };
 
   return (
-    <div className='pint-container'>
+    <div >
       {WalletData && WalletData.pints && WalletData.pints.map((pint) => (
         <div key={pint._id}>
-          <button className='pint' onClick={() => openPintInfo(pint._id)}>{pint.owed_by.username}<div>owes you a pint!</div><div>
+          <button className='pint' onClick={() => openPintInfo(pint._id)}>{pint.owed_by.username}<div>owes you a pint!</div>
+          <div>
             Click to claim</div> </button>
         </div>
       ))}

@@ -1,0 +1,27 @@
+.columns-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Adjust the gap as needed */
+  }
+  
+  .column {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .top-center-section {
+    text-align: center;
+  }
+
+  .page_title {
+    font-family: 'Caveat', sans-serif; 
+    font-size: 80px;
+    color: #333; 
+  }
+
+p  {
+    font-family: 'Caveat', sans-serif; 
+    font-size: 25px;
+    color: #333; 
+  }

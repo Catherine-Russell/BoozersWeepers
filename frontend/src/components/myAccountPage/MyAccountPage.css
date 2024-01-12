@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
-
-
-
 .MyAccountSubheading {
     font-size:xx-large;
     color: white;
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
 }
 
+.username-subheading {
+  font-size:60px;
+  color: white;
+  font-family: 'Caveat';
+  text-align: center;
+}
 
 .page-content {
     padding: 20px;
@@ -19,24 +22,32 @@
     font-size: 24px;
     margin-bottom: 20px;
     color: white;
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
   }
 
   .page-head {
     font-size: 24px;
     margin-bottom: 20px;
     color: rgb(0, 0, 0);
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
   }
 
   .showInfo {
     color: white;
-    font-family: 'Permanent Marker';
+    font-family: 'Caveat';
     cursor: pointer;
+    font-size: 30px;
   }
   
   .showInfo:hover {
     text-decoration: underline; 
+  }
+
+  .noWagers {
+    color: white;
+    font-family: 'Caveat';
+    cursor: pointer;
+    text-align: center;
   }
   
   .button-container {

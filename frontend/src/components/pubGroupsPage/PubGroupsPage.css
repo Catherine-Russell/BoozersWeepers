@@ -11,3 +11,40 @@
     text-decoration: underline;
     text-indent: 2em;
   }
+  .my-groups {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: flex-start; */
+    text-align: center;
+  }
+  
+  /* Adjust the width of each column */
+  .group-column {
+    width: 30%; /* Adjust as needed */
+  }
+  
+  .search-groups-column,
+  .create-new-group-column {
+    width: 30%; /* Adjust as needed */
+  }
+  
+  /* Optional: Add some margin between columns */
+  .search-groups-column {
+    margin-left: 20px;
+  }
+  
+  .create-new-group-column {
+    margin-left: 20px;
+  }
+
+  .group-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  p  {
+    font-family: 'Caveat', sans-serif; 
+    font-size: 30px;
+    color: #333; 
+  }

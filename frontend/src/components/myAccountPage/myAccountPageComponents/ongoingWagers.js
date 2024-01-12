@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import "../MyAccountPage.css"
 import getSessionUserID from '../../Utility/getSignedInUser_id';
 import NotificationDetails from './NotificationDetails';
+import './notification.css'
+
 
 const OngoingWagers = ({ navigate, ongoingWagers }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -17,7 +19,7 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
 
               <p>
               <a className="notificationdetails" href={`/wager/${wager._id}`}>You bet {wager.peopleInvolved[1].username} that {wager.description}</a>
-               </p>
+              </p>
             ) 
             : 
             (
@@ -31,7 +33,7 @@ const OngoingWagers = ({ navigate, ongoingWagers }) => {
     );
   } else {
     navigate('/login');
-    return null; // Return null or any other UI component if necessary
+    return null; 
   }
 };
 

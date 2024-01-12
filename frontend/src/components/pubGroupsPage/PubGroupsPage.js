@@ -50,16 +50,28 @@ const PubGroupsPage = ({ navigate }) => {
 		<Header />
 
 			<div className={`page-content ${expanded ? 'shifted-content' : ''}`}>
-		
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
 			<div className="my-groups" >
-				<h1 id='my-groups-header' className="page_subheading">My groups:</h1>
+				<h1 id='my-groups-header' className="page_subheading">Your groups:</h1>
+				
+					<>
 					{joinedGroups.map((pubGroup) => (
-					<ul key={pubGroup.id} className="group-name">
-					<a href={`/groups/${pubGroup._id}`} >
+						<p key={pubGroup.id} className="group-name">
+						<a href={`/groups/${pubGroup._id}`} >
 						{pubGroup.name}
-					</a>
-					</ul>))}
-
+						</a>
+						</p>))}
+							</>
+						
 					<br></br>
 						
 
@@ -70,6 +82,7 @@ const PubGroupsPage = ({ navigate }) => {
 				<br></br>
 					<div id='create-new-group'>
 						<h1 id='new-group-header' className="page_subheading">Create a group</h1>
+
 						<button onClick={handleCreateGroupButtonClick}>Create group</button>
 					</div>
 			</div>

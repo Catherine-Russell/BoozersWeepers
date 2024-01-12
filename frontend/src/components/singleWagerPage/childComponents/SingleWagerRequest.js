@@ -34,12 +34,12 @@ const SingleWagerRequest = (wagerData) => {
 
   }
   return (
-    <div id='single-wager-request' className='single-wager'>
+    <div id='single-wager-request' className='preamble'>
     {wager.peopleInvolved[0].username} wants to wager that {wager.description}.<br />
-    The winner will receive {wager.quantity} drink!
+    The winner will receive {wager.quantity} pint!
     <div id='deadline' className='deadline'>Deadline: {deadlineDate} </div><br />
     Do you accept or reject their challenge?<br /> <br />
-    <button id='accept-button' className='accept-button' onClick={ handleAcceptClick }>Accept Wager</button>
+    <button id='accept-button' className='accept-button' onClick={ handleAcceptClick }>Accept Wager</button><span className="button-space"></span>
     <button id='reject-button' className='reject-button' onClick={ handleRejectClick }>Reject Wager</button>
     </div>
 

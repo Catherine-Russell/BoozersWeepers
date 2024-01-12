@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import "./Homecss.css"
 import '../../Pages/style.css'
 import '../header/Header.js'
-import Header from '../header/Header.js';
+import HPHeader from './homePageHeader/HPHeader';
 
 
 
@@ -13,13 +13,27 @@ const Home = ({ navigate }) => {
 
   return(
     <div className='logged-out-page-container'>
-      <Header />
     <VertNavbar expanded={expanded} toggleExpand={toggleExpand} />
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
 
-<h1 className='main-title'>Boozers Weepers</h1>
-  <a id='register-link' href='/signup'>Please Register</a><br/>
+    <HPHeader />
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+  <a className='register-link' href='/signup'>Please Register</a><br/>
   or <br/>
-  <a id='login-link'href='/login'>Sign in</a>
+  <a className='login-link'href='/login'>Sign in</a>
     
   </div>
   )
