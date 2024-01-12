@@ -33,7 +33,7 @@ const navigate = useNavigate();
           <li><a href="/userlist"><span>New Bet</span><FaHandshakeSimple className="react-icon" size={30} /></a></li>
           <li><a href="/wallet"><span>Wallet</span><IoWallet className="react-icon" size={30} /></a></li>
           <li><a href="/groups"><span>Groups</span><TiGroup className="react-icon" size={30} /></a></li>
-          <li><a href="/leaderboard"><span>Leaders</span><MdLeaderboard className="react-icon" size={30} /></a></li>
+          <li><a href="/leaderboard"><span>Leaderboard</span><MdLeaderboard className="react-icon" size={30} /></a></li>
           </ul>
           ) : (
             <ul>
