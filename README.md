@@ -1,8 +1,42 @@
-# TeamTavern
-COPIED FROM tavern:
-# tavern
+# Boozers Weepers
 
-In this project, you are tasked with working on an existing application. A significant part of the challenge will be to familiarise yourself with the codebase you've inherited, as you work to **improve and extend** it.
+
+
+## Table of Contents
+- [Project Description](#project-description)
+- [Demo](#demo)
+- [Features](#features)
+- [How it works](how-it-works)
+- [How to Run the Application](#how-to-run-the-application)
+- [Contributors](#contributors)
+
+## Project Description
+Boozers Weepers was a 2-week group project that aimed to track informal pub bets with your friends.
+We worked in a group with two quality engineers who focused on the frontend tests and 
+
+Tech Used:
+- MongoDB
+- Express.js
+- React.js
+- Node.js
+- Testing: Jest in the backend, Selenium in the frontend
+
+## Demo
+
+## Features
+- User authentication and authorization with JWT tokens.
+- 
+- 
+## Contributors
+- [Rachel Roberts](https://github.com/Rachel853)
+- [Ben ]()
+- [Sam] ()
+- [Manuela (Quality engineer)] ()
+- [Karys (Quality engineer)] ()
+
+
+
+
 
 ## Documentation
 
@@ -10,14 +44,15 @@ In this project, you are tasked with working on an existing application. A signi
 
 [A template Miro board for your diagrams can be found here.](https://miro.com/app/board/uXjVPqNzFfc=/?share_link_id=360271550320) Make sure your validate your diagrams with your coach.
 
-## Card wall
+## How to Run the Application
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
-
-## Quickstart
-
-### Install Node.js
-
+1. Clone the repository: `git clone https://github.com/Catherine-Russell/Facebook-Clone.git`
+2. Navigate to the project directory
+3. Install dependencies for both the server and client: `npm install` in the `frontend` directory and the `api` directory.
+4. Set the JWT_SECRET environment variable: `export JWT_SECRET="your-secret-key"`
+5. Start the server: `npm start` in the `frontend` directory.
+6. Start the client: `npm start` in the `api` directory.
+7. 
 1. Install Node Version Manager (NVM)
    ```
    brew install nvm
@@ -28,6 +63,11 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
    ```
    nvm install 18
    ```
+
+
+
+
+
 
 ### Set up your project
 
@@ -139,13 +179,5 @@ Some people occasionally experience MongoDB connection errors when running the t
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
 
 
-
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
-
----
-
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Ftavern-mern-template&prefill_File=README.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Ftavern-mern-template&prefill_File=README.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Ftavern-mern-template&prefill_File=README.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Ftavern-mern-template&prefill_File=README.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Ftavern-mern-template&prefill_File=README.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
 
 <!-- END GENERATED SECTION DO NOT EDIT -->
